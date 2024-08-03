@@ -1,4 +1,4 @@
-Date.prototype.getMonthString = function() {
+Date.prototype.getMonthName = function() {
   if (this.getMonth() == 0) {return "January"};
   if (this.getMonth() == 1) {return "February"};
   if (this.getMonth() == 2) {return "March"};
@@ -13,7 +13,7 @@ Date.prototype.getMonthString = function() {
   if (this.getMonth() == 11) {return "December"};
 };
 
-Date.prototype.getMonthStringAbbr = function() {
+Date.prototype.getMonthAbbr = function() {
   if (this.getMonth() == 0) {return "Jan"};
   if (this.getMonth() == 1) {return "Feb"};
   if (this.getMonth() == 2) {return "Mar"};
@@ -28,7 +28,7 @@ Date.prototype.getMonthStringAbbr = function() {
   if (this.getMonth() == 11) {return "Dec"};
 };
 
-Date.prototype.getDayString = function() {
+Date.prototype.getDayName = function() {
   if (this.getDay() == 0) {return "Sunday"};
   if (this.getDay() == 1) {return "Monday"};
   if (this.getDay() == 2) {return "Tuesday"};
@@ -38,7 +38,7 @@ Date.prototype.getDayString = function() {
   if (this.getDay() == 6) {return "Saturday"};
 };
 
-Date.prototype.getDayStringAbbr = function() {
+Date.prototype.getDayAbbr = function() {
   if (this.getDay() == 0) {return "Sun"};
   if (this.getDay() == 1) {return "Mon"};
   if (this.getDay() == 2) {return "Tues"};
