@@ -1,0 +1,98 @@
+html {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e3731f;
+}
+
+textarea {
+  font-family: 'Courier Prime', Courier, monospace;
+  width: calc(100% - 16px);
+  padding: 5px;
+  margin-bottom: 4px;
+  border: 1px solid dimgray;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5em;
+  border-bottom-left-radius: 0em;
+  border-bottom-right-radius: 0em;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+  width: calc(50% - 5px);
+}
+
+#format {
+  background-color: rgba(0, 100, 0, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  margin-right: 1.25px;
+  cursor: not-allowed;
+  border-bottom-left-radius: 0.5em;
+}
+
+#format:hover::after {
+  content: "Pleae add a transcript in order to format";
+  color: rgba(84, 83, 83, 0.75);
+  border: solid 0.5px rgba(84, 83, 83, 0.75);
+  position: absolute;
+  top: 51.5em;
+  right: calc(65.75% + 10.5px);
+  font-size: 7.5pt;
+  background-color: rgba(211, 211, 211, 0.75);
+  padding: 2px;
+}
+
+#format.usable {
+  background-color: rgba(0, 100, 0, 1);
+  color: white;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#format.usable:hover {
+  background-color: rgba(0, 100, 0, 0.9);
+}
+
+#format.usable:hover::after {
+  display: none;
+}
+
+#copy {
+  background-color: rgba(3, 127, 252, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  margin-left: 1.25px;
+  cursor: not-allowed;
+  border-bottom-right-radius: 0.5em;
+}
+
+#copy:hover::after {
+  content: "Pleae add and format a transcript in order to copy";
+  color: rgba(84, 83, 83, 0.75);
+  border: solid 0.5px rgba(84, 83, 83, 0.75);
+  position: absolute;
+  top: 51.5em;
+  right: calc(9% + 10.5px);
+  font-size: 7.5pt;
+  background-color: rgba(211, 211, 211, 0.75);
+  padding: 2px;
+}
+
+#copy.usable {
+  color: white;
+  background-color: rgba(3, 127, 252, 1);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#copy.usable:hover {
+  background-color: rgba(3, 127, 252, 0.9);
+}
+
+#copy.usable:hover::after {
+  display: none;
+}
