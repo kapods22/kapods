@@ -78,7 +78,6 @@ function format() {
 }
 
 function copy() {
-  console.log(copyBtn.className);
   if (copyBtn.className.includes("usable")) {
     // Copies the formatted text to the clipboard
     navigator.clipboard.writeText(input.value);
