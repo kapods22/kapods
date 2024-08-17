@@ -20,7 +20,7 @@ let ACBEpInfo = [];
 
 // Find an episode
 
-function minsAndSecs(totalSecs) {
+/* function minsAndSecs(totalSecs) {
   const mins = (Math.trunc(totalSecs / 60)).toLocaleString('en-US', {
     minimumIntegerDigits: 2,
     useGrouping: false
@@ -34,7 +34,7 @@ function minsAndSecs(totalSecs) {
     secs: secs,
     fullTime: `<span class="mins">${mins}</span>:<span class="secs">${secs}</span>`
   };
-}
+} */
 
 function findEpisode(episodes, guid) {
   // The variable 'episodes' will be the array of episode info objects for the podcast the episode is of, and 'guid' will be the guid of the episode
