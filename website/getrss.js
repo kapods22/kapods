@@ -351,7 +351,7 @@ function displayLatestEpisode(episodes) {
     episodeContainer.innerHTML = "";
     let i;
 
-    if (episodes == CAEpObjects) {
+    if (episodes == CAEpInfo) {
       i = episodes.length - 1;
     } else {
       i = 0;
