@@ -107,17 +107,18 @@ function displayAllEpisodes(episodes) {
       }
     };
     // Set the episode's class name
-    if (episode.seNum) {
+    if (episode.seNum != undefined) {
       episodeClass = `s${episode.seNum}-`;
       if (episode.type == "trailer") {
         episodeClass += "trailer";
       }
     }
-    if (episode.epNum) {
+    if (episode.epNum != undefined) {
       episodeClass += `e${episode.epNum}`;
     } else if (!episode.seNum || episode.seNum && episode.type != "trailer") {
       episodeClass += episode.title.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s/g, "-");
     }
+    episodeClass = episodeClass.replace("undefined", "");
     // The HTML code
     let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
         <div id="episode-art" width="18.2%">
