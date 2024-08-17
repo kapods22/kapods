@@ -281,6 +281,7 @@ function displayAllEpisodes(episodes) {
         quizUrl = "";
       }
       htmlCode += `
+      <div id="episode-buttons">
         <div class="button">
           <a href="${comicUrl}" target="_self">
             <button class="episode-button${hasComicClass}">
