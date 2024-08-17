@@ -3,6 +3,9 @@ let CAEpInfo = [];
 let KAEpInfo = [];
 let AFEpInfo = [];
 let ACBEpInfo = [];
+let startedFetchRSS = false;
+let endedFetchRSS = false;
+let interval;
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
  * - podcast: Podcast acronym | String | Local Variable: podcast
@@ -18,7 +21,16 @@ let ACBEpInfo = [];
  * - guid: Episode guid | String | Tag: <guid>
 */
 
-// Find an episode
+function awaitFetchRSS(nextFunct) {
+  interval = setInterval(() => checkFeedStatus(nextFunct), 1);
+}
+
+function checkFeedStatus(nextFunct) {
+  if (endedFetchRSS) {
+    nextFunct();
+    clearInterval(interval);
+  }
+}
 
 function findEpisode(episodes, guid) {
   // The variable 'episodes' will be the array of episode info objects for the podcast the episode is of, and 'guid' will be the guid of the episode
@@ -95,7 +107,7 @@ function displayAllEpisodes(episodes) {
 
   if (episodes.length != 0) {
     episodeContainer.innerHTML = "";
-    
+
     for (let i = 0; i < episodes.length; i++) {
       let episodeClass;
       const episode = episodes[i];
@@ -109,13 +121,13 @@ function displayAllEpisodes(episodes) {
         }
       };
       // Set the episode's class name
-      if (episode.seNum != undefined) {
+      if (episode.seNum) {
         episodeClass = `s${episode.seNum}-`;
         if (episode.type == "trailer") {
           episodeClass += "trailer";
         }
       }
-      if (episode.epNum != undefined) {
+      if (episode.epNum) {
         episodeClass += `e${episode.epNum}`;
       } else if (!episode.seNum || episode.seNum && episode.type != "trailer") {
         episodeClass += episode.title.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s/g, "-");
@@ -594,17 +606,18 @@ function displayOneEpisode(episodes) {
   }
 }
 
-async function fetchRSS (podcast) {
+function fetchRSS (podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
   // Get the correct RSS feed.
+  startedFetchRSS = true;
+
   let rssFeed = "https://corsproxy.io/?";
-  
+
   if (podcast == "CA") {
     rssFeed += encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
   } else if (podcast == "KA") {
-    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=");
+    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");
   } else if (podcast == "AF") {
-    // rssFeed = "localaffeed.rss";
     rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
   } else if (podcast == "ACB") {
     rssFeed = encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers");
@@ -659,5 +672,6 @@ async function fetchRSS (podcast) {
         ACBEpInfo.push(episodeInfo);
       }
     }
+    endedFetchRSS = true;
   });
 }
