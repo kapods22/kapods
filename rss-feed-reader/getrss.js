@@ -354,7 +354,7 @@ async function fetchRSS (podcast) {
   }
 
   // Fetch the RSS feed.
-  fetch(rssFeed, {mode: "no-cors"}).then(response => {
+  fetch(rssFeed).then(response => {
     console.log(response);
     return response.text();
   }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, ""), "text/xml")).then(data => {
