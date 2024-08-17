@@ -347,7 +347,7 @@ async function fetchRSS (podcast) {
   if (podcast == "CA") {
     rssFeed += encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
   } else if (podcast == "KA") {
-    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");
+    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=");
   } else if (podcast == "AF") {
     // rssFeed = "localaffeed.rss";
     rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
