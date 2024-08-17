@@ -404,8 +404,3 @@ async function fetchRSS (podcast) {
     }
   });
 }
-
-fetchRSS("CA");
-setTimeout(() => {
-  displayAllEpisodes(CAEpInfo);
-}, 2000);
