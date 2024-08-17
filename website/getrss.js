@@ -120,7 +120,7 @@ function displayAllEpisodes(episodes) {
     // The HTML code
     let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
         <div id="episode-art" width="18.2%">
-          <a href="https://www.kingdomanimaliapod.com/watcb/s1/trailer-where-are-the-chickadee-brothers-season-1" target="_self">
+          <a href=${episode.webpage}" target="_self">
             <img class="episode-art" src="${episode.art}">
           </a>
       </div>
