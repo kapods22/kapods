@@ -352,22 +352,14 @@ function displayOneEpisode(episodes) {
     let i;
 
     if (episodes == CAEpInfo) {
-      i = episodes.length - 1;
+      i = 1;
     } else {
       i = 0;
     }
 
     let episodeClass;
     const episode = episodes[i];
-    let nextPlay = () => {
-      if (i + 1 != episodes.length && episode.podcast == "CA") {
-        return ` playAud(document.querySelectorAll('.play-one')[${i + 1}]);`;
-      } else if (i > 0) {
-        return ` playAud(document.querySelectorAll('.play-one')[${i - 1}]);`;
-      } else {
-        return "";
-      }
-    };
+
     // Set the episode's class name
     if (episode.seNum) {
       episodeClass = `s${episode.seNum}-`;
@@ -441,7 +433,7 @@ function displayOneEpisode(episodes) {
             </div>
             <p id="duration"></p>
             <br>
-            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true);" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
+            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true);" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
           </div>
         </div>`;
     // Adding episode buttons
