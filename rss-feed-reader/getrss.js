@@ -345,7 +345,8 @@ async function fetchRSS (podcast) {
   
   if (podcast == "CA") {
     // rssFeed += encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
-    rssFeed = "https://www.spreaker.com/show/5934340/episodes/feed";
+    // rssFeed = "https://www.spreaker.com/show/5934340/episodes/feed";
+    rssFeed = "https://kapods.onrender.com/feeds/ca";
   } else if (podcast == "KA") {
     // rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");
     rssFeed = "https://feeds.buzzsprout.com/2038404.rss";
