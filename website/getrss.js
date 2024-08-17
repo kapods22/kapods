@@ -57,6 +57,7 @@ function buttonUrl(text, showNotes) {
 // Generate and insert the HTML code for an episode's audio player
 function createAudioPlayer(podcast, guid) {
   const audioPlayerContainer = document.getElementById("audio-player-container");
+  audioPlayerContainer.innnerHTML = "";
   // The HTML code
   let htmlCode = `<div class="ka-audio-player">
           <div class="pause-play buttons">
@@ -92,6 +93,7 @@ function createAudioPlayer(podcast, guid) {
 function displayAllEpisodes(episodes) {
   // The variable 'episodes' will be the array of episode info objects for the podcast, season, miniseries, etc.
   const episodeContainer = document.getElementById("episode-container");
+  episodeContainer.innerHTML = "";
   
   for (let i = 0; i < episodes.length; i++) {
     let episodeClass;
