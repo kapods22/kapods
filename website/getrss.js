@@ -310,7 +310,7 @@ function displayAllEpisodes(episodes) {
                   </g>
                 </svg>
               </span>
-              <span>Ep Quiz</span>
+              <span>Memory Quiz</span>
             </button>
           </a>
         </div>`;
