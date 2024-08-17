@@ -344,7 +344,7 @@ async function fetchRSS (podcast) {
   let rssFeed;
   
   if (podcast == "CA") {
-    rssFeed = "localrss.rss";
+    rssFeed = "https://www.spreaker.com/show/5934340/episodes/feed";
   } else if (podcast == "KA") {
     rssFeed = "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
