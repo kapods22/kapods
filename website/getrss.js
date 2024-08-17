@@ -343,7 +343,7 @@ function displayAllEpisodes(episodes) {
   }
 }
 
-function displayLatestEpisode(episodes) {
+function displayOneEpisode(episodes) {
   // The variable 'episodes' will be the array of episode info objects containing the episode.
   const episodeContainer = document.getElementById("episode-container");
 
