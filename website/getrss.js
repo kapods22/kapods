@@ -46,7 +46,6 @@ function CASeason(season) {
 function buttonUrl(text, showNotes) {
   const showNotesCode = new window.DOMParser().parseFromString(showNotes, "text/html");
   let aArray = showNotesCode.querySelectorAll("a");
-  if (showNotes == CAEpInfo[1].showNotes) console.log(aArray[0]);
   for (let i = 0; i < aArray.length; i++) {
     if (aArray[i].innerHTML == text) {
       return aArray[i].href;
