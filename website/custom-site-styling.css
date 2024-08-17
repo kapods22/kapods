@@ -1,0 +1,250 @@
+main span {
+  text-decoration: chickadee !important;
+  /* text-decoration is intentionally set to a value that does not exist so it does not display text-decoration, while also not overriding the text-decoration of its children. */
+}
+
+main span a {
+  text-decoration: underline;
+}
+
+.custom-slider {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border-radius: 50px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 5px;
+  border-radius: 0px;
+  background: gray;
+  cursor: col-resize;
+  margin-top: 0px;
+  box-shadow: -1000px 0px 0px 1000px #000000;
+}
+
+.custom-slider::-webkit-slider-runnable-track {
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #cfcfcf;
+  border-radius: 50px;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  width: 39px;
+  font-size: 14px;
+}
+
+.mins {
+  flex: 1;
+  text-align: left;
+}
+
+.secs {
+  flex: 1;
+  text-align: right;
+}
+
+.icon {
+  pointer-events: none;
+}
+
+main button[type="submit"] {
+  background-color: #733500 !important;
+  box-shadow: 4px 4px rgba(79, 37, 1, 1);
+}
+
+.custom-form-button-container {
+  /* display: none; */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.custom-form-button {
+  background-color: rgba(115, 53, 0, 1);
+  box-shadow: 4px 4px rgba(79, 37, 1, 1);
+  padding: 5px 10px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.hidden-custom-form-button {
+  display: none;
+}
+
+.custom-form-button:hover {
+  color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(115, 53, 0, 0.75);
+  box-shadow: 4px 4px rgba(79, 37, 1, 0.75);
+}
+
+main form input[type="text"],
+main form input[type="email"],
+main form input[type="file"],
+main form input[type="password"],
+main form textarea {
+  background-color: #b85c17 !important;
+  border-style: none !important;
+  border-radius: 0px !important;
+  box-shadow: 4px 4px #4f2501 !important;
+}
+
+footer form input[type="email"],
+footer button[type="submit"] {
+  border-style: none !important;
+  border-radius: 0px !important;
+  box-shadow: 4px 4px #a6a6a6 !important;
+}
+
+footer form input[type="email"] {
+  background-color: #e3e3e3 !important;
+}
+
+#podcast-episode {
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 40);
+  padding: 10px;
+  background-color: #f57c22;
+}
+
+#episode-art,
+#details-and-player,
+#episode-buttons {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#episode-art {
+  border-radius: 8px;
+  width: 170px;
+}
+
+.episode-art {
+  border-radius: 8px;
+  width: 100%;
+}
+
+#details-and-player {
+  width: calc(100% - 401.75px);
+  margin: 0px 19px;
+}
+
+#episode-title {
+  margin-top: -15px;
+  display: block !important;
+}
+
+#show-notes {
+  margin-bottom: 20px;
+  display: block !important;
+}
+
+.middle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#episode-buttons {
+  width: 184.25px;
+}
+
+.episode-button {
+  white-space: nowrap;
+  overflow: hidden;
+  display: block !important;
+  color: white;
+  background-color: #733500;
+  font-size: 1em;
+  padding: .3em .9em;
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid #733500;
+  border-radius: 1000px;
+  overflow: visible;
+  fill: white;
+}
+
+.unlinked-button,
+.unlinked-button:hover {
+  background-color: gray !important;
+  border-color: gray !important;
+  pointer-events: none;
+}
+
+.button a[href=""] {
+  pointer-events: none;
+}
+
+.episode-button:hover {
+  background-color: #914300;
+  border-color: #914300;
+}
+
+.episode-button-icon-container {
+  margin-right: 0.9em;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.episode-button-icon-container svg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.button a,
+.button a:hover {
+  text-decoration: none !important;
+}
+
+@media (max-width: 1000px) {
+  #show-notes {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 800px) {
+  #episode-buttons {
+    display: none;
+  }
+
+  #details-and-player {
+    width: calc(100% - 197.5px);
+    margin-left: 19px;
+    margin-right: 0px;
+  }
+
+  #show-notes {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  #episode-art,
+  #details-and-player {
+    display: block;
+    margin: 0px;
+  }
+
+  #show-notes {
+    margin-bottom: 20px;
+  }
+
+  #episode-art {
+    width: 100%;
+  }
+
+  #details-and-player {
+    width: 100%;
+  }
+}
