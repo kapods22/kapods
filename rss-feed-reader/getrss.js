@@ -342,21 +342,6 @@ async function fetchRSS (podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
   // Get the correct RSS feed.
   let rssFeed = "https://kapods.onrender.com/feeds/" + podcast;
-  /* let rssFeed = "https://corsproxy.io/?";
-  if (podcast == "CA") {
-    // rssFeed += encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
-    // rssFeed = "https://www.spreaker.com/show/5934340/episodes/feed";
-    rssFeed = "https://kapods.onrender.com/feeds/ca";
-  } else if (podcast == "KA") {
-    // rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");
-    rssFeed = "https://feeds.buzzsprout.com/2038404.rss";
-  } else if (podcast == "AF") {
-    // rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
-    rssFeed = "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
-  } else if (podcast == "ACB") {
-    // rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers");
-    rssFeed = "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
-  }*/
 
   // Fetch the RSS feed.
   fetch(rssFeed).then(response => {
