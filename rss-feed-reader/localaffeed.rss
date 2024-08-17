@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="https://feeds.buzzsprout.com/styles.xsl" type="text/xsl"?>
+<rss version="2.0"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:podcast="https://podcastindex.org/namespace/1.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:psc="http://podlove.org/simple-chapters"
+  xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="https://feeds.buzzsprout.com/2038404.rss" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"
+      xmlns="http://www.w3.org/2005/Atom" />
+      <title>Kingdom: Animalia - A Zoology Podcast for Kids</title>
+      <lastBuildDate>Sat, 20 Jul 2024 11:58:20 -0700</lastBuildDate>
+      <link>https://www.kingdomanimaliapod.com/ka</link>
+      <language>en-us</language>
+      <copyright>© 2024 Kingdom: Animalia Podcasts</copyright>
+      <podcast:locked>yes</podcast:locked>
+      <podcast:guid>7a848657-56f5-572e-b048-62bd47d3a958</podcast:guid>
+      <podcast:txt purpose="verify">
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c3d3235313d302f1c3735323b3833313d3235313d30353d2c3338723f3331">[email&#160;protected]</a>
+      </podcast:txt>
+      <podcast:podroll>
+        <podcast:remoteItem feedGuid="39bd2ffc-8001-565a-8aca-fc449949ddd1" feedUrl="https://www.spreaker.com/show/5934340/episodes/feed" />
+        <podcast:remoteItem feedGuid="4f87a6ee-aba9-51cf-b352-5cb5c1f7f67e" feedUrl="https://species.libsyn.com/rss" />
+        <podcast:remoteItem feedGuid="81284ed2-ea23-591e-a67b-25a49866ae95" feedUrl="https://omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/22554C7C-336B-4DAB-8602-AE3900375F03/F00B6583-9098-41FA-B61B-AE3900375F11/podcast.rss" />
+        <podcast:remoteItem feedGuid="9978626f-16f9-5641-a1b4-15b45defb672" feedUrl="https://feeds.megaphone.fm/EDEUA3248340476" />
+        <podcast:remoteItem feedGuid="f552fdd0-f241-5506-a205-a84437062eb0" feedUrl="https://coolfactsaboutanimals.libsyn.com/rss" />
+        <podcast:remoteItem feedGuid="a8f1758c-bc91-56ee-9aae-d7c2f5330f50" feedUrl="https://feeds.megaphone.fm/EDEUA3702143216" />
+      </podcast:podroll>
+      <itunes:author>Kingdom: Animalia Podcasts</itunes:author>
+      <itunes:type>episodic</itunes:type>
+      <itunes:explicit>false</itunes:explicit>
+      <description>
+        <![CDATA[<p>This is a for kids (and adults) by kids (and chickadees) animal podcast. Every episode your host, Devon, and his sneaky little chickadee co-hosts, Chet and Cap, will dive into all the facts of one species of animal with jokes, fun facts, and quizzes along the way. You can suggest an animal at <a href="/cdn-cgi/l/email-protection#53323d3a3e323f2013383a3d34373c3e323d3a3e323f3a32233c377d303c3e"><span class="__cf_email__" data-cfemail="8beae5e2e6eae7f8cbe0e2e5ecefe4e6eae5e2e6eae7e2eafbe4efa5e8e4e6">[email&#160;protected]</span></a> and visit our website at <a href="https://kingdomanimaliapod.com/kazpk">https://kingdomanimaliapod.com/ka</a>. So what are you waiting for? Let’s explore this amazing Kingdom: Animalia. <br>New episodes every 1-2 months and a new round of our game show, <em>Animalia Fake!</em>, every 3rd-ish month. &nbsp;<br>**Sorry it’s been a little while. Don’t worry, though; we’re not going away!**&nbsp;</p>]]>
+      </description>
+      <itunes:keywords>Kids and Family, Animals, Kids, Education, Zoology, Science, Kingdom: Animalia - A Zoology Podcast for Kids, Kingdom: Animalia</itunes:keywords>
+      <itunes:owner>
+        <itunes:name>Kingdom: Animalia Podcasts</itunes:name>
+        <itunes:email>
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e9e6e1e5e9e4fbc8e3e1e6efece7e5e9e6e1e5e9e4e1e9f8e7eca6ebe7e5">[email&#160;protected]</a>
+        </itunes:email>
+      </itunes:owner>
+      <image>
+        <url>https://storage.buzzsprout.com/8pycc6ul77jlf9q22hpy0ims2dh7?.jpg</url>
+        <title>Kingdom: Animalia - A Zoology Podcast for Kids</title>
+        <link>https://www.kingdomanimaliapod.com/ka</link>
+      </image>
+      <itunes:image href="https://storage.buzzsprout.com/8pycc6ul77jlf9q22hpy0ims2dh7?.jpg" />
+      <itunes:category text="Kids &amp; Family">
+        <itunes:category text="Education for Kids" /></itunes:category>
+      <itunes:category text="Science">
+        <itunes:category text="Nature" /></itunes:category>
+      <itunes:category text="Kids &amp; Family">
+        <itunes:category text="Pets &amp; Animals" /></itunes:category>
+      <podcast:person role="co-host" img="https://storage.buzzsprout.com/94g3o7zv3eslnx0pmkzf3qoyyc7o">Cap Chickadee</podcast:person>
+      <podcast:person role="co-host" img="https://storage.buzzsprout.com/01bd503iin0kdfems7ebnw6bz7sv">Chet Chickadee</podcast:person>
+      <podcast:person role="host" img="https://storage.buzzsprout.com/bm0l6bmxsv4cs5yj4b0hc5b66496">Devon</podcast:person>
+      <item>
+        <itunes:title>Animalia Fake! - Dinosaurs (…and Other Prehistoric Life)</itunes:title>
+        <title>Animalia Fake! - Dinosaurs (…and Other Prehistoric Life)</title>
+        <itunes:summary>
+          <![CDATA[It’s time for everybody’s favorite game show…______________________Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: Animalia Fake! Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be THREE rounds, each with FOUR outrageous animal facts, and ONE of those facts is so outrageous it’s an Animalia Fake!Roar! Thump. Thump. What’s that sound? They’re prehistoric creatures! Prehistoric creatures were pretty cool and strange and...]]>
+        </itunes:summary>
+        <description>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>Roar! Thump. Thump. What’s that sound? They’re prehistoric creatures! Prehistoric creatures were pretty cool and strange and we’re still learning more about them; but which facts about them aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>The riddle for the next episode is <em>“Though I have a bad rap, I’m really quite sweet, I am far from ‘The Count,’ a flying mammal—indeed an amazing feat. Who am I?”</em> You can send in your answers, questions, and episode suggestions to <a href="/cdn-cgi/l/email-protection#1f7e7176727e736c5f747671787b70727e7176727e73767e6f707b317c7072"><span class="__cf_email__" data-cfemail="b9d8d7d0d4d8d5caf9d2d0d7deddd6d4d8d7d0d4d8d5d0d8c9d6dd97dad6d4">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.kingdomanimaliapod.com/_downloads/0b2caed870e0d65c1db8705874ec376c'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/dinosaurs-and-other-prehistoric-life#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/dinosaurs-and-other-prehistoric-life#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </description>
+        <content:encoded>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>Roar! Thump. Thump. What’s that sound? They’re prehistoric creatures! Prehistoric creatures were pretty cool and strange and we’re still learning more about them; but which facts about them aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>The riddle for the next episode is <em>“Though I have a bad rap, I’m really quite sweet, I am far from ‘The Count,’ a flying mammal—indeed an amazing feat. Who am I?”</em> You can send in your answers, questions, and episode suggestions to <a href="/cdn-cgi/l/email-protection#fa9b9493979b9689ba9193949d9e95979b9493979b96939b8a959ed4999597"><span class="__cf_email__" data-cfemail="87e6e9eeeae6ebf4c7eceee9e0e3e8eae6e9eeeae6ebeee6f7e8e3a9e4e8ea">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.kingdomanimaliapod.com/_downloads/0b2caed870e0d65c1db8705874ec376c'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/dinosaurs-and-other-prehistoric-life#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/dinosaurs-and-other-prehistoric-life#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </content:encoded>
+        <link>https://www.kingdomanimaliapod.com/kazpk/animalia-fake/dinosaurs-and-other-prehistoric-life</link>
+        <itunes:image href="https://storage.buzzsprout.com/1a8xwpyitii5qugddmbsplob67jz?.jpg" />
+        <itunes:author>Kingdom: Animalia Podcasts</itunes:author>
+        <enclosure url="https://www.buzzsprout.com/2038404/13527713-animalia-fake-dinosaurs-and-other-prehistoric-life.mp3" length="38943390" type="audio/mpeg" />
+        <guid isPermaLink="false">Buzzsprout-13527713</guid>
+        <pubDate>Sat, 30 Sep 2023 23:00:00 -0700</pubDate>
+        <podcast:transcript url="https://www.buzzsprout.com/2038404/13527713/transcript" type="text/html" />
+        <podcast:chapters url="https://www.buzzsprout.com/2038404/13527713/chapters.json" type="application/json" />
+        <psc:chapters>
+          <psc:chapter start="0:00" title="Intro" />
+          <psc:chapter start="3:50" title="Round 1" />
+          <psc:chapter start="7:44" title="Round 2 - Pt. 1" />
+          <psc:chapter start="9:27" title="Break" />
+          <psc:chapter start="10:44" title="Round 2 - Pt. 2" />
+          <psc:chapter start="15:20" title="Standup With Chet" />
+          <psc:chapter start="17:51" title="Round 3" />
+          <psc:chapter start="21:55" title="Prize Reveal/Outro" />
+          <psc:chapter start="25:33" title="Ask the Chickadee Brothers" />
+        </psc:chapters>
+        <itunes:duration>1619</itunes:duration>
+        <itunes:keywords>Animalia Fake!, AF!, Game show, Guessing Game, Animal Facts, Spot the Fake, Dinosaurs, Dinos, Prehistory, Prehistoric Animals, Prehistoric Creatures, Animals, Education, Kids and Family, Zoology</itunes:keywords>
+        <itunes:episode>11</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:explicit>false</itunes:explicit>
+      </item>
+      <item>
+        <itunes:title>Animalia Fake! - Air Creatures</itunes:title>
+        <title>Animalia Fake! - Air Creatures</title>
+        <itunes:summary>
+          <![CDATA[It’s time for everybody’s favorite game show…______________________Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: Animalia Fake! Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be THREE rounds, each with FOUR outrageous animal facts, and ONE of those facts is so outrageous it’s an Animalia Fake!What’s that, up in the sky? It’s a drone, it’s a plane, no it’s an animal! That’s because today’s episode is about air creat...]]>
+        </itunes:summary>
+        <description>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>What’s that, up in the sky? It’s a drone, it’s a plane, no it’s an animal! That’s because today’s episode is about air creatures! Air animals are pretty cool, but which facts aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>Next episode’s <em>Animalia Fake!</em> so the riddle for the <b>next</b><b>next</b> episode is <em>“Though I have a bad rap, I’m really quite sweet, I am far from ‘The Count,’ a flying mammal—indeed an amazing feat. Who am I?”</em> You can send in your answers, questions, and episode suggestions to <a href="/cdn-cgi/l/email-protection#0d6c6364606c617e4d6664636a6962606c6364606c61646c7d6269236e6260"><span class="__cf_email__" data-cfemail="284946414549445b684341464f4c4745494641454944414958474c064b4745">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Support on Patreon</a></li><li><a href='https://www.kingdomanimaliapod.com/_downloads/9523c6ffe660fb89120023e1fa63fecd'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/air-creatures#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/air-creatures#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </description>
+        <content:encoded>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is back with its trimonthly game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>What’s that, up in the sky? It’s a drone, it’s a plane, no it’s an animal! That’s because today’s episode is about air creatures! Air animals are pretty cool, but which facts aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>Next episode’s <em>Animalia Fake!</em> so the riddle for the <b>next</b><b>next</b> episode is <em>“Though I have a bad rap, I’m really quite sweet, I am far from ‘The Count,’ a flying mammal—indeed an amazing feat. Who am I?”</em> You can send in your answers, questions, and episode suggestions to <a href="/cdn-cgi/l/email-protection#41202f282c202d32012a282f26252e2c202f282c202d2820312e256f222e2c"><span class="__cf_email__" data-cfemail="2a4b4443474b46596a4143444d4e45474b4443474b46434b5a454e04494547">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Support on Patreon</a></li><li><a href='https://www.kingdomanimaliapod.com/_downloads/9523c6ffe660fb89120023e1fa63fecd'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/air-creatures#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/kazpk/episodes/animalia-fake/air-creatures#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </content:encoded>
+        <link>https://www.kingdomanimaliapod.com/animaliafake/aircreatures</link>
+        <itunes:image href="https://storage.buzzsprout.com/lx3ztjremg5fxshp8cdk8pfoxn3b?.jpg" />
+        <itunes:author>Kingdom: Animalia Podcasts</itunes:author>
+        <enclosure url="https://www.buzzsprout.com/2038404/13334831-animalia-fake-air-creatures.mp3" length="38492226" type="audio/mpeg" />
+        <guid isPermaLink="false">Buzzsprout-13334831</guid>
+        <pubDate>Sun, 13 Aug 2023 19:00:00 -0700</pubDate>
+        <podcast:transcript url="https://www.buzzsprout.com/2038404/13334831/transcript" type="text/html" />
+        <podcast:chapters url="https://www.buzzsprout.com/2038404/13334831/chapters.json" type="application/json" />
+        <psc:chapters>
+          <psc:chapter start="0:00" title="Intro" />
+          <psc:chapter start="3:34" title="Round 1" />
+          <psc:chapter start="8:19" title="Round 2 - Pt. 1" />
+          <psc:chapter start="10:02" title="Break" />
+          <psc:chapter start="11:16" title="Round 2 - Pt. 2" />
+          <psc:chapter start="14:28" title="Standup With Chet" />
+          <psc:chapter start="16:59" title="Round 3" />
+          <psc:chapter start="22:13" title="Prize Reveal/Outro" />
+          <psc:chapter start="25:15" title="Ask the Chickadee Brothers" />
+        </psc:chapters>
+        <itunes:duration>1601</itunes:duration>
+        <itunes:keywords>Animalia Fake!, AF!, Game show, Guessing Game, Animal Facts, Spot the Fake, Air Creatures, Animals, Education, Kids and Family, Zoology</itunes:keywords>
+        <itunes:episode>10</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:explicit>false</itunes:explicit>
+      </item>
+      <item>
+        <itunes:title>Animalia Fake! - Sea Creatures</itunes:title>
+        <title>Animalia Fake! - Sea Creatures</title>
+        <itunes:summary>
+          <![CDATA[It’s time for everybody’s favorite game show…______________________Kingdom: Animalia - A Zoology Podcast for Kids has come out with a brand new game show: Animalia Fake! Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be THREE rounds, each with FOUR outrageous animal facts, and ONE of those facts is so outrageous it’s an Animalia Fake!What’s that smell? Something smells fishy! It’s because today’s episode is about  sea creatures! Underwater animals c...]]>
+        </itunes:summary>
+        <description>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids has come out with a brand new game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>What’s that smell? Something smells <em>fishy</em>! It’s because today’s episode is about  sea creatures! Underwater animals can get pretty strange, but which facts aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>You can send in your questions and episode suggestions to <a href="/cdn-cgi/l/email-protection#c2a3acabafa3aeb182a9abaca5a6adafa3acabafa3aeaba3b2ada6eca1adaf"><span class="__cf_email__" data-cfemail="ef8e8186828e839caf848681888b80828e8186828e83868e9f808bc18c8082">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.kingdomanimaliapod.com/_downloads/f77132ac5ec8cd94fefba30c2289f43d'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/episodes/animalia-fake/sea-creatures#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/episodes/animalia-fake/sea-creatures#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </description>
+        <content:encoded>
+          <![CDATA[<p>It’s time for everybody’s favorite game show…<br/>______________________<br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids has come out with a brand new game show: <em>Animalia Fake!</em> Every episode — with your host, Devon, and your announcers, Chet and Cap — there will be <em>THREE</em> rounds, each with <em>FOUR</em> outrageous animal facts, and <em>ONE</em> of those facts is so outrageous it’s an <em>Animalia Fake!<br/></em>What’s that smell? Something smells <em>fishy</em>! It’s because today’s episode is about  sea creatures! Underwater animals can get pretty strange, but which facts aren’t true? Listen and find out! You can keep score at home on a paper, or download the scoresheet on the episode page.<br/><br/>You can send in your questions and episode suggestions to <a href="/cdn-cgi/l/email-protection#7617181f1b171a05361d1f181112191b17181f1b171a1f170619125815191b"><span class="__cf_email__" data-cfemail="5f3e3136323e332c1f343631383b30323e3136323e33363e2f303b713c3032">[email&#160;protected]</span></a> and our website is at <a href='https://www.kingdomanimaliapod.com/kazpk'>https://kingdomanimaliapod.com/kazpk</a>. So what are you waiting for? Spot that Animalia Fake!<br/><br/><b>Links:</b></p><ul><li><a href='https://www.kingdomanimaliapod.com/_downloads/f77132ac5ec8cd94fefba30c2289f43d'>Official Episode Scoresheet</a></li><li><a href='https://www.kingdomanimaliapod.com/episodes/animalia-fake/sea-creatures#transcript'>Read Transcript</a></li><li><a href='https://www.kingdomanimaliapod.com/episodes/animalia-fake/sea-creatures#works-cited'>Check Works Cited (After listening!)</a></li></ul><p><br/>Until next time, keep learning the <em>TRUTH</em> about this amazing Kingdom: <em>Animalia</em>.</p><p>**Psst! Hey you! It’s Chet and Cap! Do you want to ask us questions which will get featured on the show? Just head over to <a href='https://www.kingdomanimaliapod.com/acb'>https://kingdomanimaliapod.com/acb</a> and send a voice message, contact form, or email with your question(s) and they’ll get featured on Ask the Chickadee Brothers!**<br/><br/><br/><br/>Kingdom: Animalia - A Zoology Podcast for Kids is an animal podcast from <a href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>. You can support us on <a href='https://www.patreon.com/KingdomAnimaliaPodcasts'>Patreon</a>.</p>]]>
+        </content:encoded>
+        <link>https://www.kingdomanimaliapod.com/episodes/animalia-fake/sea-creatures</link>
+        <itunes:image href="https://storage.buzzsprout.com/qqfq9nn2li3yni8rqhfuq6gea07q?.jpg" />
+        <itunes:author>Kingdom: Animalia Podcasts</itunes:author>
+        <enclosure url="https://www.buzzsprout.com/2038404/12745580-animalia-fake-sea-creatures.mp3" length="32333798" type="audio/mpeg" />
+        <guid isPermaLink="false">Buzzsprout-12745580</guid>
+        <pubDate>Mon, 01 May 2023 06:00:00 -0700</pubDate>
+        <podcast:transcript url="https://www.buzzsprout.com/2038404/12745580/transcript" type="text/html" />
+        <podcast:chapters url="https://www.buzzsprout.com/2038404/12745580/chapters.json" type="application/json" />
+        <psc:chapters>
+          <psc:chapter start="0:00" title="Intro" />
+          <psc:chapter start="3:13" title="Round 1" />
+          <psc:chapter start="6:28" title="Round 2 - Pt. 1" />
+          <psc:chapter start="8:19" title="Break" />
+          <psc:chapter start="9:28" title="Round 2 - Pt. 2" />
+          <psc:chapter start="12:48" title="Standup With Chet" />
+          <psc:chapter start="14:54" title="Round 3" />
+          <psc:chapter start="18:30" title="Prize Reveal/Outro" />
+          <psc:chapter start="20:58" title="Ask the Chickadee Brothers" />
+        </psc:chapters>
+        <itunes:duration>1344</itunes:duration>
+        <itunes:keywords>Animalia Fake!, AF!, Game show, Guessing Game, Animal Facts, Spot the Fake, Sea Creatures, Animals, Education, Kids and Family, Zoology</itunes:keywords>
+        <itunes:episode>8</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:explicit>false</itunes:explicit>
+      </item>
+    </channel>
+  </rss>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
