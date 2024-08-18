@@ -8,7 +8,8 @@ let endedFetchRSS = false;
 let interval;
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
- * - podcast: Podcast acronym | String | Local Variable: podcast
+ * - shortPodcast: Podcast acronym | String | Local Variable: podcast
+ * - longPodcast: Podcast name | String
  * - webpage: Link to the episode page | String | Tag: <link>
  * - epNum: Episode number | Number | Tag: <itunes:episode>
  * - seNum: Season number | Number | Tag: <itunes:season>
@@ -23,6 +24,18 @@ let interval;
 
 function awaitFetchRSS(nextFunct) {
   interval = setInterval(() => checkFeedStatus(nextFunct), 1);
+}
+
+function updateMetadata(title, artist, album, artwork) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: title,
+    artist: artist,
+    album: album,
+    artwork: [{
+      src: artwork,
+      type: "image/png",
+    }, ],
+  });
 }
 
 function checkFeedStatus(nextFunct) {
@@ -40,6 +53,35 @@ function findEpisode(episodes, guid) {
     if (episodes[i].guid == guid) {
       return episodes[i];
     }
+  }
+}
+
+function epInfo(podcast) {
+  // Returns the episode info object for the podcast
+  // 'Podcast' will be the acroynm of the podcast
+  if (podcast == "CA") {
+    return CAEpInfo;
+  } else if (podcast == "KA") {
+    return KAEpInfo;
+  } else if (podcast == "AF") {
+    return AFEpInfo;
+  } else if (podcast == "ACB") {
+    return ACBEpInfo;
+  }
+}
+
+function feed(podcast) {
+  // Returns the RSS feed for the podcast
+  // 'Podcast' will be the acroynm of the podcast
+  const prefix = "https://corsproxy.io/?";
+  if (podcast == "CA") {
+    return prefix + encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
+  } else if (podcast == "KA") {
+    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");;
+  } else if (podcast == "AF") {
+    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
+  } else if (podcast == "ACB") {
+    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers");
   }
 }
 
@@ -67,7 +109,10 @@ function buttonUrl(text, showNotes) {
 
 // Generate and insert the HTML code for an episode's audio player
 function createAudioPlayer(podcast, guid) {
+  const episode = findEpisode(podcast, guid);
   const audioPlayerContainer = document.getElementById("audio-player-container");
+  let podcastName;
+  if (episode.shortPodcast == "CA")
   audioPlayerContainer.innnerHTML = "";
   // The HTML code
   let htmlCode = `<div class="ka-audio-player">
@@ -95,7 +140,7 @@ function createAudioPlayer(podcast, guid) {
           </div>
           <p id="duration"></p>
           <br>
-          <audio id="audio" preload="none" title="" src="${findEpisode(podcast, guid).audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true);" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
+          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
         </div>`;
     audioPlayerContainer.innerHTML = htmlCode;
 }
@@ -104,15 +149,15 @@ function createAudioPlayer(podcast, guid) {
 function displayAllEpisodes(episodes) {
   // The variable 'episodes' will be the array of episode info objects for the podcast, season, miniseries, etc.
   const episodeContainer = document.getElementById("episode-container");
-
+  
   if (episodes.length != 0) {
     episodeContainer.innerHTML = "";
-
+    
     for (let i = 0; i < episodes.length; i++) {
       let episodeClass;
       const episode = episodes[i];
       let nextPlay = () => {
-        if (i + 1 != episodes.length && episode.podcast == "CA") {
+        if (i + 1 != episodes.length && episode.shortPodcast == "CA") {
           return ` playAud(document.querySelectorAll('.play-one')[${i + 1}]);`;
         } else if (i > 0) {
           return ` playAud(document.querySelectorAll('.play-one')[${i - 1}]);`;
@@ -193,11 +238,11 @@ function displayAllEpisodes(episodes) {
               </div>
               <p id="duration"></p>
               <br>
-              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true);" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
+              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
             </div>
           </div>`;
       // Adding episode buttons
-      if (episode.podcast == "CA") {
+      if (episode.shortPodcast == "CA") {
         let hasScriptClass = "";
         let scriptUrl = buttonUrl("here", episode.showNotes);
         if (!scriptUrl) {
@@ -243,7 +288,7 @@ function displayAllEpisodes(episodes) {
                 </button>
               </a>
             </div>`;
-      } else if (episode.miniseries == "Animalia Fake!") {
+      } else if (episode.miniseries == "AF") {
         htmlCode += `
         <div id="episode-buttons">
           <div class="button">
@@ -281,7 +326,7 @@ function displayAllEpisodes(episodes) {
               </button>
             </a>
           </div>`;
-      } else if (episode.podcast == "KA") {
+      } else if (episode.shortPodcast == "KA") {
         let hasComicClass = "";
         let comicUrl = buttonUrl("Comic", episode.showNotes);
         if (!comicUrl) {
@@ -445,11 +490,11 @@ function displayOneEpisode(episodes) {
             </div>
             <p id="duration"></p>
             <br>
-            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true);" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
+            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
           </div>
         </div>`;
     // Adding episode buttons
-    if (episode.podcast == "CA") {
+    if (episode.shortPodcast == "CA") {
       let hasScriptClass = "";
       let scriptUrl = buttonUrl("here", episode.showNotes);
       if (!scriptUrl) {
@@ -533,7 +578,7 @@ function displayOneEpisode(episodes) {
             </button>
           </a>
         </div>`;
-    } else if (episode.podcast == "KA") {
+    } else if (episode.shortPodcast == "KA") {
       let hasComicClass = "";
       let comicUrl = buttonUrl("Comic", episode.showNotes);
       if (!comicUrl) {
@@ -606,25 +651,12 @@ function displayOneEpisode(episodes) {
   }
 }
 
-function fetchRSS (podcast) {
+function fetchRSS(podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
-  // Get the correct RSS feed.
   startedFetchRSS = true;
 
-  let rssFeed = "https://corsproxy.io/?";
-
-  if (podcast == "CA") {
-    rssFeed += encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
-  } else if (podcast == "KA") {
-    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");
-  } else if (podcast == "AF") {
-    rssFeed += encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
-  } else if (podcast == "ACB") {
-    rssFeed = encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers");
-  }
-
   // Fetch the RSS feed.
-  fetch(rssFeed).then(response => {
+  fetch(feed(podcast)).then(response => {
     console.log(response);
     return response.text();
   }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, ""), "text/xml")).then(data => {
@@ -633,7 +665,8 @@ function fetchRSS (podcast) {
       let item = items[i];
       let episodeInfo = {
         title: item.querySelector("title").innerHTML,
-        podcast: podcast,
+        shortPodcast: podcast,
+        longPodcast: data.querySelector("title:first-of-type").innerHTML,
         miniseries: null,
         webpage: item.querySelector("link").innerHTML,
         epNum: null,
@@ -658,20 +691,15 @@ function fetchRSS (podcast) {
         episodeInfo.seNum = item.querySelector("season").innerHTML;
       }
       if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
-        episodeInfo.miniseries = "Animalia Fake!";
+        episodeInfo.miniseries = "AF";
       } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
-        episodeInfo.miniseries = "Ask the Chickadee Brothers";
+        episodeInfo.miniseries = "ACB";
       }
-      if (podcast == "CA") {
-        CAEpInfo.push(episodeInfo);
-      } else if (podcast == "KA") {
-        KAEpInfo.push(episodeInfo);
-      } else if (podcast == "AF") {
-        AFEpInfo.push(episodeInfo);
-      } else if (podcast == "ACB") {
-        ACBEpInfo.push(episodeInfo);
-      }
+      epInfo(podcast).push(episodeInfo);
     }
     endedFetchRSS = true;
   });
 }
+
+fetchRSS("KA");
+awaitFetchRSS(() => displayAllEpisodes(KAEpInfo));
