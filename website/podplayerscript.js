@@ -83,27 +83,6 @@ function playAud(currentElement) {
   document.querySelectorAll('audio').forEach(aud => aud.pause());
   get(2, currentElement, "#audio").play();
   switchButtons(currentElement, 2, "playback", true);
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: "TRAILER: Where Are the Chickadee Brothers? Season 1",
-    artist: "Where Are the Chickadee Brothers?",
-    artwork: [{
-      src: "https://www.kingdomanimaliapod.com/_downloads/4c07894a1956ea6dcb970b9ec3d232be",
-      sizes: "192x192",
-      type: "image/png",
-    }, {
-      src: "https://www.kingdomanimaliapod.com/_downloads/016e0256892a58a48c26c8c12e415099",
-      sizes: "256x256",
-      type: "image/png",
-    }, {
-      src: "https://www.kingdomanimaliapod.com/_downloads/41b027ddf71e97bcb1e2259b8b26130c",
-      sizes: "384x384",
-      type: "image/png",
-    }, {
-      src: "https://www.kingdomanimaliapod.com/_downloads/0beb40c4fef030e7f27ff0a9015c910a",
-      sizes: "512x512",
-      type: "image/png",
-    }, ],
-  });
 }
 
 function pauseAud(currentElement) {
