@@ -700,6 +700,3 @@ function fetchRSS(podcast) {
     endedFetchRSS = true;
   });
 }
-
-fetchRSS("KA");
-awaitFetchRSS(() => displayAllEpisodes(KAEpInfo));
