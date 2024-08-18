@@ -62,10 +62,6 @@
   pointer-events: none;
 }
 
-#show-notes a {
-  text-decoration: underline;
-}
-
 .button {
   background-color: transparent;
   border: none;
@@ -184,8 +180,12 @@
 }
 
 #show-notes {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   display: block !important;
+}
+
+#show-notes a {
+  text-decoration: underline;
 }
 
 .middle {
@@ -284,6 +284,7 @@
 
   #episode-art {
     width: 100%;
+    margin-bottom: 5px;
   }
 
   #details-and-player {
