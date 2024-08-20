@@ -48,6 +48,10 @@ main form textarea {
   box-shadow: 4px 4px #4f2501 !important;
 }
 
+form textarea {
+  resize: vertical;
+}
+
 footer form input[type="email"],
 footer button[type="submit"] {
   border-style: none !important;
