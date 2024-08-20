@@ -220,9 +220,9 @@
   pointer-events: none;
 }
 
-.button a[href=""] {
+/* .button a[href=""] {
   pointer-events: none;
-}
+} */
 
 .episode-button:hover {
   background-color: #914300;
