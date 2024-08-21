@@ -8,6 +8,7 @@ html {
 textarea {
   font-family: 'Courier Prime', Courier, monospace;
   width: calc(100% - 16px);
+  resize: vertical;
   padding: 5px;
   margin-bottom: 4px;
   border: 1px solid dimgray;
@@ -24,7 +25,13 @@ button {
   padding: 5px;
   font-weight: bold;
   box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+
+.button-container {
   width: calc(50% - 5px);
+  display: inline-block;
+  vertical-align: top;
 }
 
 #format {
@@ -32,7 +39,7 @@ button {
   color: rgba(255, 255, 255, 0.75);
   margin-right: 1.25px;
   cursor: not-allowed;
-  border-bottom-left-radius: 0.5em;
+  border-bottom-left-radius: 8.75px;
 }
 
 #format:hover::after {
@@ -62,12 +69,39 @@ button {
   display: none;
 }
 
+.accordion-panel {
+  display: none;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-bottom-left-radius: 8.75px;
+}
+
+#formatStandard {
+  background-color: rgba(0, 100, 75, 1);
+  color: white;
+  margin-bottom: 5px;
+}
+
+#formatStandard:hover {
+  background-color: rgba(0, 100, 75, 0.9);
+}
+
+#formatTranscriptB {
+  background-color: rgba(75, 100, 0, 1);
+  color: white;
+  /*border-bottom-left-radius: 1.37vw; */
+}
+
+#formatTranscriptB:hover {
+  background-color: rgba(75, 100, 0, 0.9);
+}
+
 #copy {
   background-color: rgba(3, 127, 252, 0.75);
   color: rgba(255, 255, 255, 0.75);
   margin-left: 1.25px;
   cursor: not-allowed;
-  border-bottom-right-radius: 0.5em;
+  border-bottom-right-radius: 8.75px;
 }
 
 #copy:hover::after {
