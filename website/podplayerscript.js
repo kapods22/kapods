@@ -31,23 +31,23 @@ function get(num, currentElement, element) {
 
 function switchButtons(currentElement, num, type, sound) {
   if (type == "playback") {
-    get(num, currentElement, ".play-one").hidden = sound;
-    get(num, currentElement, ".pause-one").hidden = !sound;
+    get(num, currentElement, ".play").hidden = sound;
+    get(num, currentElement, ".pause").hidden = !sound;
   } else if (type == "volume") {
-    get(num, currentElement, ".unmute-one").hidden = sound;
-    get(num, currentElement, ".mute-one").hidden = !sound;
+    get(num, currentElement, ".unmute").hidden = sound;
+    get(num, currentElement, ".mute").hidden = !sound;
   }
 }
 
 function setInfo(currentElement) {
   currentElement.volume = 0.5;
-  get(1, currentElement, "#seekBarOne").max = currentElement.duration;
+  get(1, currentElement, "#seekBar").max = currentElement.duration;
           
   setInterval(() => update(currentElement), 1);
 }
 
 function update(currentElement) {
-  get(1, currentElement, "#seekBarOne").value = currentElement.currentTime;
+  get(1, currentElement, "#seekBar").value = currentElement.currentTime;
   const currentTime = Math.trunc(currentElement.currentTime);
   const currentTimeElement = get(1, currentElement, ".current-time");
   const remainingTime = Math.trunc(currentElement.duration) - currentTime;
@@ -56,7 +56,7 @@ function update(currentElement) {
   remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).fullTime;
 }
 
-function seekOne(currentElement) {
+function seek(currentElement) {
   get(1, currentElement, "#audio").currentTime = currentElement.value;
   get(1, currentElement, ".current-time").innerHTML = minsAndSecs(Math.trunc(currentElement.value)).fullTime;
   get(1, currentElement, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(currentElement.max - currentElement.value)).fullTime;
@@ -66,7 +66,7 @@ function changeVolume(currentElement) {
   get(1, currentElement, "#audio").muted = false;
   get(1, currentElement, "#audio").volume = currentElement.value;
   
-  if (get(1, currentElement, "#volumeSliderOne").value == 0) {
+  if (get(1, currentElement, "#volumeSlider").value == 0) {
     switchButtons(currentElement, 1, "volume", false);
     if (window.mobileCheck()) {
       currentElement.muted = true;
@@ -98,26 +98,26 @@ function mute(currentElement) {
 function unMute(currentElement) {
   get(2, currentElement, "#audio").muted = false;
   switchButtons(currentElement, 1, "volume", true);
-  if (get(2, currentElement, "#volumeSliderOne").value == 0) {
+  if (get(2, currentElement, "#volumeSlider").value == 0) {
     get(2, currentElement, "#audio").volume = 0.1;
-    get(2, currentElement, "#volumeSliderOne").value = get(2, currentElement, "#audio").volume;
+    get(2, currentElement, "#volumeSlider").value = get(2, currentElement, "#audio").volume;
   }
 }
 
-function fastSpeedOne(currentElement) {
+function fastSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 2;
-  $('.fast-one').hide();
-  $('.slow-one').show();
+  $('.fast').hide();
+  $('.slow').show();
 }
 
-function slowSpeedOne(currentElement) {
+function slowSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 0.5;
-  $('.slow-one').hide();
-  $('.normal-one').show();
+  $('.slow').hide();
+  $('.normal').show();
 } 
 
-function normalSpeedOne(currentElement) {
+function normalSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 1;
-  $('.normal-one').hide();
-  $('.fast-one').show();
+  $('.normal').hide();
+  $('.fast').show();
 }
