@@ -75,23 +75,23 @@
   max-width: 10px;
 }
 
-.fast-one,
-.slow-one,
-.normal-one {
+.fast,
+.slow,
+.normal {
   font-size: 12px;
 }
 
-.unmute-one {
+.unmute {
   margin-right: 6px;
 }
 
-.unmute-one img {
+.unmute img {
   width: 11px;
   min-width: 11px;
   max-width: 11px;
 }
 
-.mute-one img {
+.mute img {
   width: 15px;
   min-width: 15px;
   max-width: 15px;
@@ -113,28 +113,28 @@
 }
 
 .buttons,
-.seek-bar-one,
-.volume-slider-one,
+.seek-bar,
+.volume-slider,
 .minus-sign {
   display: inline-block;
 }
 
-.seek-bar-one {
+.seek-bar {
   width: 580px;
 }
 
-.volume-slider-one {
+.volume-slider {
   width: 170px;
   flex-shrink: 1;
 }
 
 @media (max-width: 1000px) {
-  .seek-bar-one {
+  .seek-bar {
     flex-shrink: 10;
     min-width: 40px;
   }
 
-  .volume-slider-one {
+  .volume-slider {
     display: none;
   }
 }
