@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>SRT Transcript Formatter</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="script.js" defer></script>
-</head>
-
-<body>
-  <h1>SRT Transcript Formatter</h1>
-  <textarea id="input" name="Transcript" placeholder="Enter the unformatted transcript" rows="25" oninput="changeFormatBtn()"></textarea><br>
-  <button id="format" onclick="format()">Format</button>
-  <button id="copy" onclick="copy()">Copy to Clipboard</button>
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SRT Transcript Formatter</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>SRT Transcript Formatter</h1>
+    <textarea id="input" name="Transcript" placeholder="Enter the unformatted transcript" rows="25"
+      oninput="updateButtons();"></textarea><br>
+    <div class="button-container">
+      <button id="format" class="accordion-button" onclick="changeFormatMenuDisplay();">Format</button>
+      <div class="accordion-panel">
+        <button id="formatStandard" onclick="formatStandard(); formatted();">Standard</button>
+        <button id="formatTranscriptB" onclick="formatTranscriptB(); formatted();">Transcript (2/25/23–11/5/23)</button>
+      </div>
+    </div>
+    <div class="button-container">
+      <button id="copy" onclick="copy();">Copy to Clipboard</button>
+    </div>
+  </body>
 </html>
