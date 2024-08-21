@@ -117,26 +117,26 @@ function createAudioPlayer(podcast, guid) {
   // The HTML code
   let htmlCode = `<div class="ka-audio-player">
           <div class="pause-play buttons">
-            <button class="play-one button" id="playOne" onclick="playAud(this);" type="button">
+            <button class="play button" id="play" onclick="playAud(this);" type="button">
               <img src="https://assets.jwwb.nl/assets/img/icons/play-button.svg" width="10px" class="icon">
             </button>
-            <button class="pause-one button" id="pauseOne" onclick="pauseAud(this);" type="button" hidden="hidden">
+            <button class="pause button" id="pause" onclick="pauseAud(this);" type="button" hidden="hidden">
               <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
             </button>
           </div>
-          <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar-one custom-slider" id="seekBarOne" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seekOne(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+          <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
           <div class="mute-buttons buttons">
-            <button class="mute-one button" id="muteOne" onclick="mute(this);">
+            <button class="mute button" id="mute" onclick="mute(this);">
               <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
             </button>
-            <button class="unmute-one button" id="unmuteOne" onclick="unMute(this);" hidden>
+            <button class="unmute button" id="unmute" onclick="unMute(this);" hidden>
               <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
             </button>
           </div>
-          <input type="range" class="volume-slider-one custom-slider" min="0" max="1" step="0.001" value="" id="volumeSliderOne" oninput="changeVolume(this)">&nbsp;&nbsp;<div class="playback-speed buttons">
-            <button id="fastSpeedOne" class="fast-one button" onclick="fastSpeedOne(this);">1x</button>
-            <button id="slowSpeedOne" class="slow-one button" onclick="slowSpeedOne(this);" hidden="hidden">2x</button>
-            <button id="normalSpeedOne" class="normal-one button" onclick="normalSpeedOne(this);" hidden="hidden">0.5x</button>
+          <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">&nbsp;&nbsp;<div class="playback-speed buttons">
+            <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
+            <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
+            <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
           </div>
           <p id="duration"></p>
           <br>
@@ -158,9 +158,9 @@ function displayAllEpisodes(episodes) {
       const episode = episodes[i];
       let nextPlay = () => {
         if (i + 1 != episodes.length && episode.shortPodcast == "CA") {
-          return ` playAud(document.querySelectorAll('.play-one')[${i + 1}]);`;
+          return ` playAud(document.querySelectorAll('.play')[${i + 1}]);`;
         } else if (i > 0) {
-          return ` playAud(document.querySelectorAll('.play-one')[${i - 1}]);`;
+          return ` playAud(document.querySelectorAll('.play')[${i - 1}]);`;
         } else {
           return "";
         }
@@ -215,26 +215,26 @@ function displayAllEpisodes(episodes) {
             </div>
             <div class="ka-audio-player">
               <div class="pause-play buttons">
-                <button class="play-one button" id="playOne" onclick="playAud(this);" type="button">
+                <button class="play button" id="play" onclick="playAud(this);" type="button">
                   <img src="https://assets.jwwb.nl/assets/img/icons/play-button.svg" width="10px" class="icon">
                 </button>
-                <button class="pause-one button" id="pauseOne" onclick="pauseAud(this);" type="button" hidden="hidden">
+                <button class="pause button" id="pause" onclick="pauseAud(this);" type="button" hidden="hidden">
                   <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
                 </button>
               </div>
-              <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar-one custom-slider" id="seekBarOne" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seekOne(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+              <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
               <div class="mute-buttons buttons">
-                <button class="mute-one button" id="muteOne" onclick="mute(this);">
+                <button class="mute button" id="mute" onclick="mute(this);">
                   <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
                 </button>
-                <button class="unmute-one button" id="unmuteOne" onclick="unMute(this);" hidden>
+                <button class="unmute button" id="unmute" onclick="unMute(this);" hidden>
                   <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
                 </button>
               </div>
-              <input type="range" class="volume-slider-one custom-slider" min="0" max="1" step="0.001" value="" id="volumeSliderOne" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
-                <button id="fastSpeedOne" class="fast-one button" onclick="fastSpeedOne(this);">1x</button>
-                <button id="slowSpeedOne" class="slow-one button" onclick="slowSpeedOne(this);" hidden="hidden">2x</button>
-                <button id="normalSpeedOne" class="normal-one button" onclick="normalSpeedOne(this);" hidden="hidden">0.5x</button>
+              <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
+                <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
+                <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
+                <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
               </div>
               <p id="duration"></p>
               <br>
@@ -467,26 +467,26 @@ function displayOneEpisode(episodes) {
           </div>
           <div class="ka-audio-player">
             <div class="pause-play buttons">
-              <button class="play-one button" id="playOne" onclick="playAud(this);" type="button">
+              <button class="play button" id="play" onclick="playAud(this);" type="button">
                 <img src="https://assets.jwwb.nl/assets/img/icons/play-button.svg" width="10px" class="icon">
               </button>
-              <button class="pause-one button" id="pauseOne" onclick="pauseAud(this);" type="button" hidden="hidden">
+              <button class="pause button" id="pause" onclick="pauseAud(this);" type="button" hidden="hidden">
                 <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
               </button>
             </div>
-            <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar-one custom-slider" id="seekBarOne" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seekOne(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+            <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&nbsp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&nbsp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
             <div class="mute-buttons buttons">
-              <button class="mute-one button" id="muteOne" onclick="mute(this);">
+              <button class="mute button" id="mute" onclick="mute(this);">
                 <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
               </button>
-              <button class="unmute-one button" id="unmuteOne" onclick="unMute(this);" hidden>
+              <button class="unmute button" id="unmute" onclick="unMute(this);" hidden>
                 <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
               </button>
             </div>
-            <input type="range" class="volume-slider-one custom-slider" min="0" max="1" step="0.001" value="" id="volumeSliderOne" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
-              <button id="fastSpeedOne" class="fast-one button" onclick="fastSpeedOne(this);">1x</button>
-              <button id="slowSpeedOne" class="slow-one button" onclick="slowSpeedOne(this);" hidden="hidden">2x</button>
-              <button id="normalSpeedOne" class="normal-one button" onclick="normalSpeedOne(this);" hidden="hidden">0.5x</button>
+            <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
+              <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
+              <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
+              <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
             </div>
             <p id="duration"></p>
             <br>
