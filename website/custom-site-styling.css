@@ -63,11 +63,15 @@ footer form input[type="email"] {
   background-color: #e3e3e3 !important;
 }
 
-/* Hiding footer newsletter sign-up form lables removing left margin from its button */
+/* Hiding footer newsletter sign-up form lables, removing left margin from its button, and formatting its placeholder */
 #jw-element-230647470 .jw-element-form-label {
   display: none;
 }
 
 #jw-element-230647470 .jw-element-form-offset {
   margin-left: 0px;
+}
+
+#jw-element-230647470 input[type='email']::placeholder {
+  font-style: normal;
 }
