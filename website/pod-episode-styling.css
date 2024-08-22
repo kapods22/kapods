@@ -58,7 +58,7 @@
   height: 12px;
   width: 5px;
   border-radius: 0px;
-  transition: background 0.2s;
+  animation: 0.2s;
   background: gray;
   color: gray;
   cursor: col-resize;
@@ -70,11 +70,9 @@
 .custom-slider::-webkit-slider-runnable-track,
 .custom-slider::-moz-range-track,
 .custom-slider::-ms-track {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   height: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  animation: 0.2s;
   background: #cfcfcf;
   color: #cfcfcf;
   border: 1px solid #9a9a9a;
