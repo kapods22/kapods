@@ -42,9 +42,8 @@
 } */
 
 .custom-slider {
-  -webkit-appearance: none; /* Safari */
-  -moz-appearance: none; /* Firefox */
-  appearance: none; /* Generic */
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border-radius: 50px;
   height: 12px;
   background: transparent;
@@ -56,7 +55,6 @@
 .custom-slider::-ms-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   height: 12px;
   width: 5px;
   border-radius: 0px;
@@ -74,7 +72,6 @@
 .custom-slider::-ms-track {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   height: 6px;
   cursor: pointer;
   transition: background 0.2s;
