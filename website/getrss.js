@@ -663,7 +663,7 @@ function displayPageInfo(podcast, guid) {
   let title = document.querySelector(".jw-slideshow-title");
   let info = document.querySelector(".jw-slideshow-sub-title span span");
   let art = document.getElementById("art");
-  let showNotes = document.getElementById("show-notes");
+  let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
   let btns = document.querySelectorAll(".jw-btn");
   for (let i = 0; i < btns.length; i++) {
