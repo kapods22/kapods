@@ -45,8 +45,6 @@
   -webkit-appearance: none; /* Safari */
   -moz-appearance: none; /* Firefox */
   appearance: none; /* Generic */
-  background-color: #cfcfcf;
-  border: 1px solid #9a9a9a;
   border-radius: 50px;
   height: 12px;
   overflow: hidden;
@@ -61,6 +59,7 @@
   height: 12px;
   width: 5px;
   border-radius: 0px;
+  transition: background 0.2s;
   background: gray;
   cursor: col-resize;
   margin-top: 0px;
@@ -73,8 +72,9 @@
 .custom-slider::-ms-track {
   height: 6px;
   cursor: pointer;
-  animate: 0.2s;
+  transition: background 0.2s;
   background: #cfcfcf;
+  border: 1px solid #9a9a9a;
   border-radius: 50px;
 }
 
