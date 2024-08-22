@@ -47,6 +47,7 @@
   appearance: none; /* Generic */
   border-radius: 50px;
   height: 12px;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -61,6 +62,7 @@
   border-radius: 0px;
   transition: background 0.2s;
   background: gray;
+  color: gray;
   cursor: col-resize;
   margin-top: 0px;
   box-shadow: -1000px 0px 0px 1000px #000000;
@@ -74,6 +76,7 @@
   cursor: pointer;
   transition: background 0.2s;
   background: #cfcfcf;
+  color: #cfcfcf;
   border: 1px solid #9a9a9a;
   border-radius: 50px;
 }
