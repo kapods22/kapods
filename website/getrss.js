@@ -648,54 +648,6 @@ function displayOneEpisode(episodes) {
   }
 }
 
-function fetchRSS(podcast) {
-  // The variable 'podcast' will be the acronym for the podcast.
-  startedFetchRSS = true;
-
-  // Fetch the RSS feed.
-  fetch(feed(podcast)).then(response => {
-    console.log(response);
-    return response.text();
-  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, ""), "text/xml")).then(data => {
-    items = data.querySelectorAll("item");
-    for (let i = 0; i < items.length; i++) {
-      let item = items[i];
-      let episodeInfo = {
-        title: item.querySelector("title").innerHTML,
-        shortPodcast: podcast,
-        longPodcast: data.querySelector("title:first-of-type").innerHTML,
-        miniseries: null,
-        webpage: item.querySelector("link").innerHTML,
-        epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
-        seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
-        type: item.querySelector("episodeType").innerHTML,
-        showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "<p>").replace("]]>", "</p>"),
-        date: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          year: "numeric"
-        }),
-        audioSrc: item.querySelector("enclosure").getAttribute("url"),
-        length: item.querySelector("duration").innerHTML,
-        art: item.querySelector("image").getAttribute("href"),
-        guid: item.querySelector("guid").innerHTML,
-        transcript: {
-          HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
-          SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
-        }
-      };
-      if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
-        episodeInfo.miniseries = "AF";
-      } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
-        episodeInfo.miniseries = "ACB";
-      }
-      epInfo(podcast).push(episodeInfo);
-    }
-    endedFetchRSS = true;
-  });
-}
-
 function displayPageInfo(podcast, guid) {
   /* Inserts the information of an episode into the page. This info includes:
    * All podcasts:
@@ -736,9 +688,57 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
-    //transcript.innerHTML = episode.transcript.HTML;
+    transcript.classList.add("transcript");
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
       transcript.innerHTML = str.replace(/\u2060/g, "");
     });
   }
+}
+
+function fetchRSS(podcast) {
+  // The variable 'podcast' will be the acronym for the podcast.
+  startedFetchRSS = true;
+
+  // Fetch the RSS feed.
+  fetch(feed(podcast)).then(response => {
+    console.log(response);
+    return response.text();
+  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, ""), "text/xml")).then(data => {
+    items = data.querySelectorAll("item");
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      let episodeInfo = {
+        title: item.querySelector("title").innerHTML,
+        shortPodcast: podcast,
+        longPodcast: data.querySelector("title:first-of-type").innerHTML,
+        miniseries: null,
+        webpage: item.querySelector("link").innerHTML,
+        epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
+        seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
+        type: item.querySelector("episodeType").innerHTML,
+        showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "<p>").replace("]]>", "</p>").replace("______________________<br/><br/>", "<hr style='color: black; background-color: black; height: 1.5px; border-width: 0;'>"),
+        date: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }),
+        audioSrc: item.querySelector("enclosure").getAttribute("url"),
+        length: item.querySelector("duration").innerHTML,
+        art: item.querySelector("image").getAttribute("href"),
+        guid: item.querySelector("guid").innerHTML,
+        transcript: {
+          HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
+          SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
+        }
+      };
+      if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
+        episodeInfo.miniseries = "AF";
+      } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
+        episodeInfo.miniseries = "ACB";
+      }
+      epInfo(podcast).push(episodeInfo);
+    }
+    endedFetchRSS = true;
+  });
 }
