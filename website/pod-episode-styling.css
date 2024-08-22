@@ -65,12 +65,13 @@
   cursor: col-resize;
   margin-top: 0px;
   box-shadow: -1000px 0px 0px 1000px #000000;
+  z-index: 100;
 }
 
 .custom-slider::-webkit-slider-runnable-track,
 .custom-slider::-moz-range-track,
 .custom-slider::-ms-track {
-  height: 12px;
+  height: 6px;
   cursor: pointer;
   animate: 0.2s;
   background: #cfcfcf;
