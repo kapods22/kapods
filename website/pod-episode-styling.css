@@ -184,7 +184,8 @@
   display: block !important;
 }
 
-#show-notes a {
+#show-notes a,
+.transcript a {
   text-decoration: underline;
 }
 
