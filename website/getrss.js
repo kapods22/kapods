@@ -45,8 +45,8 @@ function checkFeedStatus(nextFunct) {
   }
 }
 
-function findEpisode(episodes, guid) {
-  // The variable 'episodes' will be the array of episode info objects for the podcast the episode is of, and 'guid' will be the guid of the episode
+function findEpisode(podcast, guid) {
+  let episodes = epInfo(podcast);
   // Search through the array
   for (let i = 0; i < episodes.length; i++) {
     // Check if the episode info object is that of the desired episode.
@@ -111,9 +111,6 @@ function buttonUrl(text, showNotes) {
 function createAudioPlayer(podcast, guid) {
   const episode = findEpisode(podcast, guid);
   const audioPlayerContainer = document.getElementById("audio-player-container");
-  let podcastName;
-  if (episode.shortPodcast == "CA")
-  audioPlayerContainer.innnerHTML = "";
   // The HTML code
   let htmlCode = `<div class="ka-audio-player">
           <div class="pause-play buttons">
@@ -669,8 +666,8 @@ function fetchRSS(podcast) {
         longPodcast: data.querySelector("title:first-of-type").innerHTML,
         miniseries: null,
         webpage: item.querySelector("link").innerHTML,
-        epNum: null,
-        seNum: null,
+        epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
+        seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
         type: item.querySelector("episodeType").innerHTML,
         showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "<p>").replace("]]>", "</p>"),
         date: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
@@ -682,14 +679,12 @@ function fetchRSS(podcast) {
         audioSrc: item.querySelector("enclosure").getAttribute("url"),
         length: item.querySelector("duration").innerHTML,
         art: item.querySelector("image").getAttribute("href"),
-        guid: item.querySelector("guid").innerHTML
+        guid: item.querySelector("guid").innerHTML,
+        transcript: {
+          HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
+          SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
+        }
       };
-      if (item.querySelector("episode")) {
-        episodeInfo.epNum = item.querySelector("episode").innerHTML;
-      }
-      if (item.querySelector("season")) {
-        episodeInfo.seNum = item.querySelector("season").innerHTML;
-      }
       if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
         episodeInfo.miniseries = "AF";
       } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
@@ -699,4 +694,51 @@ function fetchRSS(podcast) {
     }
     endedFetchRSS = true;
   });
+}
+
+function displayPageInfo(podcast, guid) {
+  /* Inserts the information of an episode into the page. This info includes:
+   * All podcasts:
+   * - The episode title (title)
+   * - The episode length and publish date (info)
+   * - The episode cover art (art)
+   * - The episode show notes (showNotes)
+   * - The episode audio player
+   * - The episode download button (downloadBtn)
+   * All but CA:
+   * - The episode transcript
+  */
+  let title = document.querySelector(".jw-slideshow-title");
+  let info = document.querySelector(".jw-slideshow-sub-title span span");
+  let art = document.getElementById("art");
+  let showNotes = document.getElementById("show-notes");
+  let downloadBtn;
+  let btns = document.querySelectorAll(".jw-btn");
+  for (let i = 0; i < btns.length; i++) {
+    if (btns[i].innerHTML.includes("Download episode")) {
+      downloadBtn = btns[i];
+    }
+  }
+  let transcript;
+  let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap p");
+  for (let i = 0; i < accordians.length; i++) {
+    if (accordians[i].innerHTML.includes("Loading transcript…")) {
+      transcript = accordians[i];
+    }
+  }
+  let episode = findEpisode(podcast, guid);
+  // Insert the info
+  title.innerHTML = episode.title;
+  info.innerHTML = episode.date + " | " + minsAndSecs(episode.length).fullTime;
+  art.src = episode.art;
+  showNotes.innerHTML = episode.showNotes;
+  createAudioPlayer(podcast, guid);
+  downloadBtn.href = episode.audioSrc;
+  downloadBtn.target = "_blank";
+  if (podcast != "CA" && transcript) {
+    //transcript.innerHTML = episode.transcript.HTML;
+    fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
+      transcript.innerHTML = str.replace(/\u2060/g, "");
+    });
+  }
 }
