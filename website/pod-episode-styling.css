@@ -72,6 +72,9 @@
 .custom-slider::-webkit-slider-runnable-track,
 .custom-slider::-moz-range-track,
 .custom-slider::-ms-track {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   height: 6px;
   cursor: pointer;
   transition: background 0.2s;
