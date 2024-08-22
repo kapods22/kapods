@@ -185,7 +185,7 @@
 }
 
 #show-notes a,
-#show-notes-container
+#show-notes-container a
 .transcript a {
   text-decoration: underline;
 }
