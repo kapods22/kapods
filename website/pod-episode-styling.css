@@ -45,7 +45,8 @@
   -webkit-appearance: none; /* Safari */
   -moz-appearance: none; /* Firefox */
   appearance: none; /* Generic */
-  background-color: transparent;
+  background-color: #cfcfcf;
+  border: 1px solid #9a9a9a;
   border-radius: 50px;
   height: 12px;
   overflow: hidden;
@@ -73,7 +74,6 @@
   cursor: pointer;
   animate: 0.2s;
   background: #cfcfcf;
-  border: 1px solid #9a9a9a;
   border-radius: 50px;
 }
 
