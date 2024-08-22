@@ -71,8 +71,9 @@
 .custom-slider::-ms-track {
   height: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  animate: 0.2s;
   background: #cfcfcf;
+  border: 1px solid #9a9a9a;
   border-radius: 50px;
 }
 
