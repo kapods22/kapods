@@ -179,12 +179,13 @@
   display: block !important;
 }
 
-#show-notes-container {
+#show-notes {
   margin-bottom: 23.8px;
   display: block !important;
 }
 
 #show-notes a,
+#show-notes-container
 .transcript a {
   text-decoration: underline;
 }
@@ -269,14 +270,14 @@ time {
   box-shadow: 4.5px 4.5px 8px 1px rgba(79, 37, 1, 1), -4.5px 4.5px 8px 1px rgba(79, 37, 1, 1);
 }
 
-#show-notes {
+#show-notes-container {
   border-radius: 8px;
   padding: 18px;
   background-color: #f57c22;
   box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
 }
 
-#show-notes hr {
+#show-notes-container hr {
   margin: 20px 0px;
   color: black;
   background-color: black;
