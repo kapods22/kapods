@@ -262,6 +262,28 @@ time {
   border-radius: 8px;
 }
 
+#art {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 4.5px 4.5px 8px 1px rgba(79, 37, 1, 1), -4.5px 4.5px 8px 1px rgba(79, 37, 1, 1);
+}
+
+#show-notes {
+  border-radius: 8px;
+  padding: 18px;
+  background-color: #f57c22;
+  box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
+}
+
+#show-notes hr {
+  margin: 20px 0px;
+  color: black;
+  background-color: black;
+  height: 1.5px;
+  border-width: 0;
+}
+
 @media (max-width: 1000px) {
   #show-notes {
     margin-bottom: 25px;
