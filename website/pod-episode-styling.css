@@ -248,6 +248,19 @@
   text-decoration: none !important;
 }
 
+cite {
+  font-style: normal;
+  font-weight: bold;
+}
+
+time {
+  color: #999999;
+}
+
+#art {
+  border-radius: 8px;
+}
+
 @media (max-width: 1000px) {
   #show-notes {
     margin-bottom: 25px;
