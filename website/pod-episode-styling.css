@@ -222,10 +222,6 @@
   pointer-events: none;
 }
 
-/* .button a[href=""] {
-  pointer-events: none;
-} */
-
 .episode-button:hover {
   background-color: #914300;
   border-color: #914300;
@@ -277,7 +273,8 @@ time {
   box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
 }
 
-#show-notes-container hr {
+#show-notes-container hr,
+#show-notes hr {
   margin: 20px 0px;
   color: black;
   background-color: black;
