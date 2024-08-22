@@ -671,13 +671,6 @@ function displayPageInfo(podcast, guid) {
       downloadBtn = btns[i];
     }
   }
-  let transcript;
-  let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap p");
-  for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Loading transcript…")) {
-      transcript = accordians[i];
-    }
-  }
   let episode = findEpisode(podcast, guid);
   // Insert the info
   title.innerHTML = episode.title;
@@ -688,9 +681,16 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
+    let transcript;
+    let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap p");
+    for (let i = 0; i < accordians.length; i++) {
+      if (accordians[i].innerHTML.includes("Loading transcript…")) {
+        transcript = accordians[i];
+      }
+    }
     transcript.classList.add("transcript");
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
-      transcript.innerHTML = str.replace(/\u2060/g, "");
+      transcript.innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
     });
   }
 }
@@ -703,7 +703,7 @@ function fetchRSS(podcast) {
   fetch(feed(podcast)).then(response => {
     console.log(response);
     return response.text();
-  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, ""), "text/xml")).then(data => {
+  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, ""), "text/xml")).then(data => {
     items = data.querySelectorAll("item");
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
