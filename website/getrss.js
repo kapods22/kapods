@@ -146,10 +146,10 @@ function createAudioPlayer(podcast, guid) {
 function displayAllEpisodes(episodes) {
   // The variable 'episodes' will be the array of episode info objects for the podcast, season, miniseries, etc.
   const episodeContainer = document.getElementById("episode-container");
-  
+
   if (episodes.length != 0) {
     episodeContainer.innerHTML = "";
-    
+
     for (let i = 0; i < episodes.length; i++) {
       let episodeClass;
       const episode = episodes[i];
@@ -665,6 +665,13 @@ function displayPageInfo(podcast, guid) {
   let art = document.getElementById("art");
   let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
+  let transcript;
+  let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap");
+  for (let i = 0; i < accordians.length; i++) {
+    if (accordians[i].innerHTML.includes("Loading transcript")) {
+      transcript = accordians[i];
+    }
+  }
   let btns = document.querySelectorAll(".jw-btn");
   for (let i = 0; i < btns.length; i++) {
     if (btns[i].innerHTML.includes("Download episode")) {
@@ -681,13 +688,6 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
-    let transcript;
-    let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap");
-    for (let i = 0; i < accordians.length; i++) {
-      if (accordians[i].innerHTML.includes("Loading transcript")) {
-        transcript = accordians[i];
-      }
-    }
     transcript.classList.add("transcript");
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
       transcript.innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
