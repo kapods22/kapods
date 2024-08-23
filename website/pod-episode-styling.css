@@ -334,7 +334,7 @@
 }
 
 /* * - Cover art */
-#art {
+.info-table #art {
   border-radius: 8px;
   display: block;
   margin-left: auto;
