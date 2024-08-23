@@ -684,7 +684,7 @@ function displayPageInfo(podcast, guid) {
     let transcript;
     let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap");
     for (let i = 0; i < accordians.length; i++) {
-      if (accordians[i].innerHTML.includes("Loading transcript…")) {
+      if (accordians[i].innerHTML.includes("Loading transcript")) {
         transcript = accordians[i];
       }
     }
