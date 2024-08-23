@@ -690,7 +690,7 @@ function displayPageInfo(podcast, guid) {
     }
     transcript.classList.add("transcript");
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
-      transcript.innerHTML = "<a id="transcript"></a>\n" + str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
+      transcript.innerHTML = `<a id="transcript"></a>\n${str.replace(/\u2060/g, "").replace(/\u00A0/g, "")}`;
     });
   }
 }
