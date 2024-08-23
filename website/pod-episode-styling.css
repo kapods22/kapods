@@ -111,6 +111,10 @@
   max-width: 10px;
 }
 
+.pause-play {
+  margin-right: auto;
+}
+
 .unmute {
   margin-right: 6px;
 }
@@ -129,6 +133,7 @@
 
 .playback-speed {
   border: solid;
+  margin-left: auto;
   width: 50px;
   min-width: 50px;
   max-width: 50px;
