@@ -47,3 +47,8 @@ Date.prototype.getDayAbbr = function() {
   if (this.getDay() == 5) {return "Fri"};
   if (this.getDay() == 6) {return "Sat"};
 };
+
+String.prototype.gReplaceAll = function(search, replacement) {
+  // An alternative to String.prototype.replaceAll() that should work in all browsers
+  return this.replace(new RegExp(search, 'g'), replacement);
+}
