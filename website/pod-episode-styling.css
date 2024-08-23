@@ -64,6 +64,7 @@
   height: 25px;
   -webkit-user-select: none;
   user-select: none;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -109,10 +110,10 @@
   min-width: 10px;
   max-width: 10px;
 }
-
+/*
 .pause-play {
   margin-right: auto;
-}
+} */
 
 .unmute {
   margin-right: 6px;
