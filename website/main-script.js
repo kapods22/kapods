@@ -1,5 +1,5 @@
 /* Remove links from menu headers */
-window.onload = () => {
+//window.onload = () => {
   let unlinkedAs = [
     document.querySelectorAll("a[data-link-id='17627884']"),
     document.querySelectorAll("a[data-link-id='18205969']"),
@@ -20,4 +20,4 @@ window.onload = () => {
      unlinkedAs[i][j].setAttributeNode(styleAttr);
     }
   }
-}
+//}
