@@ -63,6 +63,7 @@ footer .jw-form-container button[type="submit"] {
 
 footer .jw-form-container input[type="email"] {
   background-color: #e3e3e3 !important;
+  color: black;
 }
 
 /* Hiding footer newsletter sign-up form lables, removing left margin from its button, and formatting its placeholder */
@@ -70,12 +71,51 @@ footer .jw-form-container input[type="email"] {
   display: none;
 }
 
-#jw-element-230647470 .jw-element-form-offset {
+footer .jw-form-container .jw-element-form-offset {
   margin-left: 0px;
 }
 
-#jw-element-230647470 input[type='email']::placeholder {
+footer .jw-form-container input[type='email']::placeholder {
   font-style: normal;
+  color: #999999;
+}
+
+.footer-search-container form {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.footer-search-container {
+  box-shadow: 4px 4px #a6a6a6;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Footer search bar */
+.footer-search-input {
+  line-height: 8px;
+  width: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  border: none;
+  border-right: none;
+  outline: none;
+  border-radius: 0;
+  background-color: #e3e3e3;
+}
+
+.footer-search-button {
+  height: 36px;
+  width: 40px;
+  padding: 9px 10px 11px 10px;
+  background-color: #000000;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.footer-search-button:hover {
+  background-color: #323232;
 }
 
 /* Custom buttons */
