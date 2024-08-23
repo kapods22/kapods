@@ -1,3 +1,51 @@
+/* Episode listing */
+#podcast-episode {
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 40);
+  padding: 10px;
+  background-color: #f57c22;
+}
+
+/* - Cover art */
+#episode-art,
+#details-and-player,
+#episode-buttons {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#episode-art {
+  border-radius: 8px;
+  width: 170px;
+}
+
+.episode-art {
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* - Details and audio player */
+#episode-title {
+  margin-top: -15px;
+  display: block !important;
+}
+
+#show-notes {
+  margin-bottom: 23.8px;
+  display: block !important;
+}
+
+#show-notes a,
+#show-notes-container a,
+.transcript a {
+  text-decoration: underline;
+}
+
+#details-and-player {
+  width: calc(100% - 401.75px);
+  margin: 0px 19px;
+}
+
 .ka-audio-player {
   display: flex;
   background-color: #616161;
@@ -14,38 +62,19 @@
   justify-content: space-between;
 }
 
-.custom-slider {
-  -webkit-appearance: none;
-  background-color: transparent;
-  border-radius: 50px;
-  height: 12px;
-  overflow: hidden;
-}
-
-.custom-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 12px;
-  width: 5px;
-  border-radius: 0px;
-  background: gray;
-  cursor: col-resize;
-  margin-top: 0px;
-  box-shadow: -1000px 0px 0px 1000px #000000;
-}
-
-.custom-slider::-webkit-slider-runnable-track {
-  height: 12px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: #cfcfcf;
-  border-radius: 50px;
-}
-
+/* * - Time displays */
 .time {
   display: flex;
   justify-content: space-between;
-  width: 39px;
   font-size: 14px;
+}
+
+.current-time {
+  width: 37px;
+}
+
+.remaining-time {
+  width: 39px;
 }
 
 .mins {
@@ -58,11 +87,12 @@
   text-align: right;
 }
 
-.icon {
+/* * - Buttons */
+.ka-audio-player .icon {
   pointer-events: none;
 }
 
-.button {
+.ka-audio-player .button {
   background-color: transparent;
   border: none;
   font-weight: bold;
@@ -112,13 +142,66 @@
   margin-left: 2px;
 }
 
-.buttons,
+.ka-audio-player .buttons,
 .seek-bar,
-.volume-slider,
-.minus-sign {
+.volume-slider {
   display: inline-block;
 }
 
+@media (max-width: 400px) {
+  .playback-speed {
+    display: none;
+  }
+}
+
+/* * - Sliders */
+.custom-slider {
+  appearance: none;
+  height: 12px;
+  border-radius: 50px;
+  background: #cfcfcf;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.custom-slider:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+/* * * - Slider thumb | Chrome, Safari, Edge */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 12px;
+  background: #808080;
+  cursor: -webkit-grab;
+  box-shadow: -100vw 0 0 100vw #000;
+}
+
+.custom-slider::-webkit-slider-thumb:active {
+  background: #a0a0a0;
+  cursor: -webkit-grabbing;
+}
+
+/* * * - Slider thumb | Firefox */
+.custom-slider::-moz-range-thumb {
+  border: none;
+  border-radius: 0;
+  width: 5px;
+  height: 12px;
+  background: #808080;
+  cursor: grab;
+  box-shadow: -100vw 0 0 100vw #000;
+}
+
+.custom-slider::-moz-range-thumb:active {
+  background: #a0a0a0;
+  cursor: grabbing;
+}
+
+/* * * - Widths */
 .seek-bar {
   width: 580px;
 }
@@ -139,62 +222,7 @@
   }
 }
 
-@media (max-width: 400px) {
-  .playback-speed {
-    display: none;
-  }
-}
-
-#podcast-episode {
-  border-radius: 8px;
-  box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 40);
-  padding: 10px;
-  background-color: #f57c22;
-}
-
-#episode-art,
-#details-and-player,
-#episode-buttons {
-  display: inline-block;
-  vertical-align: top;
-}
-
-#episode-art {
-  border-radius: 8px;
-  width: 170px;
-}
-
-.episode-art {
-  border-radius: 8px;
-  width: 100%;
-}
-
-#details-and-player {
-  width: calc(100% - 401.75px);
-  margin: 0px 19px;
-}
-
-#episode-title {
-  margin-top: -15px;
-  display: block !important;
-}
-
-#show-notes {
-  margin-bottom: 23.8px;
-  display: block !important;
-}
-
-#show-notes a,
-#show-notes-container a,
-.transcript a {
-  text-decoration: underline;
-}
-
-.middle {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
+/* - Buttons */
 #episode-buttons {
   width: 184.25px;
 }
@@ -213,13 +241,6 @@
   border-radius: 1000px;
   overflow: visible;
   fill: white;
-}
-
-.unlinked-button,
-.unlinked-button:hover {
-  background-color: gray !important;
-  border-color: gray !important;
-  pointer-events: none;
 }
 
 .episode-button:hover {
@@ -241,47 +262,19 @@
   width: 100%;
 }
 
-.button a,
-.button a:hover {
-  text-decoration: none !important;
+.middle {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-cite {
-  font-style: normal;
-  font-weight: bold;
+.unlinked-button,
+.unlinked-button:hover {
+  background-color: gray !important;
+  border-color: gray !important;
+  pointer-events: none;
 }
 
-time {
-  color: #999999;
-}
-
-#art {
-  border-radius: 8px;
-}
-
-#art {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 4.5px 4.5px 8px 1px rgba(79, 37, 1, 1), -4.5px 4.5px 8px 1px rgba(79, 37, 1, 1);
-}
-
-#show-notes-container {
-  border-radius: 8px;
-  padding: 18px;
-  background-color: #f57c22;
-  box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
-}
-
-#show-notes-container hr,
-#show-notes hr {
-  margin: 20px 0px;
-  color: black;
-  background-color: black;
-  height: 1.5px;
-  border-width: 0;
-}
-
+/* - Responsiveness */
 @media (max-width: 1000px) {
   #show-notes {
     margin-bottom: 25px;
@@ -305,7 +298,6 @@ time {
 }
 
 @media (max-width: 450px) {
-
   #episode-art,
   #details-and-player {
     display: block;
@@ -324,4 +316,55 @@ time {
   #details-and-player {
     width: 100%;
   }
+}
+
+/* Episode pages */
+/* - Episode info */
+.info-table td {
+  width: 50%;
+  vertical-align: top;
+}
+
+.info-table td:nth-child(odd) {
+  padding-right: 5px;
+}
+
+.info-table td:nth-child(even) {
+  padding-left: 5px;
+}
+
+/* * - Cover art */
+#art {
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 4.5px 4.5px 8px 1px rgba(79, 37, 1, 1), -4.5px 4.5px 8px 1px rgba(79, 37, 1, 1);
+}
+
+/* * - Show notes */
+#show-notes-container {
+  border-radius: 8px;
+  padding: 18px;
+  background-color: #f57c22;
+  box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
+}
+
+#show-notes-container hr,
+#show-notes hr {
+  margin: 20px 0px;
+  color: black;
+  background-color: black;
+  height: 1.5px;
+  border-width: 0;
+}
+
+/* - Transcripts */
+cite {
+  font-style: normal;
+  font-weight: bold;
+}
+
+time {
+  color: #999999;
 }
