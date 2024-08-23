@@ -140,7 +140,7 @@
 .fast,
 .slow,
 .normal {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .mute-icon {
@@ -152,12 +152,6 @@
 .seek-bar,
 .volume-slider {
   display: inline-block;
-}
-
-@media (max-width: 400px) {
-  .playback-speed {
-    display: none;
-  }
 }
 
 /* * - Sliders */
@@ -325,6 +319,10 @@
 
   #details-and-player {
     width: 100%;
+  }
+
+  .playback-speed {
+    display: none;
   }
 }
 
