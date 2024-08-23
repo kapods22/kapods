@@ -64,7 +64,6 @@
   height: 25px;
   -webkit-user-select: none;
   user-select: none;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -133,7 +132,7 @@
 
 .playback-speed {
   border: solid;
-  margin-left: auto;
+  margin-left: 4px;
   width: 50px;
   min-width: 50px;
   max-width: 50px;
