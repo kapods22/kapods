@@ -9,7 +9,7 @@ main span a {
 }
 
 /* Forms */
-main button[type="submit"] {
+main .jw-form-container button[type="submit"] {
   background-color: #733500 !important;
   box-shadow: 4px 4px rgba(79, 37, 1, 1);
 }
@@ -39,11 +39,11 @@ main button[type="submit"] {
   box-shadow: 4px 4px rgba(79, 37, 1, 0.75);
 }
 
-main form input[type="text"],
-main form input[type="email"],
-main form input[type="file"],
-main form input[type="password"],
-main form textarea {
+main .jw-form-container input[type="text"],
+main .jw-form-container input[type="email"],
+main .jw-form-container input[type="file"],
+main .jw-form-container input[type="password"],
+main .jw-form-container textarea {
   background-color: #b85c17 !important;
   border-style: none !important;
   border-radius: 0px !important;
@@ -54,14 +54,14 @@ form textarea {
   resize: vertical;
 }
 
-footer form input[type="email"],
-footer button[type="submit"] {
+footer .jw-form-container input[type="email"],
+footer .jw-form-container button[type="submit"] {
   border-style: none !important;
   border-radius: 0px !important;
-  box-shadow: 4px 4px #a6a6a6;
+  box-shadow: 4px 4px #a6a6a6 !important;
 }
 
-footer form input[type="email"] {
+footer .jw-form-container input[type="email"] {
   background-color: #e3e3e3 !important;
 }
 
