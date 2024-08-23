@@ -1,4 +1,4 @@
-/* Remove links from menu headers */
+// Remove href attribute from menu headers and <a> elements with no links
 //window.onload = () => {
   let unlinkedAs = [
     document.querySelectorAll("a[data-link-id='17627884']"),
