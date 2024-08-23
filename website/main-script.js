@@ -8,7 +8,6 @@
     document.querySelectorAll("a[data-page-link-id='12029268']"),
     document.querySelectorAll("a[data-page-link-id='12784877']"),
     document.querySelectorAll("a[data-page-link-id='12514772']"),
-
     document.querySelectorAll("a[href='']")
   ];
   
