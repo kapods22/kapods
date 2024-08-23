@@ -30,6 +30,12 @@
   display: block !important;
 }
 
+#episode-title h3 {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #show-notes {
   margin-bottom: 23.8px;
   display: block !important;
@@ -105,12 +111,6 @@
   max-width: 10px;
 }
 
-.fast,
-.slow,
-.normal {
-  font-size: 12px;
-}
-
 .unmute {
   margin-right: 6px;
 }
@@ -135,6 +135,12 @@
   border-width: 1px;
   border-radius: 1000px;
   text-align: center;
+}
+
+.fast,
+.slow,
+.normal {
+  font-size: 10pt;
 }
 
 .mute-icon {
@@ -301,6 +307,11 @@
   #details-and-player {
     display: block;
     margin: 0px;
+  }
+
+  #episode-title h3 {
+    white-space: normal;
+    overflow: visible;
   }
 
   #show-notes {
