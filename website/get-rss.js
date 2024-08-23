@@ -121,7 +121,9 @@ function createAudioPlayer(podcast, guid) {
               <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
             </button>
           </div>
-          <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&ensp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&ensp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+          <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
+          <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+          <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
           <div class="mute-buttons buttons">
             <button class="mute button" id="mute" onclick="mute(this);">
               <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
@@ -130,7 +132,8 @@ function createAudioPlayer(podcast, guid) {
               <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
             </button>
           </div>
-          <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">&ensp;&ensp;<div class="playback-speed buttons">
+          <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">
+          <div class="playback-speed buttons">
             <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
             <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
             <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
@@ -219,7 +222,9 @@ function displayAllEpisodes(episodes) {
                   <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
                 </button>
               </div>
-              <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&ensp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&ensp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+              <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
+              <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+              <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
               <div class="mute-buttons buttons">
                 <button class="mute button" id="mute" onclick="mute(this);">
                   <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
@@ -228,7 +233,8 @@ function displayAllEpisodes(episodes) {
                   <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
                 </button>
               </div>
-              <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"><div class="playback-speed buttons">
+              <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">
+              <div class="playback-speed buttons">
                 <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
                 <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
                 <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
@@ -471,7 +477,9 @@ function displayOneEpisode(episodes) {
                 <img src="https://assets.jwwb.nl/assets/img/icons/pause-symbol.svg" width="10px" class="icon">
               </button>
             </div>
-            <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>&ensp;<input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">&ensp;<div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
+            <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
+            <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+            <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
             <div class="mute-buttons buttons">
               <button class="mute button" id="mute" onclick="mute(this);">
                 <img src="https://assets.jwwb.nl/assets/img/icons/volume-up-interface-symbol.svg" width="15px" class="mute-icon icon">
@@ -480,7 +488,8 @@ function displayOneEpisode(episodes) {
                 <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
               </button>
             </div>
-            <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">&ensp;&ensp;<div class="playback-speed buttons">
+            <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)">
+            <div class="playback-speed buttons">
               <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
               <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
               <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
