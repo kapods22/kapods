@@ -716,7 +716,7 @@ function fetchRSS(podcast) {
         epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
         seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
         type: item.querySelector("episodeType").innerHTML,
-        showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").replace("<![CDATA[", "<p>").replace("]]>", "</p>").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", "<a target=\"_blank\" "),
+        showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").replace("<![CDATA[", "<p>").replace("]]>", "</p>").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href="https://kingdomanimaliapod.com', '<a target="_self" href="https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href="https://www.kingdomanimaliapod.com', '<a target="_self" href="https://www.kingdomanimaliapod.com'),
         date: {
           short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
             weekday: "short",
