@@ -182,7 +182,7 @@ function displayAllEpisodes(episodes) {
               <img class="episode-art" src="${episode.art}">
             </a>
         </div>
-          <div id="details-and-player">
+          <div id="details-and-player" class="details-and-player">
             <div id="episode-title">
               <h3>${episode.title}</h3>
               <p>${minsAndSecs(episode.length).fullTime} | ${episode.date.short}</p>
@@ -434,7 +434,7 @@ function displayOneEpisode(episodes) {
             <img class="episode-art" src="${episode.art}">
           </a>
       </div>
-        <div id="details-and-player">
+        <div id="details-and-player" class="details-and-player">
           <div id="episode-title">
             <h3>${episode.title}</h3>
             <p>${minsAndSecs(episode.length).fullTime} | ${episode.date.short}</p>
