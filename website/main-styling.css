@@ -1,3 +1,4 @@
+/* Fixing link underline issues */
 main span {
   text-decoration: chickadee !important;
   /* text-decoration is intentionally set to a value that does not exist so it does not display text-decoration, while also not overriding the text-decoration of its children. */
@@ -7,6 +8,7 @@ main span a {
   text-decoration: underline;
 }
 
+/* Forms */
 main button[type="submit"] {
   background-color: #733500 !important;
   box-shadow: 4px 4px rgba(79, 37, 1, 1);
@@ -74,4 +76,10 @@ footer form input[type="email"] {
 
 #jw-element-230647470 input[type='email']::placeholder {
   font-style: normal;
+}
+
+/* Custom buttons */
+.button a,
+.button a:hover {
+  text-decoration: none !important;
 }
