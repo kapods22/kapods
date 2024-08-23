@@ -228,7 +228,7 @@ function displayAllEpisodes(episodes) {
                   <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
                 </button>
               </div>
-              <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
+              <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"><div class="playback-speed buttons">&ensp;&ensp;
                 <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
                 <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
                 <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
@@ -480,7 +480,7 @@ function displayOneEpisode(episodes) {
                 <img src="https://assets.jwwb.nl/assets/img/icons/volume-off.svg" width="11px" class="icon">
               </button>
             </div>
-            <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"> &nbsp;&nbsp; <div class="playback-speed buttons">
+            <input type="range" class="volume-slider custom-slider" min="0" max="1" step="0.001" value="" id="volumeSlider" oninput="changeVolume(this)"><div class="playback-speed buttons">&ensp;&ensp;
               <button id="fastSpeed" class="fast button" onclick="fastSpeed(this);">1x</button>
               <button id="slowSpeed" class="slow button" onclick="slowSpeed(this);" hidden="hidden">2x</button>
               <button id="normalSpeed" class="normal button" onclick="normalSpeed(this);" hidden="hidden">0.5x</button>
