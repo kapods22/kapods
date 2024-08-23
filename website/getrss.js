@@ -137,7 +137,7 @@ function createAudioPlayer(podcast, guid) {
           </div>
           <p id="duration"></p>
           <br>
-          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
+          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
         </div>`;
     audioPlayerContainer.innerHTML = htmlCode;
 }
@@ -185,7 +185,7 @@ function displayAllEpisodes(episodes) {
           <div id="details-and-player">
             <div id="episode-title">
               <h3>${episode.title}</h3>
-              <p>${minsAndSecs(episode.length).fullTime} | ${episode.date}</p>
+              <p>${minsAndSecs(episode.length).fullTime} | ${episode.date.short}</p>
             </div>
             <div id="show-notes">
               <div class="
@@ -235,7 +235,7 @@ function displayAllEpisodes(episodes) {
               </div>
               <p id="duration"></p>
               <br>
-              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
+              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
             </div>
           </div>`;
       // Adding episode buttons
@@ -437,7 +437,7 @@ function displayOneEpisode(episodes) {
         <div id="details-and-player">
           <div id="episode-title">
             <h3>${episode.title}</h3>
-            <p>${minsAndSecs(episode.length).fullTime} | ${episode.date}</p>
+            <p>${minsAndSecs(episode.length).fullTime} | ${episode.date.short}</p>
           </div>
           <div id="show-notes">
             <div class="
@@ -487,7 +487,7 @@ function displayOneEpisode(episodes) {
             </div>
             <p id="duration"></p>
             <br>
-            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
+            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
           </div>
         </div>`;
     // Adding episode buttons
@@ -674,7 +674,7 @@ function displayPageInfo(podcast, guid) {
   let episode = findEpisode(podcast, guid);
   // Insert the info
   title.innerHTML = episode.title;
-  info.innerHTML = episode.date + " | " + minsAndSecs(episode.length).fullTime;
+  info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
   showNotes.innerHTML = episode.showNotes;
   createAudioPlayer(podcast, guid);
@@ -717,12 +717,20 @@ function fetchRSS(podcast) {
         seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
         type: item.querySelector("episodeType").innerHTML,
         showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "<p>").replace("]]>", "</p>").replace("______________________<br/><br/>", "<hr>"),
-        date: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          year: "numeric"
-        }),
+        date: {
+          short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }),
+          long: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+          })
+        },
         audioSrc: item.querySelector("enclosure").getAttribute("url"),
         length: item.querySelector("duration").innerHTML,
         art: item.querySelector("image").getAttribute("href"),
