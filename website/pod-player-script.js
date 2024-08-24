@@ -53,14 +53,14 @@ function update(currentElement) {
   const currentTimeElement = get(1, currentElement, ".current-time");
   const remainingTime = Math.trunc(currentElement.duration) - currentTime;
   const remainingTimeElement = get(1, currentElement, ".remaining-time");
-  currentTimeElement.innerHTML = minsAndSecs(currentTime).fullTime;
-  remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).fullTime;
+  currentTimeElement.innerHTML = minsAndSecs(currentTime).htmlFullTime;
+  remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).htmlFullTime;
 }
 
 function seek(currentElement) {
   get(1, currentElement, "#audio").currentTime = currentElement.value;
-  get(1, currentElement, ".current-time").innerHTML = minsAndSecs(Math.trunc(currentElement.value)).fullTime;
-  get(1, currentElement, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(currentElement.max - currentElement.value)).fullTime;
+  get(1, currentElement, ".current-time").innerHTML = minsAndSecs(Math.trunc(currentElement.value)).htmlFullTime;
+  get(1, currentElement, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(currentElement.max - currentElement.value)).htmlFullTime;
 }
 
 function changeVolume(currentElement) {
