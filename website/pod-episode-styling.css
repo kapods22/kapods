@@ -347,17 +347,17 @@
 /* * - Cover art */
 #page-art {
   display: inline-block;
-  width: calc(50% - 2.5px);
+  width: calc(50% - 2px);
   border-radius: 8px;
-  margin-right: 2px;
+  margin-right: auto;
 }
 
 /* * - Show notes */
 #show-notes-container {
   display: inline-block;
-  width: calc(50% - 2.5px);
+  width: calc(50% - 2px);
   border-radius: 8px;
-  margin-left: 2px;
+  margin-left: auto;
   padding: 18px;
   background-color: #f57c22;
   box-shadow: 1px 1.5px 6px 1px rgba(79, 37, 1, 1), -1px 1.5px 6px 1px rgba(79, 37, 1, 1);
