@@ -39,6 +39,7 @@
 #show-notes {
   margin-bottom: 23.8px;
   display: block !important;
+  cursor: text;
 }
 
 #show-notes a,
