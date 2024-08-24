@@ -671,7 +671,7 @@ function displayPageInfo(podcast, guid) {
   */
   let title = document.querySelector(".jw-slideshow-title");
   let info = document.querySelector(".jw-slideshow-sub-title span span");
-  let art = document.getElementById("art");
+  let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
   let transcript;
