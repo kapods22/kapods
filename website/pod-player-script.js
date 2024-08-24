@@ -17,7 +17,8 @@ function minsAndSecs(totalSecs) {
   return {
     mins: mins,
     secs: secs,
-    fullTime: `<span class="mins">${mins}</span>:<span class="secs">${secs}</span>`
+    htmlFullTime: `<span class="mins">${mins}</span>:<span class="secs">${secs}</span>`,
+    fullTime: `${mins}:${secs}`
   };
 }
 
