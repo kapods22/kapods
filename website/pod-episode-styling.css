@@ -347,7 +347,7 @@
 /* * - Cover art */
 #page-art {
   display: inline-block;
-  width: calc(100% - 5px);
+  width: calc(50% - 5px);
   border-radius: 8px;
   padding-right: 5px;
 }
@@ -355,7 +355,7 @@
 /* * - Show notes */
 #show-notes-container {
   display: inline-block;
-  width: calc(100% - 5px);
+  width: calc(50% - 5px);
   border-radius: 8px;
   padding: 18px;
   background-color: #f57c22;
