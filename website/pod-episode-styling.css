@@ -78,7 +78,7 @@
 
 .current-time {
   width: 37px;
-  margin-right: 3px;
+  margin-right: 8px;
 }
 
 .remaining-time {
@@ -130,9 +130,14 @@
   max-width: 15px;
 }
 
+.pause-play,
+.mute-buttons {
+  margin: 0 4px;
+}
+
 .playback-speed {
   border: 1px solid #000000;
-  margin-left: 4px;
+  margin-left: 12px;
   width: 50px;
   min-width: 50px;
   max-width: 50px;
