@@ -397,7 +397,7 @@ function displayAllEpisodes(episodes) {
           </div>
       </div>
       <br>`;
-      episodeContainer.innerHTML += htmlCode;
+      episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
     }
   }
 }
