@@ -6,7 +6,8 @@ let unlinkedAs = [
   document.querySelectorAll("a[data-page-link-id='15010016']"),
   document.querySelectorAll("a[data-page-link-id='12029268']"),
   document.querySelectorAll("a[data-page-link-id='12784877']"),
-  document.querySelectorAll("a[data-page-link-id='12514772']")
+  document.querySelectorAll("a[data-page-link-id='12514772']"),
+  document.querySelectorAll("main a[href='']")
 ];
 
 for (let i = 0; i < unlinkedAs.length; i++) {
