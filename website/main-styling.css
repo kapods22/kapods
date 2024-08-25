@@ -214,8 +214,3 @@ p.section a:hover {
 .button a:hover {
   text-decoration: none !important;
 }
-
-/* Other */
-a[href=""] {
-  pointer-events: none !important;
-}
