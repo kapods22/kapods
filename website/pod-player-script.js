@@ -107,18 +107,18 @@ function unMute(currentElement) {
 
 function fastSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 2;
-  $('.fast').hide();
-  $('.slow').show();
+  get(1, currentElement, ".fast").hidden = true;
+  get(1, currentElement, ".slow").hidden = false;
 }
 
 function slowSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 0.5;
-  $('.slow').hide();
-  $('.normal').show();
+  get(1, currentElement, ".slow").hidden = true;
+  get(1, currentElement, ".normal").hidden = false;
 } 
 
 function normalSpeed(currentElement) {
   get(2, currentElement, "#audio").playbackRate = 1;
-  $('.normal').hide();
-  $('.fast').show();
+  get(1, currentElement, ".normal").hidden = true;
+  get(1, currentElement, ".fast").hidden = false;
 }
