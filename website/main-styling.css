@@ -217,5 +217,5 @@ p.section a:hover {
 
 /* Other */
 a[href=""] {
-  pointer-events: none;
+  pointer-events: none !important;
 }
