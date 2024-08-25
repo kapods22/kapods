@@ -57,7 +57,7 @@
   display: flex;
   background-color: #616161;
   background-image: linear-gradient(to bottom right, #616161, #7d7d7d);
-  padding: 5px 2px;
+  padding: 5px;
   border: solid;
   border-color: black;
   border-width: 2px;
@@ -78,10 +78,12 @@
 
 .current-time {
   width: 37px;
+  margin-right: 3px;
 }
 
 .remaining-time {
   width: 39px;
+  margin-left: 3px;
 }
 
 .mins {
