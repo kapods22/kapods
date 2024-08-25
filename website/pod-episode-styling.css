@@ -375,6 +375,22 @@
   border-width: 0;
 }
 
+@media (max-width: 600px) {
+  #page-info {
+    display: block;
+  }
+
+  #page-art {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  #show-notes-container {
+    margin-left: 0;
+  }
+}
+
 /* - Transcripts */
 cite {
   font-style: normal;
