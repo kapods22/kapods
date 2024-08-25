@@ -284,6 +284,9 @@
 .unlinked-button:hover {
   background-color: gray !important;
   border-color: gray !important;
+}
+
+a:has(.unlinked-button) {
   pointer-events: none;
 }
 
