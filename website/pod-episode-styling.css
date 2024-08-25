@@ -113,10 +113,6 @@
   min-width: 10px;
   max-width: 10px;
 }
-/*
-.pause-play {
-  margin-right: auto;
-} */
 
 .unmute {
   margin-right: 6px;
@@ -208,6 +204,7 @@
   background: #808080;
   cursor: grab;
   box-shadow: -100vw 0 0 100vw #000;
+  margin: 0 4px;
 }
 
 .custom-slider::-moz-range-thumb:active {
@@ -217,7 +214,7 @@
 
 /* * * - Widths */
 .seek-bar {
-  width: 580px;
+  width: 100%;
 }
 
 .volume-slider {
