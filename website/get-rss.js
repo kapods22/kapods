@@ -73,15 +73,14 @@ function epInfo(podcast) {
 function feed(podcast) {
   // Returns the RSS feed for the podcast
   // 'Podcast' will be the acroynm of the podcast
-  const prefix = "https://corsproxy.io/?";
   if (podcast == "CA") {
-    return prefix + encodeURIComponent("https://www.spreaker.com/show/5934340/episodes/feed");
+    return "https://www.spreaker.com/show/5934340/episodes/feed";
   } else if (podcast == "KA") {
-    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss");;
+    return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
-    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21");
+    return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
   } else if (podcast == "ACB") {
-    return prefix + encodeURIComponent("https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers");
+    return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
   }
 }
 
@@ -709,7 +708,11 @@ function fetchRSS(podcast) {
   startedFetchRSS = true;
 
   // Fetch the RSS feed.
-  fetch(feed(podcast)).then(response => {
+  fetch(feed(podcast), {
+    headers: {
+      AccessControlAllowHeaders: "Accept"
+    }
+  }).then(response => {
     console.log(response);
     return response.text();
   }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, ""), "text/xml")).then(data => {
