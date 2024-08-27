@@ -399,6 +399,12 @@ a:has(.unlinked-button) {
 }
 
 /* - Transcripts */
+
+.transcript,
+#show-notes-container {
+  line-height: 1.5;
+}
+
 cite {
   font-style: normal;
   font-weight: bold;
@@ -406,4 +412,8 @@ cite {
 
 time {
   color: #999999;
+}
+
+.transcript {
+  text-align: justify;
 }
