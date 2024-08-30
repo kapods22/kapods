@@ -11,9 +11,11 @@ let unlinkedAs = [
 
 for (let i = 0; i < unlinkedAs.length; i++) {
   for (let j = 0; j < unlinkedAs[i].length; j++) {
-   const styleAttr = document.createAttribute("style");
-   styleAttr.value = "cursor:pointer;";
-   unlinkedAs[i][j].removeAttribute("href");
-   unlinkedAs[i][j].setAttributeNode(styleAttr);
+    let unlinkedA = unlinkedAs[i][j];
+    /*const styleAttr = document.createAttribute("style");
+    styleAttr.value = "cursor:pointer;";
+    unlinkedA.removeAttribute("href");
+    unlinkedA.setAttributeNode(styleAttr); */
+    unlinkedA.href = "javascript:void(0);";
   }
 }
