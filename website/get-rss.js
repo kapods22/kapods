@@ -703,7 +703,7 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
-      transcript.innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
+      transcript.querySelector(".jw-element-accordion__content-wrap").innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
     });
   }
 }
