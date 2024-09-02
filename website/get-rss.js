@@ -702,7 +702,6 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
-    transcript.classList.add("transcript");
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
       transcript.innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
     });
