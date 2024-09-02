@@ -674,10 +674,16 @@ function displayPageInfo(podcast, guid) {
   let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
   let transcript;
-  let accordians = document.querySelectorAll(".jw-element-accordion__content-wrap");
+  let accordians = document.querySelectorAll(".jw-element-accordion");
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Loading transcript")) {
+    if (accordians[i].innerHTML.includes("Read the Transcript for this Episode")) {
       transcript = accordians[i];
+      accordians[i].classList.add("transcript");
+    }
+  }
+  for (let i = 0; i < accordians.length; i++) {
+    if (accordians[i].innerHTML.includes("Check the Works Cited for")) {
+      accordians[i].classList.add("works-cited");
     }
   }
   let btns = document.querySelectorAll(".jw-btn");
