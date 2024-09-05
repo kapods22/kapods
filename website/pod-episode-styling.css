@@ -177,7 +177,7 @@
   height: 12px;
   border-radius: 50px;
   background: #cfcfcf;
-  background-image: linear-gradient(90deg, #cfcfcf 6%, rgba(157, 208, 250, 0.1) 50%, #cfcfcf 100%);
+  background-image: linear-gradient(90deg, #cfcfcf 6%, rgba(157, 208, 250, 0.3) 50%, #cfcfcf 100%);
   cursor: pointer;
   overflow: hidden;
 }
