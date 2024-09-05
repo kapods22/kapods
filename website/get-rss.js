@@ -74,13 +74,17 @@ function feed(podcast) {
   // Returns the RSS feed for the podcast
   // 'Podcast' will be the acroynm of the podcast
   if (podcast == "CA") {
-    return "https://www.spreaker.com/show/5934340/episodes/feed";
+    //return "https://www.spreaker.com/show/5934340/episodes/feed";
+    return "https://corsproxy.io/?https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
-    return "https://feeds.buzzsprout.com/2038404.rss";
+    //return "https://feeds.buzzsprout.com/2038404.rss";
+    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss";
   } else if (podcast == "AF") {
-    return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
+    //return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
+    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss%3Ftags%3DAnimalia%2BFake%2521";
   } else if (podcast == "ACB") {
-    return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
+    //return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
+    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss%3Ftags%3DAsk%2Bthe%2BChickadee%2BBrothers";
   }
 }
 
@@ -713,11 +717,14 @@ function fetchRSS(podcast) {
   startedFetchRSS = true;
 
   // Fetch the RSS feed.
-  fetch(feed(podcast), {
+  /* 
+  {
     headers: {
       AccessControlAllowHeaders: "Accept"
     }
-  }).then(response => {
+  }
+  */
+  fetch(feed(podcast)).then(response => {
     console.log(response);
     return response.text();
   }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, ""), "text/xml")).then(data => {
