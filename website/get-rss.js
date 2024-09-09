@@ -78,7 +78,7 @@ function feed(podcast) {
     return "https://corsproxy.io/?https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
     //return "https://feeds.buzzsprout.com/2038404.rss";
-    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss";
+    return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
     //return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
     return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss%3Ftags%3DAnimalia%2BFake%2521";
@@ -757,7 +757,7 @@ function fetchRSS(podcast) {
         },
         audioSrc: item.querySelector("enclosure").getAttribute("url"),
         length: item.querySelector("duration").innerHTML,
-        art: item.querySelector("image").getAttribute("href"),
+        art: item.querySelector("image") ? item.querySelector("image").getAttribute("href") : data.querySelector("image url").innerHTML,
         guid: item.querySelector("guid").innerHTML,
         transcript: {
           HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
