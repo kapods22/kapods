@@ -707,7 +707,7 @@ function displayPageInfo(podcast, guid) {
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
-      transcript.querySelector(".jw-element-accordion__content-wrap").innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
+      transcript.querySelector(".jw-element-accordion__content-wrap").innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020");
     });
   }
 }
@@ -727,7 +727,7 @@ function fetchRSS(podcast) {
   fetch(feed(podcast)).then(response => {
     console.log(response);
     return response.text();
-  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, ""), "text/xml")).then(data => {
+  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml")).then(data => {
     items = data.querySelectorAll("item");
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
