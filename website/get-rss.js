@@ -32,9 +32,8 @@ function updateMetadata(title, artist, album, artwork) {
     artist: artist,
     album: album,
     artwork: [{
-      src: artwork,
-      type: "image/png",
-    }, ],
+      src: artwork
+    }]
   });
 }
 
