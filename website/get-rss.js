@@ -75,16 +75,13 @@ function feed(podcast) {
   // 'Podcast' will be the acroynm of the podcast
   if (podcast == "CA") {
     //return "https://www.spreaker.com/show/5934340/episodes/feed";
-    return "https://corsproxy.io/?https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
+    return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
   } else if (podcast == "KA") {
-    //return "https://feeds.buzzsprout.com/2038404.rss";
     return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
-    //return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
-    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss%3Ftags%3DAnimalia%2BFake%2521";
+    return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
   } else if (podcast == "ACB") {
-    //return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
-    return "https://corsproxy.io/?https%3A%2F%2Ffeeds.buzzsprout.com%2F2038404.rss%3Ftags%3DAsk%2Bthe%2BChickadee%2BBrothers";
+    return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
   }
 }
 
@@ -712,7 +709,7 @@ function displayPageInfo(podcast, guid) {
   }
 }
 
-function fetchRSS(podcast) {
+async function fetchRSS(podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
   startedFetchRSS = true;
 
@@ -724,53 +721,84 @@ function fetchRSS(podcast) {
     }
   }
   */
-  fetch(feed(podcast)).then(response => {
-    console.log(response);
-    return response.text();
-  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml")).then(data => {
-    items = data.querySelectorAll("item");
-    for (let i = 0; i < items.length; i++) {
-      let item = items[i];
-      let episodeInfo = {
-        title: item.querySelector("title").innerHTML,
-        shortPodcast: podcast,
-        longPodcast: data.querySelector("title:first-of-type").innerHTML,
-        miniseries: null,
-        webpage: item.querySelector("link").innerHTML,
-        epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
-        seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
-        type: item.querySelector("episodeType").innerHTML,
-        showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br><br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com'),
-        date: {
-          short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-            weekday: "short",
-            month: "short",
-            day: "numeric",
-            year: "numeric"
-          }),
-          long: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-          })
-        },
-        audioSrc: item.querySelector("enclosure").getAttribute("url"),
-        length: item.querySelector("duration").innerHTML,
-        art: item.querySelector("image") ? item.querySelector("image").getAttribute("href") : data.querySelector("image url").innerHTML,
-        guid: item.querySelector("guid").innerHTML,
-        transcript: {
-          HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
-          SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
+  const response = await fetch(feed(podcast));
+  console.log("Fetched");
+  console.log(response);
+  const str = await response.text();
+  console.log("Text");
+  const data = new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
+  console.log("XML");
+  items = data.querySelectorAll("item");
+  for (let i = 0; i < items.length; i++) {
+    let item = items[i];
+    let episodeInfo = {
+      title: item.querySelector("title").innerHTML,
+      shortPodcast: podcast,
+      longPodcast: data.querySelector("title:first-of-type").innerHTML,
+      miniseries: null,
+      webpage: item.querySelector("link").innerHTML,
+      epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
+      seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
+      type: item.querySelector("episodeType").innerHTML,
+      showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br><br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com'),
+      date: {
+        short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }),
+        long: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        })
+      },
+      audioSrc: item.querySelector("enclosure").getAttribute("url"),
+      length: item.querySelector("duration").innerHTML,
+      art: item.querySelector("image") ? item.querySelector("image").getAttribute("href") : data.querySelector("image url").innerHTML,
+      guid: item.querySelector("guid").innerHTML,
+      transcript: {
+        HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
+        SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
+      },
+      hasChapters: item.querySelector("chapters") ? true : false,
+      chapterArray: [],
+      getChapters: async function() {
+        if (this.hasChapters) {
+          if (this.chapterArray.length) {
+            return this.chapterArray;
+          } else {
+            const jsonResponse = await fetch(item.querySelector("chapters").getAttribute("url"), {
+              headers: {
+                AccessControlAllowHeaders: "Accept"
+              }
+            });
+            const jsonStr = await jsonResponse.text();
+            const json = JSON.parse(jsonStr);
+            for (let j = 0; j < json.chapters.length; j++) {
+              this.chapterArray.push({
+                startTime: json.chapters[j].startTime,
+                title: json.chapters[j].title,
+                url: json.chapters[j].url ? json.chapters[j].url : null,
+                art: json.chapters[j].img ? json.chapters[j].img : null
+              });
+            }
+            return this.chapterArray;
+          }
+        } else {
+          return null;
         }
-      };
-      if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
-        episodeInfo.miniseries = "AF";
-      } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
-        episodeInfo.miniseries = "ACB";
       }
-      epInfo(podcast).push(episodeInfo);
+    };
+    if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
+      episodeInfo.miniseries = "AF";
+    } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
+      episodeInfo.miniseries = "ACB";
     }
-    endedFetchRSS = true;
-  });
+    epInfo(podcast).push(episodeInfo);
+  }
+  console.log("Parsed");
+  endedFetchRSS = true;
 }
