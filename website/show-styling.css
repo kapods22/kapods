@@ -1,7 +1,6 @@
 .show {
   position: relative;
   background-repeat: no-repeat;
-  /*background-attachment: scroll;*/
   background-position: center center;
   background-size: contain;
   aspect-ratio: 1/1;
