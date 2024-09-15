@@ -1,11 +1,3 @@
-.not-linked {
-  display: initial !important;
-}
-
-.linked {
-  display: none !important;
-}
-
 .show {
   position: relative;
   background-repeat: no-repeat;
