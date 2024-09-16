@@ -1,9 +1,14 @@
 /* Episode listing */
 #podcast-episode {
   border-radius: 8px;
-  box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 40);
+  box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 1);
   padding: 10px;
   background-color: #f57c22;
+  transition: box-shadow 0.15s;
+}
+
+#podcast-episode:hover {
+  box-shadow: 0.25px 1.25px 2.75px 0.25px rgba(0, 0, 0, 1);
 }
 
 /* - Cover art */
