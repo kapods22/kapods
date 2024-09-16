@@ -7,10 +7,6 @@
   transition: box-shadow 0.15s;
 }
 
-#podcast-episode:hover {
-  box-shadow: 0.25px 1.25px 2.75px 0.25px rgba(0, 0, 0, 1);
-}
-
 /* - Cover art */
 #episode-art,
 #details-and-player,
