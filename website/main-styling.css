@@ -176,14 +176,15 @@ a[data-link-id="23525905"] {
   }
 }
 
-@media (max-width: 1141px) and (min-width: 1000px) {
+@media (max-width: 1141px) and (min-width: 1041px) {
   /* Short main menu support link */
   a[data-link-id="23525872"] {
     display: block;
   }
 }
 
-@media (max-width: 1000px) and (min-width: 800px) {
+@media (max-width: 1042px) and (min-width: 800px) {
+  /* “More” submenu support link */
   a[data-link-id="23525905"] {
     display: block;
   }
