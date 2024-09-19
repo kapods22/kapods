@@ -12,10 +12,13 @@ let unlinkedAs = [
 for (let i = 0; i < unlinkedAs.length; i++) {
   for (let j = 0; j < unlinkedAs[i].length; j++) {
     let unlinkedA = unlinkedAs[i][j];
-    /*const styleAttr = document.createAttribute("style");
-    styleAttr.value = "cursor:pointer;";
+    //let styleAttr = document.createAttribute("style");
+    let hrefAttr = document.createAttribute("href");
+    //styleAttr.value = "cursor:pointer;";
+    hrefAttr.value = "javascript:void(0);";
     unlinkedA.removeAttribute("href");
-    unlinkedA.setAttributeNode(styleAttr); */
-    unlinkedA.href = "javascript:void(0);";
+    //unlinkedA.setAttributeNode(styleAttr);
+    unlinkedA.setAttributeNode(hrefAttr);
+    //unlinkedA.href = "javascript:void(0);";
   }
 }
