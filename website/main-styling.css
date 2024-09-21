@@ -159,14 +159,39 @@ p.section a:hover {
 .copyright {
   font-size: 15px;
 }
+/* Short main menu support link */
+a[data-link-id="23525872"] {
+  display: none;
+}
 
-@media (max-width: 1000px) and (min-width: 800px) {
+/* “More” submenu support link */
+a[data-link-id="23525905"] {
+  display: none;
+}
+
+@media (max-width: 1141px) and (min-width: 800px) {
+  /* Long main menu support link */
   a[data-link-id="18206066"] {
     display: none;
   }
 }
 
+@media (max-width: 1141px) and (min-width: 1041px) {
+  /* Short main menu support link */
+  a[data-link-id="23525872"] {
+    display: block;
+  }
+}
+
+@media (max-width: 1042px) and (min-width: 800px) {
+  /* “More” submenu support link */
+  a[data-link-id="23525905"] {
+    display: block;
+  }
+}
+
 @media (max-width: 900px) and (min-width: 800px) {
+  /* Homepage link */
   #jw-menu li:first-of-type {
     display: none;
   }
@@ -213,4 +238,28 @@ p.section a:hover {
 .button a,
 .button a:hover {
   text-decoration: none !important;
+}
+
+.kap-h2 {
+  font-size: 2.5rem !important;
+  margin-top: 0.8em;
+  margin-bottom: 0.3em;
+  line-height: 1.25;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 700;
+}
+
+.kap-h2 a,
+.kap-h2 a:hover,
+.kap-h2:hover a,
+.kap-h2:hover a:hover {
+  color: inherit !important;
+  text-decoration: inherit !important;
+  text-decoration-color: inherit !important;
+}
+
+@media (max-width: 768px) {
+  .kap-h2 {
+    font-size: 2.1rem !important;
+  }
 }
