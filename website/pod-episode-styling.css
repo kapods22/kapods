@@ -165,7 +165,7 @@
   font-size: 12px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 640px) {
   .playback-speed {
     display: none;
   }
@@ -329,7 +329,7 @@ a:has(.unlinked-button) {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   #episode-art,
   #details-and-player {
     display: block;
