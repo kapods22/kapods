@@ -27,20 +27,31 @@
 
 /* - Details and audio player */
 #episode-title {
-  margin-top: -15px;
   display: block !important;
 }
 
 #episode-title h3 {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+#episode-title p {
+  margin-bottom: 0.2em;
 }
 
 #show-notes {
   margin-bottom: 23.8px;
   display: block !important;
   cursor: text;
+}
+
+#show-notes h3 {
+  line-height: 1;
+  margin: 0;
 }
 
 #show-notes a,
