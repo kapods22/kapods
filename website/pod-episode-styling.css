@@ -297,9 +297,8 @@
 
 .episode-button-icon-container svg {
   height: 100%;
-  left: 0;
   position: absolute;
-  top: 0;
+  inset: 0;
   width: 100%;
 }
 
@@ -341,7 +340,7 @@ a:has(.unlinked-button) {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 530px) {
   #episode-art,
   #details-and-player {
     display: block;
