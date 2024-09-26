@@ -18,6 +18,7 @@
 #episode-art {
   border-radius: 8px;
   width: 170px;
+  line-height: 0 !important
 }
 
 .episode-art {
@@ -348,6 +349,7 @@ a:has(.unlinked-button) {
   }
 
   #episode-title h3 {
+    margin-top: 1em;
     white-space: normal;
     overflow: visible;
   }
