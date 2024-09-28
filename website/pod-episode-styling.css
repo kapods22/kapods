@@ -18,6 +18,7 @@
 #episode-art {
   border-radius: 8px;
   width: 170px;
+  line-height: 0 !important
 }
 
 .episode-art {
@@ -27,20 +28,31 @@
 
 /* - Details and audio player */
 #episode-title {
-  margin-top: -15px;
   display: block !important;
 }
 
 #episode-title h3 {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+#episode-title p {
+  margin-bottom: 0.2em;
 }
 
 #show-notes {
   margin-bottom: 23.8px;
   display: block !important;
   cursor: text;
+}
+
+#show-notes h3 {
+  line-height: 1;
+  margin: 0;
 }
 
 #show-notes a,
@@ -165,7 +177,7 @@
   font-size: 12px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 640px) {
   .playback-speed {
     display: none;
   }
@@ -285,9 +297,8 @@
 
 .episode-button-icon-container svg {
   height: 100%;
-  left: 0;
   position: absolute;
-  top: 0;
+  inset: 0;
   width: 100%;
 }
 
@@ -329,7 +340,7 @@ a:has(.unlinked-button) {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 530px) {
   #episode-art,
   #details-and-player {
     display: block;
@@ -337,6 +348,7 @@ a:has(.unlinked-button) {
   }
 
   #episode-title h3 {
+    margin-top: 1em;
     white-space: normal;
     overflow: visible;
   }
