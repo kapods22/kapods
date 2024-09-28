@@ -143,15 +143,19 @@ footer .jw-form-container input[type='email']::placeholder {
 }
 
 .sitemap .jw-element-accordion__item {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .sitemap summary {
   text-decoration: underline;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-top: 0.1rem !important;
+  padding-bottom: 0.1rem !important;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sitemap .jw-element-accordion__icon {
+  right: 0.1rem !important;
 }
 
 .sitemap .jw-element-accordion__content {
