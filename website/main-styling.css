@@ -126,13 +126,32 @@ footer .jw-form-container input[type='email']::placeholder {
 
 .section {
   flex-grow: 1;
-  width: 20%;
   line-height: 2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-right: 10px;
   color: #757575;
+}
+
+.links {
+  width: 26.667%;
+}
+
+.footer-logo {
+  width: 20%;
+}
+
+.sitemap .jw-element-accordion__item {
+  border-bottom: none;
+}
+
+.sitemap summary {
+  text-decoration: underline;
+}
+
+.sitemap .jw-element-accordion__content {
+  white-space: normal;
 }
 
 .logo {
@@ -197,7 +216,7 @@ a[data-link-id="23525905"] {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 768px) {
   .sitemap {
     display: block;
   }
@@ -216,19 +235,9 @@ a[data-link-id="23525905"] {
     padding-left: 31%;
     padding-right: 31%;
   }
+}
 
-  .newsletter-signup {
-    padding-left: 0%;
-  }
-
-  .copyright {
-    font-size: 12px;
-  }
-
-  .newsletter-signup {
-    padding-left: 0%;
-  }
-
+@media (max-width: 450px) {
   .copyright {
     font-size: 12px;
   }
