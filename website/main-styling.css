@@ -148,6 +148,10 @@ footer .jw-form-container input[type='email']::placeholder {
 
 .sitemap summary {
   text-decoration: underline;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sitemap .jw-element-accordion__content {
