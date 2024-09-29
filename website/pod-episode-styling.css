@@ -214,7 +214,7 @@
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 5px;
+  width: 8px;
   height: 12px;
   background: #808080;
   cursor: -webkit-grab;
@@ -230,7 +230,7 @@
 .custom-slider::-moz-range-thumb {
   border: none;
   border-radius: 0;
-  width: 5px;
+  width: 8px;
   height: 12px;
   background: #808080;
   cursor: grab;
