@@ -154,6 +154,12 @@ footer .jw-form-container input[type='email']::placeholder {
   text-overflow: ellipsis;
 }
 
+.sitemap details[open] summary {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
 .sitemap .jw-element-accordion__icon {
   right: 0.1rem !important;
 }
@@ -171,14 +177,14 @@ footer .jw-form-container input[type='email']::placeholder {
 }
 
 .links a,
-.links span {
+.links summary span {
   /*text-decoration: none !important;
   border-bottom: solid 1.6px #757575;*/
   text-decoration: underline #757575;
 }
 
 .links a:hover,
-.links span:hover {
+.links summary span:hover {
   /*border-bottom-color: #8f8f8f;
   text-decoration: none !important; */
   text-decoration-color: #8f8f8f;
@@ -282,6 +288,10 @@ a[data-link-id="23525905"] {
 
   .sitemap summary {
     margin-left: calc(0.8rem + 42pt);
+  }
+
+  .sitemap .jw-element-accordion__content {
+    margin-left: -1rem;
   }
 }
 
