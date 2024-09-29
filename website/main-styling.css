@@ -172,16 +172,20 @@ footer .jw-form-container input[type='email']::placeholder {
 
 .links a,
 .links span {
-  text-decoration: none !important;
-  border-bottom: solid 1.6px #757575;
-  padding-bottom: -20px;
+  /*text-decoration: none !important;
+  border-bottom: solid 1.6px #757575;*/
+  text-decoration: underline #757575;
 }
 
 .links a:hover,
 .links span:hover {
-  border-bottom-color: #8f8f8f;
-  text-decoration: none !important;
-  /* text-decoration-color: #757575 !important; */
+  /*border-bottom-color: #8f8f8f;
+  text-decoration: none !important; */
+  text-decoration-color: #8f8f8f;
+}
+
+.links span:hover {
+  color: #8f8f8f;
 }
 
 .accordian-arrow-button {
