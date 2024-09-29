@@ -209,6 +209,11 @@ details[open] .accordian-arrow-button {
   transform: rotate(180deg);
 }
 
+.section ul {
+  list-style-type: "- ";
+  list-style-position: outside;
+}
+
 .sitemap summary span {
   max-width: calc(100% - 1.6rem - 8pt);
   overflow: hidden;
@@ -284,6 +289,7 @@ a[data-link-id="23525905"] {
     width: 38%;
     padding-left: 31%;
     padding-right: 31%;
+    margin-bottom: 10px;
   }
 
   .sitemap summary {
@@ -292,6 +298,10 @@ a[data-link-id="23525905"] {
 
   .sitemap .jw-element-accordion__content {
     margin-left: -1rem;
+  }
+
+  .section ul {
+    list-style-position: inside;
   }
 }
 
