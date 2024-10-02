@@ -97,7 +97,7 @@ function setAnswer(element, round) {
 }
 
 function printPage(element) {
-  if(confirm("If you print, the scoresheet will be reset. Please confirm are okay with that.")) {
+  if(confirm("If you print, the scoresheet will be reset. Please confirm that you are okay with that.")) {
     element.style.display = "none";
     /*let r1Score = round1.score;
     let r1Guess = round1.guess;
@@ -119,8 +119,8 @@ function printPage(element) {
     round3.answer = "";
     let checkboxes = document.querySelectorAll(".checked");
     for (let checkbox of checkboxes) {
-      checkbox.classList.add("bchecked");
-      //checkbox.classList.remove("checked");
+      //checkbox.classList.add("bchecked");
+      checkbox.classList.remove("checked");
     }
     scoreDisplay.innerHTML = "";
     window.print();
