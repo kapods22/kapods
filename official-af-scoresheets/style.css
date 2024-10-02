@@ -90,6 +90,10 @@ li {
   background-color: #dedede;
 }
 
+.print-btn.hidden {
+  display: none !important;
+}
+
 @media (max-width: 738px) {
   h1 {
     font-size: 20pt;
