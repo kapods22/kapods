@@ -61,6 +61,7 @@ li {
   top: -7pt;
   left: -3.5pt;
   display: none;
+  pointer-events: none;
 }
 
 .checkbox.checked img {
