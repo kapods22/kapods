@@ -98,7 +98,7 @@ function setAnswer(element, round) {
 
 function printPage(element) {
   if(confirm("If you print, the scoresheet will be reset. Please confirm that you are okay with that.")) {
-    element.hidden = true;
+    element.classList.add("hidden");
     /*let r1Score = round1.score;
     let r1Guess = round1.guess;
     let r1Answer = round1.answer;
@@ -123,8 +123,10 @@ function printPage(element) {
       checkbox.classList.remove("checked");
     }
     scoreDisplay.innerHTML = "";
-    window.print();
-    element.hidden = false;
+    setTimeout(() => {
+      window.print();
+    }, 2);
+    element.classList.remove("hidden");
     /*console.log(r1Score);
     round1.score = r1Score;
     round1.guess = r1Guess;
