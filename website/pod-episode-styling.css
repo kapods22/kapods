@@ -406,7 +406,7 @@ a:has(.unlinked-button) {
   margin-left: 5px;
   padding: 18px;
   background-color: #f57c22;
-  box-shadow: 2px -3px 8px -3px black inset;
+  box-shadow: 3px 1px 8px 1px black inset, -3px -3px 8px 1px black inset;
   aspect-ratio: 1/1;
   overflow: scroll;
 }
