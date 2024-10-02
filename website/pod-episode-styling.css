@@ -37,7 +37,7 @@
   text-overflow: ellipsis;
   line-height: 1;
   margin-top: 0;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.68em;
 }
 
 #episode-title p {
@@ -45,7 +45,7 @@
 }
 
 #show-notes {
-  margin-bottom: 23.8px;
+  margin-bottom: 1.47em;
   display: block !important;
   cursor: text;
 }
@@ -214,7 +214,7 @@
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 5px;
+  width: 8px;
   height: 12px;
   background: #808080;
   cursor: -webkit-grab;
@@ -230,7 +230,7 @@
 .custom-slider::-moz-range-thumb {
   border: none;
   border-radius: 0;
-  width: 5px;
+  width: 8px;
   height: 12px;
   background: #808080;
   cursor: grab;
@@ -340,6 +340,17 @@ a:has(.unlinked-button) {
   }
 }
 
+@media (max-width: 768px) {
+  #show-notes {
+    margin-top: 0.7em;
+    margin-bottom: 1.7em;
+  }
+
+  #episode-title h3 {
+    margin-bottom: 0.8em;
+  }
+}
+
 @media (max-width: 530px) {
   #episode-art,
   #details-and-player {
@@ -354,6 +365,7 @@ a:has(.unlinked-button) {
   }
 
   #show-notes {
+    margin-top: 0;
     margin-bottom: 20px;
   }
 

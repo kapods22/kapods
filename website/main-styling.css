@@ -147,11 +147,17 @@ footer .jw-form-container input[type='email']::placeholder {
 }
 
 .sitemap summary {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
   padding-top: 0.1rem !important;
   padding-bottom: 0.1rem !important;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sitemap details[open] summary {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .sitemap .jw-element-accordion__icon {
@@ -170,17 +176,48 @@ footer .jw-form-container input[type='email']::placeholder {
   margin-right: 0px;
 }
 
-p.section a {
-  text-decoration: none !important;
-  border-bottom: solid 1.6px #757575;
-  padding-bottom: -20px;
+.links a,
+.links summary span {
+  /*text-decoration: none !important;
+  border-bottom: solid 1.6px #757575;*/
+  text-decoration: underline #757575;
 }
 
+.links a:hover,
+.links summary span:hover {
+  /*border-bottom-color: #8f8f8f;
+  text-decoration: none !important; */
+  text-decoration-color: #8f8f8f;
+}
 
-p.section a:hover {
-  border-bottom-color: #8f8f8f;
-  text-decoration: none !important;
-  /* text-decoration-color: #757575 !important; */
+.links span:hover {
+  color: #8f8f8f;
+}
+
+.accordian-arrow-button {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(15%) hue-rotate(184deg) brightness(99%) contrast(97%);
+  min-width: 8pt;
+  max-width: 8pt;
+  min-height: 8pt;
+  max-height: 8pt;
+  margin: 0 0.8rem;
+  transition: transform 0.25s ease;
+  pointer-events: none;
+}
+
+details[open] .accordian-arrow-button {
+  transform: rotate(180deg);
+}
+
+.section ul {
+  list-style-type: "- ";
+  list-style-position: outside;
+}
+
+.sitemap summary span {
+  max-width: calc(100% - 1.6rem - 8pt);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .copyright {
@@ -224,9 +261,19 @@ a[data-link-id="23525905"] {
   }
 }
 
+@media (min-width: 769px) {
+   .sitemap summary {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 @media (max-width: 768px) {
   .sitemap {
     display: block;
+    line-height: 2.4;
   }
 
   .section {
@@ -242,6 +289,19 @@ a[data-link-id="23525905"] {
     width: 38%;
     padding-left: 31%;
     padding-right: 31%;
+    margin-bottom: 10px;
+  }
+
+  .sitemap summary {
+    margin-left: calc(0.8rem + 42pt);
+  }
+
+  .sitemap .jw-element-accordion__content {
+    margin-left: -1rem;
+  }
+
+  .section ul {
+    list-style-position: inside;
   }
 }
 
@@ -279,4 +339,103 @@ a[data-link-id="23525905"] {
   .kap-h2 {
     font-size: 2.1rem !important;
   }
+}
+
+/* Show listings */
+
+.show {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+  padding: 12px;
+  width: calc(100% - 24px);
+  transition-property: box-shadow;
+  transition-duration: 150ms;
+}
+
+.show::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.show-text {
+  position: relative;
+  color: #ffffff !important;
+  z-index: 1;
+}
+
+.show-name {
+  color: #ffffff !important;
+}
+
+.show-subtitle,
+.show-subtitle:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: transparent !important;
+}
+
+.show-acronym,
+.show-subtitle {
+  font-size: 1.7rem;
+}
+
+@media (max-width: 768px) {
+  .show-acronym,
+  .show-subtitle {
+    font-size: 1.43rem;
+  }
+}
+
+.show * {
+  text-decoration: underline !important;
+  text-decoration-color: transparent !important;
+}
+
+.show:hover {
+  box-shadow: 2px 2px 6px -1px #000000;
+}
+
+.show:hover,
+.show:hover *,
+.show *:hover,
+.show:hover *:hover,
+a:has(.show:hover),
+a:has(.show *:hover),
+a:has(.show:hover *:hover) {
+  text-decoration: underline !important;
+  text-decoration-color: transparent !important;
+}
+
+/* Descriptions */
+.description-container {
+  background-color: #e3731f;
+  padding: 15px;
+  box-shadow: 1px 1px 12px 5px rgba(0, 0, 0, 0.5), -1px -1px 12px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.description-outline {
+  text-align: center;
+  border: 2px solid #000000;
+  padding: 7px;
+}
+
+.description {
+  border: 2px solid #000000;
+  padding: 35px 15px;
+  color: black !important;
+  text-align: center;
+  margin: 0 !important;
 }
