@@ -81,6 +81,7 @@ li {
   border-radius: 3px;
   padding: 5px 10px;
   cursor: pointer;
+  color: black;
 }
 
 .print-btn:hover,
