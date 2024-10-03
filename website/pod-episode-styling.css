@@ -67,7 +67,6 @@
 }
 
 #show-notes .jw-element-accordion__content {
-  background-color: red;
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.7) inset;
   max-height: 450px;
   overflow-y: scroll;
