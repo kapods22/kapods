@@ -97,54 +97,9 @@ function setAnswer(element, round) {
 }
 
 function printPage(element) {
-  if(confirm("If you print, the scoresheet will be reset. Please confirm that you are okay with that.")) {
-    //element.style.display = "none";
-    /*let r1Score = round1.score;
-    let r1Guess = round1.guess;
-    let r1Answer = round1.answer;
-    let r2Score = round2.score;
-    let r2Guess = round2.guess;
-    let r2Answer = round2.answer;
-    let r3Score = round3.score;
-    let r3Guess = round3.guess;
-    let r3Answer = round3.answer;*/
-    /* round1.score = NaN;
-    round1.guess = "";
-    round1.answer = "";
-    round2.score = NaN;
-    round2.guess = "";
-    round2.answer = "";
-    round3.score = NaN;
-    round3.guess = "";
-    round3.answer = "";
-    let checkboxes = document.querySelectorAll(".checked");
-    for (let checkbox of checkboxes) {
-      //checkbox.classList.add("bchecked");
-      checkbox.classList.remove("checked");
-    }*/
-    //scoreDisplay.innerHTML = "";
-    let wrapper = document.querySelector(".wrapper");
-    wrapper.classList.add("printing");
-    window.print();
-    wrapper.classList.remove("printing");
-    //element.style.display = "block";
-    /*console.log(r1Score);
-    round1.score = r1Score;
-    round1.guess = r1Guess;
-    round1.answer = r1Answer;
-    round2.score = r2Score;
-    round2.guess = r2Guess;
-    round2.answer = r2Answer;
-    round3.score = r3Score;
-    round3.guess = r3Guess;
-    round3.answer = r3Answer;
-    let bchecks = document.querySelectorAll(".bchecked");
-    for (let checkbox of checkboxes) {
-      checkbox.classList.add("checked");
-      checkbox.classList.remove("bchecked");
-    }
-    if ((round1.score == 1 || round1.score == 0) && (round2.score == 1 || round2.score == 0) && (round3.score == 1 || round3.score == 0)) {
-      scoreDisplay.innerHTML = round1.score + round2.score + round3.score;
-    }*/
-  }
+  alert("When you print, your answers and scores will be hidden. They will return once you close the print dialog or finish printing");
+  let wrapper = document.querySelector(".wrapper");
+  wrapper.classList.add("printing");
+  window.print();
+  wrapper.classList.remove("printing");
 }
