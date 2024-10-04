@@ -96,11 +96,11 @@ function setAnswer(element, round) {
   check(element);
 }
 
-function printPage(element) {
-  if(confirm("When you print, your answers and scores will be hidden. They will return once you close the print dialog or finish printing")) {
-    let wrapper = document.querySelector(".wrapper");
-    wrapper.classList.add("printing");
-    window.print();
-    wrapper.classList.remove("printing");
-  }
+window.addEventListener("afterprint", () => {
+  document.querySelector(".wrapper").classList.remove("printing");
+});
+
+function printPage() {
+  document.querySelector(".wrapper").classList.add("printing");
+  window.print();
 }
