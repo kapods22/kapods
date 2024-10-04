@@ -94,6 +94,7 @@ li {
   padding: 5px 10px;
   cursor: pointer;
   color: black;
+  width: 100%;
 }
 
 .print-btn > * {
@@ -107,7 +108,7 @@ li {
 
 .print-btn:hover,
 .print-btn:active {
-  background-color: #dedede;
+  background-color: #d9d9d9;
 }
 
 .printing .print-btn {
