@@ -98,7 +98,7 @@ function setAnswer(element, round) {
 
 function printPage(element) {
   if(confirm("If you print, the scoresheet will be reset. Please confirm that you are okay with that.")) {
-    element.style.display = "none";
+    //element.style.display = "none";
     /*let r1Score = round1.score;
     let r1Guess = round1.guess;
     let r1Answer = round1.answer;
@@ -108,7 +108,7 @@ function printPage(element) {
     let r3Score = round3.score;
     let r3Guess = round3.guess;
     let r3Answer = round3.answer;*/
-    round1.score = NaN;
+    /* round1.score = NaN;
     round1.guess = "";
     round1.answer = "";
     round2.score = NaN;
@@ -121,10 +121,12 @@ function printPage(element) {
     for (let checkbox of checkboxes) {
       //checkbox.classList.add("bchecked");
       checkbox.classList.remove("checked");
-    }
-    scoreDisplay.innerHTML = "";
+    }*/
+    //scoreDisplay.innerHTML = "";
+    let wrapper = document.querySelector(".wrapper");
+    wrapper.classList.add("printing");
     window.print();
-    element.style.display = "block";
+    //element.style.display = "block";
     /*console.log(r1Score);
     round1.score = r1Score;
     round1.guess = r1Guess;
