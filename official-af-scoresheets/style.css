@@ -79,7 +79,8 @@ li {
   vertical-align: text-bottom;
   display: inline-block;
   width: 18pt;
-  border-bottom: 3pt solid #434343;
+  border-bottom: 2.6pt solid #434343;
+  text-align: center;
 }
 
 .printing .final-score {
@@ -163,5 +164,6 @@ li {
   
    .final-score {
     border-width: 1.5pt;
+    width: 15pt;
   }
 }
