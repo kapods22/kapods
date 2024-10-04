@@ -5,6 +5,9 @@ body {
   font-weight: bold;
 }
 
+body:has(.printing) {
+  background-color: white;
+}
 
 .wrapper {
   max-width: 900px;
@@ -79,6 +82,10 @@ li {
   border-bottom: 3pt solid #434343;
 }
 
+.printing .final-score {
+  color: transparent;
+}
+
 .print-btn {
   margin-bottom: 15pt;
   background-color: #cccccc;
@@ -94,7 +101,7 @@ li {
   background-color: #dedede;
 }
 
-.print-btn.hidden {
+.printing .print-btn {
   display: none !important;
 }
 
