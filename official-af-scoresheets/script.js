@@ -110,3 +110,10 @@ function printPage() {
   }
   window.print();
 }
+
+document.addEventListener('keydown', (event) => {
+  if ((event.ctrlKey || event.metaKey) && event.keyCode === 80) {
+    event.preventDefault();
+    printPage();
+  }
+});
