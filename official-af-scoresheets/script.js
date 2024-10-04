@@ -126,6 +126,7 @@ function printPage(element) {
     let wrapper = document.querySelector(".wrapper");
     wrapper.classList.add("printing");
     window.print();
+    wrapper.classList.remove("printing");
     //element.style.display = "block";
     /*console.log(r1Score);
     round1.score = r1Score;
