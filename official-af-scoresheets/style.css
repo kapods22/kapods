@@ -20,7 +20,7 @@ body {
   background: white;
 }
 
-.footer:has(.printing) {
+footer:has(.printing) {
   display: none;
 }
 
