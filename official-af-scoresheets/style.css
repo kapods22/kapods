@@ -67,12 +67,12 @@ li {
   pointer-events: none;
 }
 
-.printing .checkbox img {
-  display: none;
-}
-
 .checkbox.checked img {
   display: block;
+}
+
+.printing .checkbox img {
+  display: none !important;
 }
 
 .final-score {
