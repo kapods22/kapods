@@ -1,17 +1,33 @@
 body {
-  background-color: #6fa8dc;
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.body:has(.printing) {
+  background-color: white;
+}
+
+.body {
+  background-color: #6fa8dc;
   color: #434343;
   font-weight: bold;
 }
 
-body:has(.printing) {
-  background-color: white;
+.footer {
+  font-weight: normal;
+  font-size: 10pt;
+  background: white;
+}
+
+.copyright {
+  text-align: center;
+  color: #757575;
 }
 
 .wrapper {
   max-width: 900px;
-  padding: 1rem;
+  padding: 2.2rem;
   margin: 0 auto;
 }
 
@@ -115,6 +131,8 @@ li {
 .printing .print-btn {
   display: none !important;
 }
+
+
 
 @media (max-width: 738px) {
   h1 {
