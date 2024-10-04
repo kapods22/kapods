@@ -76,7 +76,7 @@ li {
 }
 
 .final-score {
-  vertical-align: text-bottom;
+  vertical-align: bottom;
   display: inline-block;
   width: 18pt;
   border-bottom: 2.6pt solid #434343;
