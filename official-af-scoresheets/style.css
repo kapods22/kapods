@@ -96,6 +96,15 @@ li {
   color: black;
 }
 
+.print-btn > * {
+  vertical-align: middle;
+}
+
+.print-btn img {
+  height: 12pt;
+  margin-right: 5pt;
+}
+
 .print-btn:hover,
 .print-btn:active {
   background-color: #dedede;
