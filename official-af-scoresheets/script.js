@@ -97,10 +97,16 @@ function setAnswer(element, round) {
 }
 
 window.addEventListener("afterprint", () => {
-  document.querySelector(".wrapper").classList.remove("printing");
+  let wrappers = document.querySelectorAll(".wrapper");
+  for (let wrapper of wrappers) {
+    wrapper.classList.remove("printing");
+  }
 });
 
 function printPage() {
-  document.querySelector(".wrapper").classList.add("printing");
+  let wrappers = document.querySelectorAll(".wrapper");
+  for (let wrapper of wrappers) {
+    wrapper.classList.add("printing");
+  }
   window.print();
 }
