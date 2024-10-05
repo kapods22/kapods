@@ -197,9 +197,9 @@ footer .jw-form-container input[type='email']::placeholder {
 .accordian-arrow-button {
   filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(15%) hue-rotate(184deg) brightness(99%) contrast(97%);
   min-width: 8pt;
-  max-width: 8pt;
-  min-height: 8pt;
-  max-height: 8pt;
+  max-width: 8pt !important;
+  min-height: 4.8512pt;
+  max-height: 4.8512pt;
   margin: 0 0.8rem;
   transition: transform 0.25s ease;
   pointer-events: none;
@@ -207,6 +207,8 @@ footer .jw-form-container input[type='email']::placeholder {
 
 details[open] .accordian-arrow-button {
   transform: rotate(180deg);
+  margin-bottom: auto;
+  margin-top: 1.2rem;
 }
 
 .section ul {
