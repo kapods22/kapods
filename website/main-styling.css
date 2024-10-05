@@ -197,12 +197,16 @@ footer .jw-form-container input[type='email']::placeholder {
 .accordian-arrow-button {
   filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(15%) hue-rotate(184deg) brightness(99%) contrast(97%);
   min-width: 8pt;
-  max-width: 8pt !important;
+  max-width: 8pt !important;!i;!;!i;!;
   min-height: 4.8512pt;
   max-height: 4.8512pt;
+  
+  !i;!;
   margin: 0 0.8rem;
+  !i;!;
   transition: transform 0.25s ease;
   pointer-events: none;
+  vertical-align: middle;
 }
 
 details[open] .accordian-arrow-button {
@@ -304,6 +308,12 @@ a[data-link-id="23525905"] {
 
   .section ul {
     list-style-position: inside;
+  }
+
+  details[open] .accordian-arrow-button {
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
