@@ -676,13 +676,13 @@ function displayPageInfo(podcast, guid) {
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Read the Transcript for this Episode")) {
+    if (accordians[i].innerText.includes("the Transcript for this Episode")) {
       transcript = accordians[i];
       accordians[i].classList.add("transcript");
     }
   }
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Check the Works Cited for")) {
+    if (accordians[i].innerText.includes("the Works Cited for")) {
       accordians[i].classList.add("works-cited");
     }
   }
