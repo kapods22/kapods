@@ -697,7 +697,7 @@ function displayPageInfo(podcast, guid) {
   title.innerHTML = episode.title;
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
-  showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h1>Links:</h1>").replace("<b>Credits:</b>", "<h1>Credits:</h1>").replace("<b>Further Reading (Experiments):</b>", "<h1>Further Reading (Experiments):</h1>");
+  showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace("<b>Further Reading (Experiments):</b>", "<h2>Further Reading (Experiments):</h2>");
 
   let ul;
   for (let a of showNotes.querySelectorAll("li a")) {
