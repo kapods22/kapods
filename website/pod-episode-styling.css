@@ -410,6 +410,16 @@ a:has(.unlinked-button) {
   overflow: scroll;
 }
 
+#show-notes-container ul {
+  margin-top: -5px;
+}
+
+#show-notes-container h1 {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  line-height: inherit;
+}
+
 #show-notes-container hr,
 #show-notes hr {
   margin: 20px 0px;
