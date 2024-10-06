@@ -717,7 +717,7 @@ function displayPageInfo(podcast, guid) {
       }
     }
   }
-  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br>");
+  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>");
   
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
