@@ -698,6 +698,26 @@ function displayPageInfo(podcast, guid) {
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
   showNotes.innerHTML = episode.showNotes;
+
+  let ul;
+  for (let a of showNotes.querySelectorAll("li a")) {
+    let itemName = a.innerHTML;
+    if (itemName.includes("Episode Page") || itemName.includes("Transcript") || itemName.includes("Works Cited") || itemName.includes("Comic") || itemName.includes("Memory Quiz")) {
+      ul = a.parentElement.parentElement;
+      a.parentElement.remove();
+    }
+  }
+  if (ul) {
+    if (!ul.querySelectorAll("li").length) {
+      ul.remove();
+      for (let item of showNotes.querySelectorAll("b, strong")) {
+        if (item.innerHTML == "Links:") {
+          item.remove();
+        }
+      }
+    }
+  }
+  
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
