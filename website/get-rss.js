@@ -702,7 +702,7 @@ function displayPageInfo(podcast, guid) {
   let ul;
   for (let a of showNotes.querySelectorAll("li a")) {
     let itemName = a.innerHTML;
-    if (itemName.includes("Episode Page") || itemName.includes("Transcript") || itemName.includes("Works Cited") || itemName.includes("Comic") || itemName.includes("Memory Quiz")) {
+    if (itemName.includes("Episode Page") || itemName.includes("Transcript") || itemName.includes("Works Cited") || itemName.includes("Comic") || itemName.includes("Memory Quiz") || itemName.includes("Official Episode Scoresheet")) {
       ul = a.parentElement.parentElement;
       a.parentElement.remove();
     }
@@ -710,13 +710,14 @@ function displayPageInfo(podcast, guid) {
   if (ul) {
     if (!ul.querySelectorAll("li").length) {
       ul.remove();
-      for (let item of showNotes.querySelectorAll("b, strong")) {
+      for (let item of showNotes.querySelectorAll("h2")) {
         if (item.innerHTML == "Links:") {
           item.remove();
         }
       }
     }
   }
+  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br>");
   
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
