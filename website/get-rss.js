@@ -698,7 +698,7 @@ function displayPageInfo(podcast, guid) {
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
   let furtherReadingLabel = /<b>Further Reading \((.*?)\):<\/b>/g;
-  // ↑ Replaces the further reading label, no matter what segment it is for
+  // ↑ For replacing the further reading label, no matter what segment it is for
   showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
 
   let ul;
