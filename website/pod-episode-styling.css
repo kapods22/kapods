@@ -462,7 +462,12 @@ time {
 }
 
 .transcript {
-  text-align: justify;
+  text-align: left;
+}
+
+.transcript a,
+.transcript span:has(span > a) {
+  text-decoration: underline !important;
 }
 
 .transcript .jw-element-accordion__heading,
