@@ -6,6 +6,7 @@ main span {
 
 main span a {
   text-decoration: underline;
+  text-decoration-color: initial;
 }
 
 /* Forms */
