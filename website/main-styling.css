@@ -1,13 +1,13 @@
 /* Fixing link underline issues */
-main span {
+/* main span {
   text-decoration: chickadee !important;
   /* text-decoration is intentionally set to a value that does not exist so it does not display text-decoration, while also not overriding the text-decoration of its children. */
-}
+/*}
 
 main span a {
   text-decoration: underline;
   text-decoration-color: initial;
-}
+}*/
 
 /* Forms */
 main .jw-form-container button[type="submit"] {
