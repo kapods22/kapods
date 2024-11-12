@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* Fixing link underline issues */
 /* main span {
   text-decoration: chickadee !important;
