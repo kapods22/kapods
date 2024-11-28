@@ -725,11 +725,12 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
     }
   }
   if (ul) {
-    if (!ul.querySelectorAll("li").length) {
+    if (ul.querySelectorAll("li").length == 0) {
       ul.remove();
       for (let item of showNotes.querySelectorAll("h2")) {
         if (item.innerHTML == "Links:") {
           item.remove();
+          break;
         }
       }
     }
