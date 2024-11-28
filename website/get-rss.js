@@ -656,7 +656,7 @@ function displayOneEpisode(episodes) {
   }
 }
 
-function displayPageInfo(podcast, guid) {
+function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   /* Inserts the information of an episode into the page. This info includes:
    * All podcasts:
    * - The episode title (title)
@@ -672,6 +672,19 @@ function displayPageInfo(podcast, guid) {
   let info = document.querySelector(".jw-slideshow-sub-title span span");
   let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
+  let omittedLinks = [
+    "Episode Page",
+    "Transcript",
+    "Works Cited",
+    "Comic",
+    "Memory Quiz",
+    "Official Episode Scoresheet"
+  ];
+  if (customOmittedLinks != null) {
+    for (let item of customOmittedLinks) {
+      omittedLinks.push(item);
+    }
+  }
   let downloadBtn;
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
@@ -704,9 +717,11 @@ function displayPageInfo(podcast, guid) {
   let ul;
   for (let a of showNotes.querySelectorAll("li a")) {
     let itemName = a.innerHTML;
-    if (itemName.includes("Episode Page") || itemName.includes("Transcript") || itemName.includes("Works Cited") || itemName.includes("Comic") || itemName.includes("Memory Quiz") || itemName.includes("Official Episode Scoresheet")) {
-      ul = a.parentElement.parentElement;
-      a.parentElement.remove();
+    for (let name of omittedLinks) {
+      if (itemName.includes(name)) {
+        ul = a.parentElement.parentElement;
+        a.parentElement.remove();
+      }
     }
   }
   if (ul) {
