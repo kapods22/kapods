@@ -714,27 +714,23 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   // ↑ For replacing the further reading label, no matter what segment it is for
   showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
 
-  let ul;
+  let uls = showNotes.querySelectorAll("ul");
   for (let a of showNotes.querySelectorAll("li a")) {
     let itemName = a.innerHTML;
     for (let name of omittedLinks) {
       if (itemName.includes(name)) {
-        ul = a.parentElement.parentElement;
         a.parentElement.remove();
       }
     }
   }
-  if (ul) {
+  for (let ul of uls) {
     if (ul.querySelectorAll("li").length == 0) {
+      ul.previousElementSibling.previousElementSibling.remove();
+      ul.previousElementSibling.remove();
       ul.remove();
-      for (let item of showNotes.querySelectorAll("h2")) {
-        if (item.innerHTML == "Links:") {
-          item.remove();
-          break;
-        }
-      }
     }
   }
+  
   showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>");
   
   createAudioPlayer(podcast, guid);
