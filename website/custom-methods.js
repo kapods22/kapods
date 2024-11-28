@@ -52,3 +52,12 @@ String.prototype.gReplaceAll = function(search, replacement) {
   // An alternative to String.prototype.replaceAll() that should work in all browsers
   return this.replace(new RegExp(search, 'g'), replacement);
 }
+
+String.prototype.removeEndStr = function(endStr) {
+  // Removes every instance of endStr at the end of the string
+  let str = this;
+  while (str.endsWith(endStr)) {
+    str = str.slice(0, -endStr.length);
+  }
+  return str;
+}
