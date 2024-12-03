@@ -689,14 +689,14 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerText.includes("the Transcript for this Episode") || accordians[i].innerText.includes("the Transcript for This Episode")) {
+    if (accordians[i].querySelector("summary").innerText.includes("Transcript")) {
       transcript = accordians[i];
       accordians[i].classList.add("transcript");
     }
   }
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerText.includes("the Works Cited for")) {
-      accordians[i].classList.add("works-cited");
+    if (accordians[i].querySelector("summary").innerText.includes("Works Cited") || accordians[i].querySelector("summary").innerText.includes("References")) {
+      accordians[i].classList.add("references");
     }
   }
   let btns = document.querySelectorAll(".jw-btn");
