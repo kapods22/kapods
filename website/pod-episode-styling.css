@@ -471,29 +471,29 @@ time {
 }
 
 .transcript .jw-element-accordion__heading,
-.works-cited .jw-element-accordion__heading {
+.references .jw-element-accordion__heading {
   background-color: #733500 !important;
 }
 
-.works-cited .jw-element-accordion__content,
-.works-cited .jw-element-accordion__heading,
+.references .jw-element-accordion__content,
+.references .jw-element-accordion__heading,
 .transcript .jw-element-accordion__content,
 .transcript .jw-element-accordion__heading {
   border-color: #452000 !important;
 }
 
-.works-cited,
+.references,
 .transcript {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* - Works Cited */
-.works-cited p {
+.references p {
   text-indent: -52px;
   padding-left: 52px;
   line-height: 2;
 }
 
-.works-cited a {
+.references a {
   text-decoration: none;
 }
