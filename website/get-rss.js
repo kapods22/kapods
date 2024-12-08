@@ -724,9 +724,11 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   }
   for (let ul of uls) {
     if (ul.querySelectorAll("li").length == 0) {
-      ul.previousElementSibling.remove();
-      ul.previousElementSibling.remove();
-      ul.remove();
+      console.log(ul.previousElementSibling);
+      console.log(ul.previousElementSibling.previousElementSibling);
+      /*ul.previousElementSibling.remove();
+      ul.previousElementSibling.remove();*/
+      //ul.remove();
     }
   }
 
