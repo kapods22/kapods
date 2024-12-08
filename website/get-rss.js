@@ -738,6 +738,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   }
   
   showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>").replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "").removeEndStr("<br>");
+  console.log(showNotes.innerHTML);
   
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
