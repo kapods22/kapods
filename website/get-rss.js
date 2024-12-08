@@ -672,19 +672,6 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   let info = document.querySelector(".jw-slideshow-sub-title span span");
   let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
-  let omittedLinks = [
-    "Episode Page",
-    "Transcript",
-    "Works Cited",
-    "Comic",
-    "Memory Quiz",
-    "Official Episode Scoresheet"
-  ];
-  if (customOmittedLinks != null) {
-    for (let item of customOmittedLinks) {
-      omittedLinks.push(item);
-    }
-  }
   let downloadBtn;
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
@@ -713,13 +700,25 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   let furtherReadingLabel = /<b>Further Reading \((.*?)\):<\/b>/g;
   // ↑ For replacing the further reading label, no matter what segment it is for
   showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
-
+  let omittedLinks = [
+    "Episode Page",
+    "Transcript",
+    "Works Cited",
+    "Comic",
+    "Memory Quiz",
+    "Official Episode Scoresheet"
+  ];
+  if (customOmittedLinks != null) {
+    for (let item of customOmittedLinks) {
+      omittedLinks.push(item);
+    }
+  }
   let uls = showNotes.querySelectorAll("ul");
-  for (let a of showNotes.querySelectorAll("li a")) {
-    let itemName = a.innerHTML;
+  for (let li of showNotes.querySelectorAll("li a")) {
+    let itemName = li.innerHTML;
     for (let name of omittedLinks) {
       if (itemName.includes(name)) {
-        a.parentElement.remove();
+        li.remove();
       }
     }
   }
