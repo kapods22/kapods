@@ -410,6 +410,10 @@ a:has(.unlinked-button) {
   overflow: scroll;
 }
 
+#show-notes-container ul {
+  margin: 0;
+}
+
 /* * * - Bold text before a list */
 #show-notes-container :is(
   b:has(+ br + ul),
