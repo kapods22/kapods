@@ -699,7 +699,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
   let imageFitting = banner.style.backgroundImage.replace("url(", "").replace('")', '').split("?")[1];
-  banner.style.backgroundImage = `url(https://kapods.onrender.com/media/images/kap-logo.png?${imageFitting})`;
+  banner.style.backgroundImage = `url(${episode.art}?${imageFitting})`;
   showNotes.innerHTML = episode.showNotes;
   let omittedLinks = [
     "Episode Page",
