@@ -731,8 +731,6 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
       ul.previousElementSibling.remove();
       if (ul.nextElementSibling.tagName = "BR" && ul.nextElementSibling.nextElementSibling.tagName = "BR") {
         ul.nextElementSibling.remove();
-      } else {
-        console.log(ul.nextElementSibling.tagName + " and " + ul.nextElementSibling.nextElementSibling.tagName);
       }
       ul.remove();
     }
