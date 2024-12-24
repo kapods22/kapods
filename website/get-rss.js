@@ -699,7 +699,8 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   art.src = episode.art;
   let furtherReadingLabel = /<b>Further Reading \((.*?)\):<\/b>/g;
   // ↑ For replacing the further reading label, no matter what segment it is for
-  showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
+  showNotes.innerHTML = episode.showNotes;
+  //showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace("<b>Extended Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
   let omittedLinks = [
     "Episode Page",
     "Transcript",
@@ -714,7 +715,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
     }
   }
   let uls = showNotes.querySelectorAll("ul");
-  for (let li of showNotes.querySelectorAll("li a")) {
+  for (let li of showNotes.querySelectorAll("li:has(a)")) {
     let itemName = li.innerHTML;
     for (let name of omittedLinks) {
       if (itemName.includes(name)) {
@@ -734,7 +735,6 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
 
   if (showNotes.querySelector("a[rel='payment']")) {
     let supportA = showNotes.querySelector("a[rel='payment']");
-    supportA.previousElementSibling.remove();
     supportA.previousElementSibling.remove();
     supportA.remove();
   }
