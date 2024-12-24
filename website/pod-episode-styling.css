@@ -410,14 +410,33 @@ a:has(.unlinked-button) {
   overflow: scroll;
 }
 
-#show-notes-container ul {
-  margin-top: -5px;
+/* * * - Bold text before a list */
+#show-notes-container :is(
+  b:has(+ br + ul),
+  b:has(+ ul)
+) {
+  display: inline-block;
+  font-size: 2.13rem;
+  line-height: inherit;
+  margin-bottom: 5px;
 }
 
-#show-notes-container h2 {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  line-height: inherit;
+@media (max-width: 1130px) {
+  #show-notes-container :is(
+    b:has(+ br + ul),
+    b:has(+ ul)
+  ) {
+    font-size: 1.98rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #show-notes-container :is(
+    b:has(+ br + ul),
+    b:has(+ ul)
+  ) {
+    font-size: 1.91rem;
+  }
 }
 
 #show-notes-container hr,
