@@ -729,10 +729,10 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
       console.log(ul.previousElementSibling.previousElementSibling);
       ul.previousElementSibling.previousElementSibling.remove();
       ul.previousElementSibling.remove();
-      if (ul.nextElementSibling.tagName == "BR" && ul.nextElementSibling.nextElementSibling.tagName == "BR") {
+      if (ul.previousElementSibling.tagName == "BR" && ul.nextElementSibling.tagName == "BR") {
         ul.nextElementSibling.remove();
       } else {
-        console.log(ul.nextElementSibling.tagName + " and " + ul.nextElementSibling.nextElementSibling.tagName);
+        console.log(ul.previousElementSibling.tagName + " and " + ul.nextElementSibling.tagName);
       }
       ul.remove();
     }
