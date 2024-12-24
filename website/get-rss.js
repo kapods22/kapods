@@ -727,9 +727,9 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
     if (ul.querySelectorAll("li").length == 0) {
       console.log(ul.previousElementSibling);
       console.log(ul.previousElementSibling.previousElementSibling);
-      /*ul.previousElementSibling.remove();
-      ul.previousElementSibling.remove();*/
-      //ul.remove();
+      ul.previousElementSibling.previousElementSibling.remove();
+      ul.previousElementSibling.remove();
+      ul.remove();
     }
   }
 
