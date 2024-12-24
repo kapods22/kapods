@@ -669,6 +669,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
    * - The episode transcript
   */
   let title = document.querySelector(".jw-slideshow-title");
+  let banner = document.querySelector(".jw-slideshow-slide div");
   let info = document.querySelector(".jw-slideshow-sub-title span span");
   let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
@@ -697,10 +698,9 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   title.innerHTML = episode.title;
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
-  let furtherReadingLabel = /<b>Further Reading \((.*?)\):<\/b>/g;
-  // ↑ For replacing the further reading label, no matter what segment it is for
+  let imageFitting = banner.style.backgroundImage.replace("url(", "").replace(")", "").split("?")[1];
+  banner.style.backgroundImage = `url(${episode.art}?${imageFitting})`;
   showNotes.innerHTML = episode.showNotes;
-  //showNotes.innerHTML = episode.showNotes.replace("<b>Links:</b>", "<h2>Links:</h2>").replace("<b>Credits:</b>", "<h2>Credits:</h2>").replace("<b>Extended Credits:</b>", "<h2>Credits:</h2>").replace(furtherReadingLabel, "<h2>Further Reading ($1):</h2>").replace("<b>Further Reading:</b>", "<h2>Further Reading:</h2>");
   let omittedLinks = [
     "Episode Page",
     "Transcript",
