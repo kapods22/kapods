@@ -735,7 +735,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
 
   if (showNotes.querySelector("a[rel='payment']")) {
     let supportA = showNotes.querySelector("a[rel='payment']");
-    supportA.previousElementSibling.remove();
+    //supportA.previousElementSibling.remove();
     supportA.remove();
   }
   
