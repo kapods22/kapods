@@ -705,6 +705,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
     "Episode Page",
     "Transcript",
     "Works Cited",
+    "References",
     "Comic",
     "Memory Quiz",
     "Official Episode Scoresheet"
