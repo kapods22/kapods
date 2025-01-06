@@ -459,3 +459,7 @@ a:has(.show:hover *:hover) {
   text-align: center;
   margin: 0 !important;
 }
+
+.js-link {
+  cursor: pointer;
+}
