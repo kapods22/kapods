@@ -24,18 +24,40 @@ for (let i = 0; i < unlinkedAs.length; i++) {
 }
 
 const newsletterEmail = document.querySelector("#jw-element-230647470 input[type='email']");
-  const placeholder = document.createAttribute("placeholder");
-  placeholder.value = "Your email address…";
-  newsletterEmail.setAttributeNode(placeholder);
+const placeholder = document.createAttribute("placeholder");
+placeholder.value = "Your email address…";
+newsletterEmail.setAttributeNode(placeholder);
 
-  document.getElementsByClassName("message-bar--accent")[0].addEventListener("click", function() {
-    window.open("/support", "_self");
-  });
+document.getElementsByClassName("message-bar--accent")[0].addEventListener("click", function() {
+  window.open("/support", "_self");
+});
 
-  let aSpans = document.querySelectorAll("span:has(:is(span a))");
-  for (let aSpan of aSpans) {
-    if (aSpan.style.textDecoration == "underline") {
-      aSpan.style.textDecoration = "none";
-      aSpan.querySelector("span a").style.textDecoration = "underline";
+let aSpans = document.querySelectorAll("span:has(:is(span a))");
+for (let aSpan of aSpans) {
+  if (aSpan.style.textDecoration == "underline") {
+    aSpan.style.textDecoration = "none";
+    aSpan.querySelector("span a").style.textDecoration = "underline";
+  }
+}
+
+function unlinkMenuItems(nextFunction) {
+  if (document.querySelectorAll("nav.menu").length == 2) {
+    nextFunction();
+  } else {
+    setTimeout(() => { unlinkMenuItems(nextFunction) }, );
+  }
+}
+
+unlinkMenuItems(() => {
+  let tempMenuItems = [
+    document.querySelectorAll("a[data-link-id='17627819'], a[data-link-id='18205969'], a[data-link-id='17627884']")
+  ]
+  let numMenuItems = 0;
+  for (let group of tempMenuItems) {
+    for (let menuItem of group) {
+      numMenuItems += 1;
+      menuItem.href = "javascript:void(0);";
     }
   }
+  console.log(numMenuItems);
+});
