@@ -22,3 +22,20 @@ for (let i = 0; i < unlinkedAs.length; i++) {
     //unlinkedA.href = "javascript:void(0);";
   }
 }
+
+const newsletterEmail = document.querySelector("#jw-element-230647470 input[type='email']");
+  const placeholder = document.createAttribute("placeholder");
+  placeholder.value = "Your email address…";
+  newsletterEmail.setAttributeNode(placeholder);
+
+  document.getElementsByClassName("message-bar--accent")[0].addEventListener("click", function() {
+    window.open("/support", "_self");
+  });
+
+  let aSpans = document.querySelectorAll("span:has(:is(span a))");
+  for (let aSpan of aSpans) {
+    if (aSpan.style.textDecoration == "underline") {
+      aSpan.style.textDecoration = "none";
+      aSpan.querySelector("span a").style.textDecoration = "underline";
+    }
+  }
