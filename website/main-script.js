@@ -61,3 +61,14 @@ unlinkMenuItems(() => {
   }
   console.log(numMenuItems);
 });
+
+if (document.location.pathname.substring(1, 17) == "kingdom-animalia") {
+  (function(d) {
+    var app = d.createElement('script');
+    app.type = 'text/javascript';
+    app.async = true;
+    app.src = 'https://www.speakpipe.com/loader/q4ndxusw2iz709l0w4puke0bhzhnqrl3.js';
+    var s = d.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(app, s);
+  })(document);
+}
