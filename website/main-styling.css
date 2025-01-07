@@ -463,3 +463,29 @@ a:has(.show:hover *:hover) {
 .js-link {
   cursor: pointer;
 }
+
+.pswp__caption__center {
+    font-size: 1.7rem !important;
+    font-weight: bold;
+    margin: 0 0 0 10px !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .pswp__caption__center {
+    font-size: 1.43rem !important;
+  }
+}
+
+.message-bar--accent {
+  cursor: pointer;
+}
+
+.message-bar--accent,
+.message-bar--accent * {
+  text-align: center;
+}
+/* Puts the the Speakpipe side button below the menu */
+#-speakpipe-widget-side-button {
+  z-index: 998 !important;
+}
