@@ -62,6 +62,8 @@ unlinkMenuItems(() => {
   console.log(numMenuItems);
 });
 
+/*
+//Add Ask the Chickadee Brothers widget to all Kingdom: Animalia pages
 if (document.location.pathname.substring(1, 17) == "kingdom-animalia") {
   (function(d) {
     var app = d.createElement('script');
@@ -72,3 +74,4 @@ if (document.location.pathname.substring(1, 17) == "kingdom-animalia") {
     s.parentNode.insertBefore(app, s);
   })(document);
 }
+*/
