@@ -74,8 +74,8 @@ function feed(podcast) {
   // 'Podcast' will be the acroynm of the podcast
   if (podcast == "CA") {
     //return "https://www.spreaker.com/show/5934340/episodes/feed";
-    //return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
-    return "https://corsproxy.io/?url=https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
+    return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
+    //return "https://corsproxy.io/?url=https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
     return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
