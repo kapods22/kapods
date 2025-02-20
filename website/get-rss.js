@@ -538,7 +538,7 @@ function displayOneEpisode(episodes) {
               </button>
             </div>
             <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
-            <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+            <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this);${episode.hasChapters ? ` displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement, this);` : ""}">
             <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
             <div class="mute-buttons buttons">
               <button class="mute button" id="mute" onclick="mute(this);">
