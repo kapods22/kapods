@@ -920,10 +920,3 @@ async function fetchRSS(podcast) {
   console.log("Parsed");
   endedFetchRSS = true;
 }
-
-fetchRSS("AF");
-
-awaitFetchRSS(() => {
-  //displayPageInfo("KA", "Buzzsprout-13527713");
-  displayAllEpisodes(AFEpInfo);
-});
