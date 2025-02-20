@@ -49,3 +49,133 @@ function setInfo(currentElement) {
 
 function update(currentElement, episode) {
   get(1, currentElement, "#seekBar").value = currentElement.currentTime;
+  const currentTime = Math.trunc(currentElement.currentTime);
+  const currentTimeElement = get(1, currentElement, ".current-time");
+  const remainingTime = Math.trunc(currentElement.duration) - currentTime;
+  const remainingTimeElement = get(1, currentElement, ".remaining-time");
+  currentTimeElement.innerHTML = minsAndSecs(currentTime).htmlFullTime;
+  remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).htmlFullTime;
+  toActiveChapter(currentElement, currentElement, episode);
+}
+
+function toActiveChapter(audio, player, episode) {
+  if (episode.hasChapters && episode.chapterArray.length) {
+    for (let i = 0; i < episode.chapterArray.length; i++) {
+      let chapter = episode.chapterArray[i];
+      let epArt = episode.art;
+      let end;
+      if (i != episode.chapterArray.length - 1) {
+        end = episode.chapterArray[i + 1].startTime;
+      } else {
+        end = player.duration;
+      }
+      let chapterRow = get(3, audio, ".ep-chapters").querySelectorAll("tr")[i];
+      if (player.currentTime >= chapter.startTime && player.currentTime < end) {
+        chapterRow.classList.add("playing");
+        let cover = get(3, audio, ".chapter-cover");
+        let art = chapter.art;
+        if (art) {
+          cover.src = art;
+          cover.classList.remove("inactive");
+        } else if (cover.src != epArt && cover.src != art) {
+          //cover.src = "";
+          cover.classList.add("inactive");
+        }
+      } else {
+        chapterRow.classList.remove("playing");
+      }
+    }
+  }
+}
+
+function jumpToChapter(chapterRow, chapter, epArt) {
+  const target = event.target;
+  if (target.tagName !== 'A' || (target.tagName === 'A' && !target.href)) {
+    let chapterRows = get(2, chapterRow, "tbody").querySelectorAll("tr");
+    for (let chapRow of chapterRows) {
+      chapRow.classList.remove("playing");
+    }
+    chapterRow.classList.add("playing");
+    let time = chapter.startTime;
+    let art = chapter.art;
+    let cover = get(9, chapterRow, ".chapter-cover");
+    let seekBar = get(8, chapterRow, "#seekBar");
+    get(8, chapterRow, "#audio").currentTime = time;
+    seekBar.value = time;
+    get(8, chapterRow, ".current-time").innerHTML = minsAndSecs(Math.trunc(time)).htmlFullTime;
+    get(8, chapterRow, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(seekBar.max - time)).htmlFullTime;
+    if (art) {
+      cover.src = art;
+      cover.classList.remove("inactive");
+    } else {
+      //cover.src = "";
+      cover.classList.add("inactive");
+    }
+  }
+}
+
+function seek(currentElement) {
+  get(1, currentElement, "#audio").currentTime = currentElement.value;
+  get(1, currentElement, ".current-time").innerHTML = minsAndSecs(Math.trunc(currentElement.value)).htmlFullTime;
+  get(1, currentElement, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(currentElement.max - currentElement.value)).htmlFullTime;
+}
+
+function changeVolume(currentElement) {
+  get(1, currentElement, "#audio").muted = false;
+  get(1, currentElement, "#audio").volume = currentElement.value;
+  
+  if (get(1, currentElement, "#volumeSlider").value == 0) {
+    switchButtons(currentElement, 1, "volume", false);
+    if (window.mobileCheck()) {
+      currentElement.muted = true;
+    }
+  } else {
+    switchButtons(currentElement, 1, "volume", true);
+    if (window.mobileCheck()) {
+      currentElement.muted = false;
+    }
+  }
+}
+
+function playAud(currentElement) {
+  document.querySelectorAll('audio').forEach(aud => aud.pause());
+  get(2, currentElement, "#audio").play();
+  switchButtons(currentElement, 2, "playback", true);
+}
+
+function pauseAud(currentElement) {
+  get(2, currentElement, "#audio").pause();
+  switchButtons(currentElement, 1, "playback", false);
+}
+
+function mute(currentElement) {
+  get(2, currentElement, "#audio").muted = true;
+  switchButtons(currentElement, 1, "volume", false);
+}
+
+function unMute(currentElement) {
+  get(2, currentElement, "#audio").muted = false;
+  switchButtons(currentElement, 1, "volume", true);
+  if (get(2, currentElement, "#volumeSlider").value == 0) {
+    get(2, currentElement, "#audio").volume = 0.1;
+    get(2, currentElement, "#volumeSlider").value = get(2, currentElement, "#audio").volume;
+  }
+}
+
+function fastSpeed(currentElement) {
+  get(2, currentElement, "#audio").playbackRate = 2;
+  get(1, currentElement, ".fast").hidden = true;
+  get(1, currentElement, ".slow").hidden = false;
+}
+
+function slowSpeed(currentElement) {
+  get(2, currentElement, "#audio").playbackRate = 0.5;
+  get(1, currentElement, ".slow").hidden = true;
+  get(1, currentElement, ".normal").hidden = false;
+} 
+
+function normalSpeed(currentElement) {
+  get(2, currentElement, "#audio").playbackRate = 1;
+  get(1, currentElement, ".normal").hidden = true;
+  get(1, currentElement, ".fast").hidden = false;
+}
