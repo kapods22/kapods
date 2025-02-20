@@ -159,12 +159,18 @@ a[href=""] {
 }
 
 .chapter-cover {
+  opacity: 1;
+  transition: opacity 0.5s ease;
   border-radius: 2px;
   width: 30%;
   position: absolute;
   top: calc(70% - 10px);
   left: calc(70% - 10px);
   box-shadow: -0.5px 0.5px 6px 1px #000000;
+}
+
+.chapter-cover.inactive {
+  opacity: 0;
 }
 
 /* - Audio player */

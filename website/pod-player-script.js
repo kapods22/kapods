@@ -72,14 +72,35 @@ function toChapterArt(audio, player, episode) {
       if (player.currentTime >= chapter.startTime && player.currentTime < end) {
         let cover = get(3, audio, ".chapter-cover");
         let art = chapter.art;
-        if (art && cover.src != art) {
+        if (art) {
           cover.src = art;
-          cover.hidden = false;
+          cover.classList.remove("inactive");
         } else if (cover.src != epArt && cover.src != art) {
-          cover.src = "";
-          cover.hidden = true;
+          //cover.src = "";
+          cover.classList.add("inactive");
         }
       }
+    }
+  }
+}
+
+function jumpToChapter(chapterRow, chapter, epArt) {
+  const target = event.target;
+  if (target.tagName !== 'A' || (target.tagName === 'A' && !target.href)) {
+    let time = chapter.startTime;
+    let art = chapter.art;
+    let cover = get(9, chapterRow, ".chapter-cover");
+    let seekBar = get(8, chapterRow, "#seekBar");
+    get(8, chapterRow, "#audio").currentTime = time;
+    seekBar.value = time;
+    get(8, chapterRow, ".current-time").innerHTML = minsAndSecs(Math.trunc(time)).htmlFullTime;
+    get(8, chapterRow, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(seekBar.max - time)).htmlFullTime;
+    if (art) {
+      cover.src = art;
+      cover.classList.remove("inactive");
+    } else {
+      //cover.src = "";
+      cover.classList.add("inactive");
     }
   }
 }

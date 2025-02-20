@@ -80,8 +80,16 @@ function feed(podcast) {
     return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
-  } else if (podcast == "ACB") {
+  } else if (podcast == "ACB") { 
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
+  }
+}
+
+function forceRefreshID(podcast) {
+  if (podcast == "KA" || podcast == "AF" || podcast == "ACB") {
+    return "KA";
+  } else if (podcast == "CA") {
+    return "CA";
   }
 }
 
@@ -103,27 +111,6 @@ function buttonUrl(text, showNotes) {
   for (let i = 0; i < aArray.length; i++) {
     if (aArray[i].innerHTML == text) {
       return aArray[i].href;
-    }
-  }
-}
-
-function jumpToChapter(chapterRow, chapter, epArt) {
-  const target = event.target;
-  if (target.tagName !== 'A' || (target.tagName === 'A' && !target.href)) {
-    let time = chapter.startTime;
-    let art = chapter.art;
-    let cover = get(9, chapterRow, ".chapter-cover");
-    let seekBar = get(8, chapterRow, "#seekBar");
-    get(8, chapterRow, "#audio").currentTime = time;
-    seekBar.value = time;
-    get(8, chapterRow, ".current-time").innerHTML = minsAndSecs(Math.trunc(time)).htmlFullTime;
-    get(8, chapterRow, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(seekBar.max - time)).htmlFullTime;
-    if (art) {
-      cover.src = art;
-      cover.hidden = false;
-    } else {
-      cover.src = "";
-      cover.hidden = true;
     }
   }
 }
@@ -231,7 +218,7 @@ function displayAllEpisodes(episodes) {
           <div id="episode-art" width="18.2%">
             <a href="${episode.webpage}" target="_self">
               <img class="episode-art" src="${episode.art}">
-              ${episode.hasChapters ? `<img class="chapter-cover" src="" width="100%" hidden>` : ""}
+              ${episode.hasChapters ? `<img class="chapter-cover inactive" src="${episode.art}" width="100%">` : ""}
             </a>
         </div>
           <div id="details-and-player">
@@ -737,7 +724,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].querySelector("summary").innerText.includes("Transcript")) {
+    if (accordians[i].innerText.includes("the Transcript for this Episode") || accordians[i].innerText.includes("the Transcript for This Episode")) {
       transcript = accordians[i];
       accordians[i].classList.add("transcript");
     }
@@ -821,21 +808,21 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
 async function fetchRSS(podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
   startedFetchRSS = true;
+  console.log("About to fetch");
+  
 
   // Fetch the RSS feed.
-  /* 
-  {
+  /* , {
     headers: {
       AccessControlAllowHeaders: "Accept"
     }
-  }
-  */
-  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${podcast.toLowerCase()}.txt`);
+  }*/
+  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`);
   const logStr = await logResponse.text();
   let cacheControl = "max-age=3600";
   let cacheRule = new Date(logStr);
   let now = new Date();
-  let lastRuleFollowed = localStorage.getItem(`${podcast}-lastRuleFollowed`);
+  let lastRuleFollowed = localStorage.getItem(`${forceRefreshID(podcast)}-lastRuleFollowed`);
   console.log("Last rule followed: " + lastRuleFollowed);
   if (now >= cacheRule && cacheRule.toString() != lastRuleFollowed) {
     console.log("Force refreshing the RSS feed");
@@ -850,7 +837,7 @@ async function fetchRSS(podcast) {
   if (podcast == "CA") {
     headers = {};
   }
-  const rssResponse = await fetch(feed(podcast));
+  const rssResponse = await fetch(feed(podcast), headers); // Where Are the Chickadee Brothers? feed can't have cache control
   console.log("Fetched");
   console.log(rssResponse);
   const rssStr = await rssResponse.text();
@@ -933,3 +920,10 @@ async function fetchRSS(podcast) {
   console.log("Parsed");
   endedFetchRSS = true;
 }
+
+fetchRSS("AF");
+
+awaitFetchRSS(() => {
+  //displayPageInfo("KA", "Buzzsprout-13527713");
+  displayAllEpisodes(AFEpInfo);
+});
