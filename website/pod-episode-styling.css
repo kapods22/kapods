@@ -76,6 +76,10 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+#show-notes .jw-element-accordion__content:has(#chapters-container) {
+  max-height: 570px;
+}
+
 /* - Chapters */
 a[href=""] {
   pointer-events: none;
