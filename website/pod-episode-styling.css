@@ -77,7 +77,6 @@
 }
 
 /* - Chapters */
-
 a[href=""] {
   pointer-events: none;
 }
@@ -105,12 +104,20 @@ a[href=""] {
   cursor: pointer;
 }
 
+.ep-chapters tr.playing {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 .ep-chapters tr:last-of-type {
   border-bottom: none;
 }
 
-.ep-chapters tr:is(:hover, :active) {
+.ep-chapters tr:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ep-chapters tr.playing:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .ep-chapters td {
