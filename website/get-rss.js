@@ -1,5 +1,4 @@
 // Where Are the Chickadee Brothers? feed can't have cache control
-// Make show note min-height bigger
 
 let items;
 let CAEpInfo = [];
