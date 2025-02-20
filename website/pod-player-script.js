@@ -47,7 +47,7 @@ function setInfo(currentElement) {
   setInterval(() => update(currentElement), 1);
 }
 
-function update(currentElement) {
+function update(currentElement, episode) {
   get(1, currentElement, "#seekBar").value = currentElement.currentTime;
   const currentTime = Math.trunc(currentElement.currentTime);
   const currentTimeElement = get(1, currentElement, ".current-time");
@@ -55,6 +55,33 @@ function update(currentElement) {
   const remainingTimeElement = get(1, currentElement, ".remaining-time");
   currentTimeElement.innerHTML = minsAndSecs(currentTime).htmlFullTime;
   remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).htmlFullTime;
+  toChapterArt(currentElement, currentElement, episode);
+}
+
+function toChapterArt(audio, player, episode) {
+  if (episode.hasChapters && episode.chapterArray.length) {
+    for (let i = 0; i < episode.chapterArray.length; i++) {
+      let chapter = episode.chapterArray[i];
+      let epArt = episode.art;
+      let end;
+      if (i != episode.chapterArray.length - 1) {
+        end = episode.chapterArray[i + 1].startTime;
+      } else {
+        end = player.duration;
+      }
+      if (player.currentTime >= chapter.startTime && player.currentTime < end) {
+        let cover = get(3, audio, ".chapter-cover");
+        let art = chapter.art;
+        if (art && cover.src != art) {
+          cover.src = art;
+          cover.hidden = false;
+        } else if (cover.src != epArt && cover.src != art) {
+          cover.src = "";
+          cover.hidden = true;
+        }
+      }
+    }
+  }
 }
 
 function seek(currentElement) {

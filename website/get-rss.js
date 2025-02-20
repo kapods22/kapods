@@ -107,6 +107,54 @@ function buttonUrl(text, showNotes) {
   }
 }
 
+function jumpToChapter(chapterRow, chapter, epArt) {
+  const target = event.target;
+  if (target.tagName !== 'A' || (target.tagName === 'A' && !target.href)) {
+    let time = chapter.startTime;
+    let art = chapter.art;
+    let cover = get(9, chapterRow, ".chapter-cover");
+    let seekBar = get(8, chapterRow, "#seekBar");
+    get(8, chapterRow, "#audio").currentTime = time;
+    seekBar.value = time;
+    get(8, chapterRow, ".current-time").innerHTML = minsAndSecs(Math.trunc(time)).htmlFullTime;
+    get(8, chapterRow, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(seekBar.max - time)).htmlFullTime;
+    if (art) {
+      cover.src = art;
+      cover.hidden = false;
+    } else {
+      cover.src = "";
+      cover.hidden = true;
+    }
+  }
+}
+
+async function displayChapters(episode, accordian, seekBar = null) {
+  let chapterDisplay = accordian.querySelector(".ep-chapters tbody");
+  if (!chapterDisplay.innerHTML) {
+    chapterDisplay.innerHTML = "&NoBreak;";
+    let chapters = await episode.getChapters();
+    let chaptersCode;
+    for (let j = 0; j < chapters.length; j++) {
+      let chapter = chapters[j];
+      let url = chapter.url ? chapter.url : "";
+      chaptersCode = 
+        `<tr onclick="jumpToChapter(this, { art: ${chapter.art ? `'${chapter.art}'` : null}, startTime: ${chapter.startTime} }, '${episode.art}')">
+          <td class="chapterArt">${chapter.art ? `<img src="${chapter.art}" width="100%">` : ""}</td>
+          <td class="chapterStart">${minsAndSecs(Math.floor(chapter.startTime)).fullTime}</td>
+          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") ? "_self" : "_blank"}">${chapter.title}</td>
+        </tr>\n`.gReplaceAll(' href=""', '');
+      chapterDisplay.innerHTML = chapterDisplay.innerHTML.replace(/\u2060/g, "") + chaptersCode;
+    }
+    accordian.querySelector(`.ep-chapters tfoot`).remove();
+  }
+  if (seekBar) {
+    toChapterArt(get(1, seekBar, "#audio"), {
+      currentTime: seekBar.value,
+      duration: seekBar.max
+    }, episode);
+  }
+}
+
 // Generate and insert the HTML code for an episode's audio player
 function createAudioPlayer(podcast, guid) {
   const episode = findEpisode(podcast, guid);
@@ -183,6 +231,7 @@ function displayAllEpisodes(episodes) {
           <div id="episode-art" width="18.2%">
             <a href="${episode.webpage}" target="_self">
               <img class="episode-art" src="${episode.art}">
+              ${episode.hasChapters ? `<img class="chapter-cover" src="" width="100%" hidden>` : ""}
             </a>
         </div>
           <div id="details-and-player">
@@ -197,17 +246,27 @@ function displayAllEpisodes(episodes) {
                 jw-element-accordion--align-icon-right
                 ">
                 <details class="jw-element-accordion__item">
-                  <summary class="
-                    jw-element-accordion__heading
-                    jw-element-accordion__heading--icon-triangle
-                    ">
+                  <summary class="jw-element-accordion__heading jw-element-accordion__heading--icon-triangle episode-info-header"${episode.hasChapters ? ` onclick='displayChapters(findEpisode("${episode.shortPodcast}", "${episode.guid}"), this.parentElement)'` : ""}>
                     <i class="
                       jw-element-accordion__icon
                       website-rendering-icon-right-open
                       "></i>
-                    <h3>Show notes</h3>
+                    <h3>Show Notes${episode.hasChapters ? " & Chapters" : ""}</h3>
                   </summary>
                   <div class="jw-element-accordion__content">
+                    ${episode.hasChapters ?
+                    `<div id="chapters-container">
+                      <table class="ep-chapters">
+                        <tbody></tbody>
+                        <tfoot>
+                          <tr>
+                            <td class="chapterArt"></td>
+                            <td class="chapterStart"><img src="https://kapods.onrender.com/media/images/loading-circle.gif" width="50%"></td>
+                            <td class="chapterName"><strong>Loading chapters…</strong></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>` : ""}
                     ${episode.showNotes}
                   </div>
                 </details>
@@ -223,7 +282,7 @@ function displayAllEpisodes(episodes) {
                 </button>
               </div>
               <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
-              <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+              <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this);${episode.hasChapters ? ` displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement, this);` : ""}">
               <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
               <div class="mute-buttons buttons">
                 <button class="mute button" id="mute" onclick="mute(this);">
@@ -241,7 +300,7 @@ function displayAllEpisodes(episodes) {
               </div>
               <p id="duration"></p>
               <br>
-              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
+              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true);  updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}'); displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement)" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
             </div>
           </div>`;
       // Adding episode buttons
@@ -771,14 +830,35 @@ async function fetchRSS(podcast) {
     }
   }
   */
-  const response = await fetch(feed(podcast));
+  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${podcast.toLowerCase()}.txt`);
+  const logStr = await logResponse.text();
+  let cacheControl = "max-age=3600";
+  let cacheRule = new Date(logStr);
+  let now = new Date();
+  let lastRuleFollowed = localStorage.getItem(`${podcast}-lastRuleFollowed`);
+  console.log("Last rule followed: " + lastRuleFollowed);
+  if (now >= cacheRule && cacheRule.toString() != lastRuleFollowed) {
+    console.log("Force refreshing the RSS feed");
+    cacheControl = "no-store";
+    localStorage.setItem(`${podcast}-lastRuleFollowed`, cacheRule.toString());
+  }
+  let headers = {
+    headers: {
+      "Cache-Control": cacheControl
+    }
+  };
+  if (podcast == "CA") {
+    headers = {};
+  }
+  const rssResponse = await fetch(feed(podcast));
   console.log("Fetched");
-  console.log(response);
-  const str = await response.text();
+  console.log(rssResponse);
+  const rssStr = await rssResponse.text();
   console.log("Text");
-  const data = new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
+  const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
+  // regEx for the part in the show notes footer saying “, and our website is […]”
   let showNotesWebsite = /, and our website is(.*?)<\/a>/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];

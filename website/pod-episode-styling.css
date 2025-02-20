@@ -18,7 +18,8 @@
 #episode-art {
   border-radius: 8px;
   width: 170px;
-  line-height: 0 !important
+  line-height: 0 !important;
+  position: relative;
 }
 
 .episode-art {
@@ -26,7 +27,7 @@
   width: 100%;
 }
 
-/* - Details and audio player */
+/* - Main details */
 #episode-title {
   display: block !important;
 }
@@ -75,6 +76,98 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* - Chapters */
+
+a[href=""] {
+  pointer-events: none;
+}
+
+.ep-chapters {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#chapters-container {
+  border-radius: 8px;
+  max-height: 275px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
+.ep-chapters :is(.chapterStart::first-line, .chapterName::first-line) {
+  line-height: 1.2;
+}
+
+.ep-chapters tr {
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  cursor: pointer;
+}
+
+.ep-chapters tr:last-of-type {
+  border-bottom: none;
+}
+
+.ep-chapters tr:is(:hover, :active) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ep-chapters td {
+  vertical-align: center;
+}
+
+.ep-chapters tr:last-of-type:has(img) td {
+  padding-bottom: 10px;
+}
+
+.ep-chapters a:not([href]) {
+  color: black;
+  text-decoration: none !important;
+}
+
+.chapterStart,
+.chapterName,
+.chapterName a {
+  margin-top: 0;
+}
+
+.chapterStart {
+  width: 55px;
+}
+
+.chapterName {
+  width: calc(100% - 85px);
+}
+
+.ep-chapters tr:last-of-type .chapterName {
+  border-radius: 0 0 8px 0;
+}
+
+.chapterArt {
+  width: 35px;
+  padding: 0;
+  line-height: 0 !important;
+}
+
+.ep-chapters tr:last-of-type .chapterArt {
+  border-radius: 0 0 0 8px;
+}
+
+.chapterArt img {
+  width: 25px;
+}
+
+.chapter-cover {
+  border-radius: 2px;
+  width: 30%;
+  position: absolute;
+  top: calc(70% - 10px);
+  left: calc(70% - 10px);
+  box-shadow: -0.5px 0.5px 6px 1px #000000;
+}
+
+/* - Audio player */
 .ka-audio-player {
   display: flex;
   background-color: #616161;
