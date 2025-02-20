@@ -860,8 +860,8 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying “, and our website is […]”
-  let showNotesWebsite = /, and our website is(.*?)<\/a>/g;
+  // regEx for the part in the show notes footer saying “, and my website is […]”
+  let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
     let episodeInfo = {
