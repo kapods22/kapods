@@ -1,4 +1,5 @@
 // Where Are the Chickadee Brothers? feed can't have cache control
+// No episode buttons when displaying one episode! If I log innerHTML after adding the buttons, they are there, but sometime after they are removed
 
 let items;
 let CAEpInfo = [];
@@ -217,7 +218,7 @@ function displayAllEpisodes(episodes) {
       }
       episodeClass = episodeClass.replace("undefined", "");
       // The HTML code
-      let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
+      let htmlCode = `<div id="podcast-episode" class="${episodeClass}" data-guid="${episode.guid}">
           <div id="episode-art" width="18.2%">
             <a href="${episode.webpage}" target="_self">
               <img class="episode-art" src="${episode.art}">
@@ -252,7 +253,7 @@ function displayAllEpisodes(episodes) {
                           <tr>
                             <td class="chapterArt"></td>
                             <td class="chapterStart"><img src="https://kapods.onrender.com/media/images/loading-circle.gif" width="50%"></td>
-                            <td class="chapterName"><strong>Loading chaptersâ¦</strong></td>
+                            <td class="chapterName"><strong>Loading chapters…</strong></td>
                           </tr>
                         </tfoot>
                       </table>
@@ -483,7 +484,7 @@ function displayOneEpisode(episodes) {
     }
     episodeClass = episodeClass.replace("undefined", "");
     // The HTML code
-    let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
+    let htmlCode = `<div id="podcast-episode" class="${episodeClass}" data-guid="${episode.guid}">
         <div id="episode-art" width="18.2%">
           <a href="${episode.webpage}" target="_self">
             <img class="episode-art" src="${episode.art}">
@@ -518,7 +519,7 @@ function displayOneEpisode(episodes) {
                         <tr>
                           <td class="chapterArt"></td>
                           <td class="chapterStart"><img src="https://kapods.onrender.com/media/images/loading-circle.gif" width="50%"></td>
-                          <td class="chapterName"><strong>Loading chaptersâ¦</strong></td>
+                          <td class="chapterName"><strong>Loading chapters…</strong></td>
                         </tr>
                       </tfoot>
                     </table>
@@ -608,42 +609,42 @@ function displayOneEpisode(episodes) {
           </div>`;
     } else if (episode.miniseries == "AF") {
       htmlCode += `
-        <div id="episode-buttons">
-          <div class="button">
-            <a href="${buttonUrl("Official Episode Scoresheet", episode.showNotes)}" target="_blank">
-              <button class="episode-button">
-                <span class="episode-button-icon-container">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.63px" height="511.631px" viewBox="0 0 511.63 511.631" style="enable-background:new 0 0 511.63 511.631;" xml:space="preserve">
+      <div id="episode-buttons">
+        <div class="button">
+          <a href="${buttonUrl("Official Episode Scoresheet", episode.showNotes)}" target="_blank">
+            <button class="episode-button">
+              <span class="episode-button-icon-container">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.63px" height="511.631px" viewBox="0 0 511.63 511.631" style="enable-background:new 0 0 511.63 511.631;" xml:space="preserve">
+                  <g>
                     <g>
-                      <g>
-                        <path d="M493.356,347.177H18.274c-4.952,0-9.233,1.811-12.851,5.425C1.809,356.215,0,360.506,0,365.455v73.083 c0,4.942,1.809,9.233,5.424,12.847c3.621,3.614,7.904,5.428,12.851,5.428h475.082c4.944,0,9.232-1.813,12.85-5.428 c3.614-3.613,5.425-7.904,5.425-12.847v-73.083c0-4.949-1.811-9.24-5.425-12.854C502.588,348.987,498.3,347.177,493.356,347.177z M475.084,420.271H292.369v-36.548h182.723v36.548H475.084z"></path>
-                        <path d="M493.356,201H18.274c-4.952,0-9.233,1.809-12.851,5.426C1.809,210.041,0,214.324,0,219.271v73.087 c0,4.948,1.809,9.233,5.424,12.847c3.621,3.614,7.904,5.428,12.851,5.428h475.082c4.944,0,9.232-1.813,12.85-5.428 c3.614-3.613,5.425-7.898,5.425-12.847v-73.087c0-4.947-1.811-9.229-5.425-12.845C502.588,202.808,498.3,201,493.356,201z M475.078,274.09h-292.35v-36.543h292.35V274.09z"></path>
-                        <path d="M506.206,60.243c-3.617-3.612-7.905-5.424-12.85-5.424H18.274c-4.952,0-9.233,1.812-12.851,5.424 C1.809,63.86,0,68.145,0,73.093v73.085c0,4.952,1.809,9.235,5.424,12.85c3.621,3.617,7.904,5.424,12.851,5.424h475.082 c4.944,0,9.232-1.807,12.85-5.424c3.614-3.615,5.425-7.898,5.425-12.85V73.093C511.63,68.145,509.82,63.863,506.206,60.243z M475.078,127.911H365.449V91.364h109.629V127.911z"></path>
-                      </g>
+                      <path d="M493.356,347.177H18.274c-4.952,0-9.233,1.811-12.851,5.425C1.809,356.215,0,360.506,0,365.455v73.083 c0,4.942,1.809,9.233,5.424,12.847c3.621,3.614,7.904,5.428,12.851,5.428h475.082c4.944,0,9.232-1.813,12.85-5.428 c3.614-3.613,5.425-7.904,5.425-12.847v-73.083c0-4.949-1.811-9.24-5.425-12.854C502.588,348.987,498.3,347.177,493.356,347.177z M475.084,420.271H292.369v-36.548h182.723v36.548H475.084z"></path>
+                      <path d="M493.356,201H18.274c-4.952,0-9.233,1.809-12.851,5.426C1.809,210.041,0,214.324,0,219.271v73.087 c0,4.948,1.809,9.233,5.424,12.847c3.621,3.614,7.904,5.428,12.851,5.428h475.082c4.944,0,9.232-1.813,12.85-5.428 c3.614-3.613,5.425-7.898,5.425-12.847v-73.087c0-4.947-1.811-9.229-5.425-12.845C502.588,202.808,498.3,201,493.356,201z M475.078,274.09h-292.35v-36.543h292.35V274.09z"></path>
+                      <path d="M506.206,60.243c-3.617-3.612-7.905-5.424-12.85-5.424H18.274c-4.952,0-9.233,1.812-12.851,5.424 C1.809,63.86,0,68.145,0,73.093v73.085c0,4.952,1.809,9.235,5.424,12.85c3.621,3.617,7.904,5.424,12.851,5.424h475.082 c4.944,0,9.232-1.807,12.85-5.424c3.614-3.615,5.425-7.898,5.425-12.85V73.093C511.63,68.145,509.82,63.863,506.206,60.243z M475.078,127.911H365.449V91.364h109.629V127.911z"></path>
                     </g>
-                  </svg>
-                </span>
-                <span>Scoresheet</span>
-              </button>
-            </a>
-          </div>
-          <div class="middle button">
-            <a href="${episode.webpage}" target="_self" rel="noopener">
-              <button class="episode-button">
-                <span class="episode-button-icon-container">
-                  <svg class="episode-button-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1.2em" height="1.2em" viewBox="0 0 511.626 511.627" style="enable-background:new 0 0 511.626 511.627;" xml:space="preserve">
+                  </g>
+                </svg>
+              </span>
+              <span>Scoresheet</span>
+            </button>
+          </a>
+        </div>
+        <div class="middle button">
+          <a href="${episode.webpage}" target="_self" rel="noopener">
+            <button class="episode-button">
+              <span class="episode-button-icon-container">
+                <svg class="episode-button-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1.2em" height="1.2em" viewBox="0 0 511.626 511.627" style="enable-background:new 0 0 511.626 511.627;" xml:space="preserve">
+                  <g>
                     <g>
-                      <g>
-                        <path d="M392.857,292.354h-18.274c-2.669,0-4.859,0.855-6.563,2.573c-1.718,1.708-2.573,3.897-2.573,6.563v91.361 c0,12.563-4.47,23.315-13.415,32.262c-8.945,8.945-19.701,13.414-32.264,13.414H82.224c-12.562,0-23.317-4.469-32.264-13.414 c-8.945-8.946-13.417-19.698-13.417-32.262V155.31c0-12.562,4.471-23.313,13.417-32.259c8.947-8.947,19.702-13.418,32.264-13.418 h200.994c2.669,0,4.859-0.859,6.57-2.57c1.711-1.713,2.566-3.9,2.566-6.567V82.221c0-2.662-0.855-4.853-2.566-6.563 c-1.711-1.713-3.901-2.568-6.57-2.568H82.224c-22.648,0-42.016,8.042-58.102,24.125C8.042,113.297,0,132.665,0,155.313v237.542 c0,22.647,8.042,42.018,24.123,58.095c16.086,16.084,35.454,24.13,58.102,24.13h237.543c22.647,0,42.017-8.046,58.101-24.13 c16.085-16.077,24.127-35.447,24.127-58.095v-91.358c0-2.669-0.856-4.859-2.574-6.57 C397.709,293.209,395.519,292.354,392.857,292.354z"></path>
-                        <path d="M506.199,41.971c-3.617-3.617-7.905-5.424-12.85-5.424H347.171c-4.948,0-9.233,1.807-12.847,5.424 c-3.617,3.615-5.428,7.898-5.428,12.847s1.811,9.233,5.428,12.85l50.247,50.248L198.424,304.067 c-1.906,1.903-2.856,4.093-2.856,6.563c0,2.479,0.953,4.668,2.856,6.571l32.548,32.544c1.903,1.903,4.093,2.852,6.567,2.852 s4.665-0.948,6.567-2.852l186.148-186.148l50.251,50.248c3.614,3.617,7.898,5.426,12.847,5.426s9.233-1.809,12.851-5.426 c3.617-3.616,5.424-7.898,5.424-12.847V54.818C511.626,49.866,509.813,45.586,506.199,41.971z"></path>
-                      </g>
+                      <path d="M392.857,292.354h-18.274c-2.669,0-4.859,0.855-6.563,2.573c-1.718,1.708-2.573,3.897-2.573,6.563v91.361 c0,12.563-4.47,23.315-13.415,32.262c-8.945,8.945-19.701,13.414-32.264,13.414H82.224c-12.562,0-23.317-4.469-32.264-13.414 c-8.945-8.946-13.417-19.698-13.417-32.262V155.31c0-12.562,4.471-23.313,13.417-32.259c8.947-8.947,19.702-13.418,32.264-13.418 h200.994c2.669,0,4.859-0.859,6.57-2.57c1.711-1.713,2.566-3.9,2.566-6.567V82.221c0-2.662-0.855-4.853-2.566-6.563 c-1.711-1.713-3.901-2.568-6.57-2.568H82.224c-22.648,0-42.016,8.042-58.102,24.125C8.042,113.297,0,132.665,0,155.313v237.542 c0,22.647,8.042,42.018,24.123,58.095c16.086,16.084,35.454,24.13,58.102,24.13h237.543c22.647,0,42.017-8.046,58.101-24.13 c16.085-16.077,24.127-35.447,24.127-58.095v-91.358c0-2.669-0.856-4.859-2.574-6.57 C397.709,293.209,395.519,292.354,392.857,292.354z"></path>
+                      <path d="M506.199,41.971c-3.617-3.617-7.905-5.424-12.85-5.424H347.171c-4.948,0-9.233,1.807-12.847,5.424 c-3.617,3.615-5.428,7.898-5.428,12.847s1.811,9.233,5.428,12.85l50.247,50.248L198.424,304.067 c-1.906,1.903-2.856,4.093-2.856,6.563c0,2.479,0.953,4.668,2.856,6.571l32.548,32.544c1.903,1.903,4.093,2.852,6.567,2.852 s4.665-0.948,6.567-2.852l186.148-186.148l50.251,50.248c3.614,3.617,7.898,5.426,12.847,5.426s9.233-1.809,12.851-5.426 c3.617-3.616,5.424-7.898,5.424-12.847V54.818C511.626,49.866,509.813,45.586,506.199,41.971z"></path>
                     </g>
-                  </svg>
-                </span>
-                <span>Ep Page</span>
-              </button>
-            </a>
-          </div>`;
+                  </g>
+                </svg>
+              </span>
+              <span>Ep Page</span>
+            </button>
+          </a>
+        </div>`;
     } else if (episode.shortPodcast == "KA") {
       let hasComicClass = "";
       let comicUrl = buttonUrl("Comic", episode.showNotes);
@@ -713,7 +714,8 @@ function displayOneEpisode(episodes) {
         </div>
     </div>
     <br>`;
-    episodeContainer.innerHTML = htmlCode.gReplaceAll(' href=""', '');
+    episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
+    console.log(episodeContainer.innerHTML);
   }
 }
 
@@ -859,7 +861,7 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying â, and my website is [â¦]â
+  // regEx for the part in the show notes footer saying “, and my website is […]”
   let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
