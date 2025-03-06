@@ -1,5 +1,4 @@
 // Where Are the Chickadee Brothers? feed can't have cache control
-// No episode buttons when displaying one episode! If I log innerHTML after adding the buttons, they are there, but sometime after they are removed
 
 let items;
 let CAEpInfo = [];
@@ -557,7 +556,7 @@ function displayOneEpisode(episodes) {
             </div>
             <p id="duration"></p>
             <br>
-            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true);  updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}'); displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement)" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);></audio>
+            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true);  updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}'); displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement)" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
           </div>
         </div>`;
     // Adding episode buttons
