@@ -237,36 +237,6 @@ details[open] .accordian-arrow-button {
 .copyright {
   font-size: 15px;
 }
-/* Short main menu support link */
-a[data-link-id="23525872"] {
-  display: none;
-}
-
-/* “More” submenu support link */
-a[data-link-id="23525905"] {
-  display: none;
-}
-
-@media (max-width: 1141px) and (min-width: 800px) {
-  /* Long main menu support link */
-  a[data-link-id="18206066"] {
-    display: none;
-  }
-}
-
-@media (max-width: 1141px) and (min-width: 1041px) {
-  /* Short main menu support link */
-  a[data-link-id="23525872"] {
-    display: block;
-  }
-}
-
-@media (max-width: 1042px) and (min-width: 800px) {
-  /* “More” submenu support link */
-  a[data-link-id="23525905"] {
-    display: block;
-  }
-}
 
 @media (max-width: 900px) and (min-width: 800px) {
   /* Homepage link */
@@ -275,6 +245,7 @@ a[data-link-id="23525905"] {
   }
 }
 
+/* Footer styling */
 @media (min-width: 769px) {
    .sitemap summary {
     width: 100%;
