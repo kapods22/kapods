@@ -461,7 +461,7 @@ a:has(.show:hover *:hover) {
 
 /* - Menu */
 /* * - Fix wrapping */
-.jw-is-menu-multiline .header-wrap {
+.jw-is-menu-multiline .header-wrap__inner {
     display: none;
 }
 
@@ -471,6 +471,10 @@ a:has(.show:hover *:hover) {
 
 .jw-is-menu-multiline .jw-mobile-menu-search {
     display: block;
+}
+
+body:is(.jw-is-menu-multiline) .jw-mobile-toggle {
+  display: block;
 }
 /*
 .jw-is-menu-multiline .header-wrap__inner {
