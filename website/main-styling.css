@@ -462,14 +462,14 @@ a:has(.show:hover *:hover) {
 /* - Menu */
 /* * - Fix wrapping */
 .jw-is-menu-multiline .header-wrap__inner {
-  flex-direction: row;
-  align-items: center;
+  flex-direction: row !important;
+  align-items: center !important;
 }
 
 .jw-is-menu-multiline .menu {
-    width: auto;
-    margin-top: 0px;
-    margin-left: auto;
+  width: auto !important;
+  margin-top: 0px !important;
+  margin-left: auto !important;
 }
 
 /* * - Hide home item */
