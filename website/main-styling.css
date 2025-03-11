@@ -461,6 +461,18 @@ a:has(.show:hover *:hover) {
 
 /* - Menu */
 /* * - Fix wrapping */
+.jw-is-menu-multiline .header-wrap {
+    display: none;
+}
+
+.jw-is-menu-multiline .jw-mobile-menu {
+    display: flex;
+}
+
+.jw-is-menu-multiline .jw-mobile-menu-search {
+    display: block;
+}
+/*
 .jw-is-menu-multiline .header-wrap__inner {
   flex-direction: row !important;
   align-items: center !important;
@@ -471,11 +483,12 @@ a:has(.show:hover *:hover) {
   margin-top: 0px !important;
   margin-left: auto !important;
 }
-
+*/
 /* * - Hide home item */
-.jw-is-menu-multiline a[href="/"] {
+/*.jw-is-menu-multiline a[href="/"] {
   display: none;
 }
+*/
 
 /* Puts the the Speakpipe side button below the menu */
 #-speakpipe-widget-side-button {
