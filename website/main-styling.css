@@ -467,6 +467,7 @@ a:has(.show:hover *:hover) {
 
 .jw-is-menu-multiline .jw-mobile-menu {
     display: flex;
+    top: 77px
 }
 
 .jw-is-menu-multiline .jw-mobile-menu-search {
@@ -478,7 +479,8 @@ body:is(.jw-is-menu-multiline) .jw-mobile-toggle {
 }
 
 .jw-is-menu-multiline .header-wrap {
-    position: static;
+  position: static;
+  z-index: 1010 !important;
 }
 /*
 .jw-is-menu-multiline .header-wrap__inner {
