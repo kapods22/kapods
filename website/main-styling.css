@@ -467,7 +467,8 @@ a:has(.show:hover *:hover) {
 
 .jw-is-menu-multiline .jw-mobile-menu {
     display: flex;
-    top: 77px
+    inset: 77px 0 0 0 !important;
+    /* The standalone "top" property can't be used because it is set in the inline css */
 }
 
 .jw-is-menu-multiline .jw-mobile-menu-search {
