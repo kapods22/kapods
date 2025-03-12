@@ -81,7 +81,7 @@
 }
 
 /* - Chapters */
-a[href=""] {
+#podcast-episode a[href=""] {
   pointer-events: none;
 }
 
