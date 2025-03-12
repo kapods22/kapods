@@ -474,7 +474,11 @@ a:has(.show:hover *:hover) {
 }
 
 body:is(.jw-is-menu-multiline) .jw-mobile-toggle {
-  display: block;
+  display: block !important;
+}
+
+.jw-is-menu-multiline .header-wrap {
+    position: static;
 }
 /*
 .jw-is-menu-multiline .header-wrap__inner {
