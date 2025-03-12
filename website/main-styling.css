@@ -461,15 +461,15 @@ a:has(.show:hover *:hover) {
 
 /* - Menu */
 /* * - Fix wrapping */
-.jw-is-menu-multiline .header-wrap__inner {
+/*.jw-is-menu-multiline .header-wrap__inner {
     display: none;
 }
 
 .jw-is-menu-multiline .jw-mobile-menu {
     display: flex;
-    inset: 77px 0 0 0 !important;
+    inset: 77px 0 0 0 !important;*/
     /* The standalone "top" property can't be used because it is set in the inline css */
-}
+/*}
 
 .jw-is-menu-multiline .jw-mobile-menu-search {
     display: block;
@@ -482,24 +482,7 @@ body:is(.jw-is-menu-multiline) .jw-mobile-toggle {
 .jw-is-menu-multiline .header-wrap {
   position: static;
   z-index: 1010 !important;
-}
-/*
-.jw-is-menu-multiline .header-wrap__inner {
-  flex-direction: row !important;
-  align-items: center !important;
-}
-
-.jw-is-menu-multiline .menu {
-  width: auto !important;
-  margin-top: 0px !important;
-  margin-left: auto !important;
-}
-*/
-/* * - Hide home item */
-/*.jw-is-menu-multiline a[href="/"] {
-  display: none;
-}
-*/
+}*/
 
 /* Puts the the Speakpipe side button below the menu */
 #-speakpipe-widget-side-button {
