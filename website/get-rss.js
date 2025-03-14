@@ -832,7 +832,9 @@ async function fetchRSS(podcast) {
       AccessControlAllowHeaders: "Accept"
     }
   }*/
-  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`);
+  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`, headers: {
+    "Cache-Control": "no-store"
+  });
   const logStr = await logResponse.text();
   let cacheControl = "max-age=3600";
   let cacheRule = new Date(logStr);
