@@ -111,7 +111,7 @@ function buttonUrl(text, showNotes) {
   const showNotesCode = new window.DOMParser().parseFromString(showNotes, "text/html");
   let aArray = showNotesCode.querySelectorAll("a");
   for (let i = 0; i < aArray.length; i++) {
-    if (aArray[i].innerHTML == text) {
+    if (aArray[i].innerHTML == text || aArray[i].innerHTML.startsWith(text)) {
       return aArray[i].href;
     }
   }
