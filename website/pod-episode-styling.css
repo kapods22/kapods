@@ -385,7 +385,9 @@
   color: white;
   background-color: #733500;
   font-size: 1em;
-  padding: .3em .9em;
+  padding: 0.3em 0.9em 0.3em 1.3em;
+  /* Reminder: padding values are ordered top, right, bottom, left */
+  text-align: left;
   box-sizing: border-box;
   width: 100%;
   border: 2px solid #733500;
