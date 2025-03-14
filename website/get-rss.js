@@ -732,7 +732,7 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   */
   let title = document.querySelector(".jw-slideshow-title");
   let banner = document.querySelector(".jw-slideshow-slide div");
-  let info = document.querySelector(".jw-slideshow-sub-title span span");
+  let info = document.querySelector(".jw-slideshow-sub-title span span") ? document.querySelector(".jw-slideshow-sub-title span span") : document.querySelector(".jw-slideshow-sub-title span");
   let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
