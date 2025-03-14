@@ -832,11 +832,8 @@ async function fetchRSS(podcast) {
       AccessControlAllowHeaders: "Accept"
     }
   }*/
-  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`, {
-    headers: {
-      "Cache-Control": "no-store"
-    }
-  });
+  // No Cache-Control deems the caching rules useless. Adding the headers gives the error "No 'Access-Control-Allow-Origin' header is present on the requested resource," even though it is present.
+  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`);
   const logStr = await logResponse.text();
   let cacheControl = "max-age=3600";
   let cacheRule = new Date(logStr);
