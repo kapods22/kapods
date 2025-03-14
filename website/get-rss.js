@@ -853,6 +853,7 @@ async function fetchRSS(podcast) {
   if (podcast == "CA") {
     headers = {};
   }
+  console.log("cacheControl: " + cacheControl);
   const rssResponse = await fetch(feed(podcast), headers);
   console.log("Fetched");
   console.log(rssResponse);
