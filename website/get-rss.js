@@ -177,7 +177,7 @@ function createAudioPlayer(podcast, guid) {
           </div>
           <p id="duration"></p>
           <br>
-          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}'), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
+          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
         </div>`;
     audioPlayerContainer.innerHTML = htmlCode.gReplaceAll(' href=""', '');
 }
