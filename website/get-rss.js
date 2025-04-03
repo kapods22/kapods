@@ -1,5 +1,3 @@
-// Where Are the Chickadee Brothers? feed can't have cache control
-
 let items;
 let CAEpInfo = [];
 let KAEpInfo = [];
