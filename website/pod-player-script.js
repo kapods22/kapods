@@ -55,7 +55,9 @@ function update(currentElement, episode) {
   const remainingTimeElement = get(1, currentElement, ".remaining-time");
   currentTimeElement.innerHTML = minsAndSecs(currentTime).htmlFullTime;
   remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).htmlFullTime;
-  toActiveChapter(currentElement, currentElement, episode);
+  if (!singlePageEp) {
+    toActiveChapter(currentElement, currentElement, episode);
+  }
 }
 
 function toActiveChapter(audio, player, episode) {
