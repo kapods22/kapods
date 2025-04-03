@@ -8,6 +8,7 @@ let ACBEpInfo = [];
 let startedFetchRSS = false;
 let endedFetchRSS = false;
 let interval;
+let singlePageEp = null;
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
  * - shortPodcast: Podcast acronym | String | Local Variable: podcast
