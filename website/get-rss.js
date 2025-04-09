@@ -6,6 +6,7 @@ let ACBEpInfo = [];
 let startedFetchRSS = false;
 let endedFetchRSS = false;
 let interval;
+let singlePageEp = null;
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
  * - shortPodcast: Podcast acronym | String | Local Variable: podcast
@@ -32,9 +33,8 @@ function updateMetadata(title, artist, album, artwork) {
     artist: artist,
     album: album,
     artwork: [{
-      src: artwork,
-      type: "image/png",
-    }, ],
+      src: artwork
+    }]
   });
 }
 
@@ -74,13 +74,23 @@ function feed(podcast) {
   // Returns the RSS feed for the podcast
   // 'Podcast' will be the acroynm of the podcast
   if (podcast == "CA") {
-    return "https://www.spreaker.com/show/5934340/episodes/feed";
+    //return "https://www.spreaker.com/show/5934340/episodes/feed";
+    return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
+    //return "https://corsproxy.io/?url=https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
     return "https://feeds.buzzsprout.com/2038404.rss";
   } else if (podcast == "AF") {
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
-  } else if (podcast == "ACB") {
+  } else if (podcast == "ACB") { 
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Ask+the+Chickadee+Brothers";
+  }
+}
+
+function forceRefreshID(podcast) {
+  if (podcast == "KA" || podcast == "AF" || podcast == "ACB") {
+    return "KA";
+  } else if (podcast == "CA") {
+    return "CA";
   }
 }
 
@@ -100,9 +110,37 @@ function buttonUrl(text, showNotes) {
   const showNotesCode = new window.DOMParser().parseFromString(showNotes, "text/html");
   let aArray = showNotesCode.querySelectorAll("a");
   for (let i = 0; i < aArray.length; i++) {
-    if (aArray[i].innerHTML == text) {
+    if (aArray[i].innerHTML == text || aArray[i].innerHTML.startsWith(text)) {
       return aArray[i].href;
     }
+  }
+}
+
+async function displayChapters(episode, accordian, seekBar = null) {
+  let chapterDisplay = accordian.querySelector(".ep-chapters tbody");
+  if (!chapterDisplay.innerHTML) {
+    chapterDisplay.innerHTML = "&NoBreak;";
+    let chapters = await episode.getChapters();
+    let chaptersCode;
+    for (let j = 0; j < chapters.length; j++) {
+      let chapter = chapters[j];
+      let url = chapter.url ? chapter.url : "";
+      chaptersCode = 
+        `<tr onclick="jumpToChapter(this, { art: ${chapter.art ? `'${chapter.art}'` : null}, startTime: ${chapter.startTime} }, '${episode.art}')">
+          <td class="chapterArt">${chapter.art ? `<img src="${chapter.art}" width="100%">` : ""}</td>
+          <td class="chapterStart">${minsAndSecs(Math.floor(chapter.startTime)).fullTime}</td>
+          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") ? "_self" : "_blank"}">${chapter.title}</td>
+        </tr>\n`.gReplaceAll(' href=""', '');
+      chapterDisplay.innerHTML = chapterDisplay.innerHTML.replace(/\u2060/g, "") + chaptersCode;
+      chapterDisplay.querySelectorAll("tr")[0].classList.add("playing");
+    }
+    accordian.querySelector(`.ep-chapters tfoot`).remove();
+  }
+  if (seekBar) {
+    toActiveChapter(get(1, seekBar, "#audio"), {
+      currentTime: seekBar.value,
+      duration: seekBar.max
+    }, episode);
   }
 }
 
@@ -139,7 +177,7 @@ function createAudioPlayer(podcast, guid) {
           </div>
           <p id="duration"></p>
           <br>
-          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
+          <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false); playAud(document.querySelector('.s1e1 #audio'));"></audio>
         </div>`;
     audioPlayerContainer.innerHTML = htmlCode.gReplaceAll(' href=""', '');
 }
@@ -178,10 +216,11 @@ function displayAllEpisodes(episodes) {
       }
       episodeClass = episodeClass.replace("undefined", "");
       // The HTML code
-      let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
+      let htmlCode = `<div id="podcast-episode" class="${episodeClass}" data-guid="${episode.guid}">
           <div id="episode-art" width="18.2%">
             <a href="${episode.webpage}" target="_self">
               <img class="episode-art" src="${episode.art}">
+              ${episode.hasChapters ? `<img class="chapter-cover inactive" src="${episode.art}" width="100%">` : ""}
             </a>
         </div>
           <div id="details-and-player">
@@ -196,17 +235,27 @@ function displayAllEpisodes(episodes) {
                 jw-element-accordion--align-icon-right
                 ">
                 <details class="jw-element-accordion__item">
-                  <summary class="
-                    jw-element-accordion__heading
-                    jw-element-accordion__heading--icon-triangle
-                    ">
+                  <summary class="jw-element-accordion__heading jw-element-accordion__heading--icon-triangle episode-info-header"${episode.hasChapters ? ` onclick='displayChapters(findEpisode("${episode.shortPodcast}", "${episode.guid}"), this.parentElement)'` : ""}>
                     <i class="
                       jw-element-accordion__icon
                       website-rendering-icon-right-open
                       "></i>
-                    <h3>Show notes</h3>
+                    <h3>Show Notes${episode.hasChapters ? " & Chapters" : ""}</h3>
                   </summary>
                   <div class="jw-element-accordion__content">
+                    ${episode.hasChapters ?
+                    `<div id="chapters-container">
+                      <table class="ep-chapters">
+                        <tbody></tbody>
+                        <tfoot>
+                          <tr>
+                            <td class="chapterArt"></td>
+                            <td class="chapterStart"><img src="https://kapods.onrender.com/media/images/loading-circle.gif" width="50%"></td>
+                            <td class="chapterName"><strong>Loading chapters…</strong></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>` : ""}
                     ${episode.showNotes}
                   </div>
                 </details>
@@ -222,7 +271,7 @@ function displayAllEpisodes(episodes) {
                 </button>
               </div>
               <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
-              <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+              <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this);${episode.hasChapters ? ` displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement, this);` : ""}">
               <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
               <div class="mute-buttons buttons">
                 <button class="mute button" id="mute" onclick="mute(this);">
@@ -240,7 +289,7 @@ function displayAllEpisodes(episodes) {
               </div>
               <p id="duration"></p>
               <br>
-              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
+              <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true);  updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}'); displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement)" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);${nextPlay()}"></audio>
             </div>
           </div>`;
       // Adding episode buttons
@@ -433,10 +482,11 @@ function displayOneEpisode(episodes) {
     }
     episodeClass = episodeClass.replace("undefined", "");
     // The HTML code
-    let htmlCode = `<div id="podcast-episode" class="${episodeClass}">
+    let htmlCode = `<div id="podcast-episode" class="${episodeClass}" data-guid="${episode.guid}">
         <div id="episode-art" width="18.2%">
           <a href="${episode.webpage}" target="_self">
             <img class="episode-art" src="${episode.art}">
+            ${episode.hasChapters ? `<img class="chapter-cover inactive" src="${episode.art}" width="100%">` : ""}
           </a>
       </div>
         <div id="details-and-player">
@@ -451,17 +501,27 @@ function displayOneEpisode(episodes) {
               jw-element-accordion--align-icon-right
               ">
               <details class="jw-element-accordion__item">
-                <summary class="
-                  jw-element-accordion__heading
-                  jw-element-accordion__heading--icon-triangle
-                  ">
+                <summary class="jw-element-accordion__heading jw-element-accordion__heading--icon-triangle episode-info-header"${episode.hasChapters ? ` onclick='displayChapters(findEpisode("${episode.shortPodcast}", "${episode.guid}"), this.parentElement)'` : ""}>
                   <i class="
                     jw-element-accordion__icon
                     website-rendering-icon-right-open
                     "></i>
-                  <h3>Show notes</h3>
+                  <h3>Show Notes${episode.hasChapters ? " & Chapters" : ""}</h3>
                 </summary>
                 <div class="jw-element-accordion__content">
+                  ${episode.hasChapters ?
+                  `<div id="chapters-container">
+                    <table class="ep-chapters">
+                      <tbody></tbody>
+                      <tfoot>
+                        <tr>
+                          <td class="chapterArt"></td>
+                          <td class="chapterStart"><img src="https://kapods.onrender.com/media/images/loading-circle.gif" width="50%"></td>
+                          <td class="chapterName"><strong>Loading chapters…</strong></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>` : ""}
                   ${episode.showNotes}
                 </div>
               </details>
@@ -477,7 +537,7 @@ function displayOneEpisode(episodes) {
               </button>
             </div>
             <div class="current-time time"><span class="mins">00</span>:<span class="secs">00</span></div>
-            <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this)">
+            <input type="range" class="seek-bar custom-slider" id="seekBar" min="0" max="${episode.length}" step="0.00001" value="0" oninput="seek(this);${episode.hasChapters ? ` displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement, this);` : ""}">
             <div class="remaining-time time">-${minsAndSecs(episode.length).fullTime}</div>
             <div class="mute-buttons buttons">
               <button class="mute button" id="mute" onclick="mute(this);">
@@ -495,7 +555,7 @@ function displayOneEpisode(episodes) {
             </div>
             <p id="duration"></p>
             <br>
-            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this), 1);" onplay="switchButtons(this, 1, 'playback', true); updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}');" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
+            <audio id="audio" preload="none" title="" src="${episode.audioSrc}" onloadedmetadata="setInterval(() => update(this, findEpisode('${episode.shortPodcast}', '${episode.guid}')), 1);" onplay="switchButtons(this, 1, 'playback', true);  updateMetadata('${episode.title}', '${episode.longPodcast}', '${episode.date.short}', '${episode.art}'); displayChapters(findEpisode('${episode.shortPodcast}', '${episode.guid}'), this.parentElement.parentElement)" onpause="switchButtons(this, 1, 'playback', false);" onended="switchButtons(this, 1, 'playback', false);"></audio>
           </div>
         </div>`;
     // Adding episode buttons
@@ -545,7 +605,7 @@ function displayOneEpisode(episodes) {
               </button>
             </a>
           </div>`;
-    } else if (episode.miniseries == "Animalia Fake!") {
+    } else if (episode.miniseries == "AF") {
       htmlCode += `
       <div id="episode-buttons">
         <div class="button">
@@ -652,11 +712,12 @@ function displayOneEpisode(episodes) {
         </div>
     </div>
     <br>`;
-    episodeContainer.innerHTML = htmlCode.gReplaceAll(' href=""', '');
+    episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
+    console.log(episodeContainer.innerHTML);
   }
 }
 
-function displayPageInfo(podcast, guid) {
+function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   /* Inserts the information of an episode into the page. This info includes:
    * All podcasts:
    * - The episode title (title)
@@ -669,21 +730,22 @@ function displayPageInfo(podcast, guid) {
    * - The episode transcript
   */
   let title = document.querySelector(".jw-slideshow-title");
-  let info = document.querySelector(".jw-slideshow-sub-title span span");
+  let banner = document.querySelector(".jw-slideshow-slide div");
+  let info = document.querySelector(".jw-slideshow-sub-title span span") ? document.querySelector(".jw-slideshow-sub-title span span") : document.querySelector(".jw-slideshow-sub-title span");
   let art = document.getElementById("page-art");
   let showNotes = document.getElementById("show-notes-container");
   let downloadBtn;
   let transcript;
   let accordians = document.querySelectorAll(".jw-element-accordion");
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Read the Transcript for this Episode")) {
+    if (accordians[i].innerText.includes("the Transcript for this Episode") || accordians[i].innerText.includes("the Transcript for This Episode")) {
       transcript = accordians[i];
       accordians[i].classList.add("transcript");
     }
   }
   for (let i = 0; i < accordians.length; i++) {
-    if (accordians[i].innerHTML.includes("Check the Works Cited for")) {
-      accordians[i].classList.add("works-cited");
+    if (accordians[i].querySelector("summary").innerText.includes("Works Cited") || accordians[i].querySelector("summary").innerText.includes("References")) {
+      accordians[i].classList.add("references");
     }
   }
   let btns = document.querySelectorAll(".jw-btn");
@@ -697,73 +759,179 @@ function displayPageInfo(podcast, guid) {
   title.innerHTML = episode.title;
   info.innerHTML = `${minsAndSecs(episode.length).fullTime} | ${episode.date.long}`;
   art.src = episode.art;
+  let imageFitting = banner.style.backgroundImage.replace("url(", "").replace('")', '').split("?")[1];
+  banner.style.backgroundImage = `url(${episode.art}?${imageFitting})`;
   showNotes.innerHTML = episode.showNotes;
+  let omittedLinks = [
+    "Episode Page",
+    "Transcript",
+    "Works Cited",
+    "References",
+    "Comic",
+    "Memory Quiz",
+    "Official Episode Scoresheet"
+  ];
+  if (customOmittedLinks != null) {
+    for (let item of customOmittedLinks) {
+      omittedLinks.push(item);
+    }
+  }
+  let uls = showNotes.querySelectorAll("ul");
+  for (let li of showNotes.querySelectorAll("li:has(a)")) {
+    let itemName = li.innerHTML;
+    for (let name of omittedLinks) {
+      if (itemName.includes(name)) {
+        li.remove();
+      }
+    }
+  }
+  for (let ul of uls) {
+    if (ul.querySelectorAll("li").length == 0) {
+      console.log(ul.previousElementSibling);
+      console.log(ul.previousElementSibling.previousElementSibling);
+      ul.previousElementSibling.previousElementSibling.remove();
+      ul.previousElementSibling.remove();
+      if (ul.previousElementSibling.tagName == "BR" && ul.nextElementSibling.tagName == "BR") {
+        ul.nextElementSibling.remove();
+      } else {
+        console.log(ul.previousElementSibling.tagName + " and " + ul.nextElementSibling.tagName);
+      }
+      ul.remove();
+    }
+  }
+
+  if (showNotes.querySelector("a[rel='payment']")) {
+    let supportA = showNotes.querySelector("a[rel='payment']");
+    //supportA.previousElementSibling.remove();
+    supportA.remove();
+  }
+  
+  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>").replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "").removeEndStr("<br>");
+  console.log(showNotes.innerHTML);
+  
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
   downloadBtn.target = "_blank";
   if (podcast != "CA" && transcript) {
     fetch(episode.transcript.HTML).then(response => response.text()).then(str => {
-      transcript.querySelector(".jw-element-accordion__content-wrap").innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "");
+      transcript.querySelector(".jw-element-accordion__content-wrap").innerHTML = str.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020");
     });
   }
 }
 
-function fetchRSS(podcast) {
+async function fetchRSS(podcast) {
   // The variable 'podcast' will be the acronym for the podcast.
   startedFetchRSS = true;
+  console.log("About to fetch");
+  
 
   // Fetch the RSS feed.
-  fetch(feed(podcast), {
+  /* , {
     headers: {
       AccessControlAllowHeaders: "Accept"
     }
-  }).then(response => {
-    console.log(response);
-    return response.text();
-  }).then(str => new window.DOMParser().parseFromString(str.replace(/\u2060/g, "").replace(/\u00A0/g, ""), "text/xml")).then(data => {
-    items = data.querySelectorAll("item");
-    for (let i = 0; i < items.length; i++) {
-      let item = items[i];
-      let episodeInfo = {
-        title: item.querySelector("title").innerHTML,
-        shortPodcast: podcast,
-        longPodcast: data.querySelector("title:first-of-type").innerHTML,
-        miniseries: null,
-        webpage: item.querySelector("link").innerHTML,
-        epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
-        seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
-        type: item.querySelector("episodeType").innerHTML,
-        showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br><br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com'),
-        date: {
-          short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-            weekday: "short",
-            month: "short",
-            day: "numeric",
-            year: "numeric"
-          }),
-          long: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-          })
-        },
-        audioSrc: item.querySelector("enclosure").getAttribute("url"),
-        length: item.querySelector("duration").innerHTML,
-        art: item.querySelector("image").getAttribute("href"),
-        guid: item.querySelector("guid").innerHTML,
-        transcript: {
-          HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
-          SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
-        }
-      };
-      if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
-        episodeInfo.miniseries = "AF";
-      } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
-        episodeInfo.miniseries = "ACB";
-      }
-      epInfo(podcast).push(episodeInfo);
+  }*/
+  // No Cache-Control deems the caching rules useless. Adding the headers gives the error "No 'Access-Control-Allow-Origin' header is present on the requested resource," even though it is present.
+  const logResponse = await fetch(`https://kapods.onrender.com/website/rss-force-refreshes/${forceRefreshID(podcast).toLowerCase()}.txt`);
+  const logStr = await logResponse.text();
+  let cacheControl = "max-age=3600";
+  let cacheRule = new Date(logStr);
+  let now = new Date();
+  let lastRuleFollowed = localStorage.getItem(`${forceRefreshID(podcast)}-lastRuleFollowed`);
+  console.log("Last rule followed: " + lastRuleFollowed);
+  if (now >= cacheRule && cacheRule.toString() != lastRuleFollowed) {
+    console.log("Force refreshing the RSS feed");
+    cacheControl = "no-store";
+    localStorage.setItem(`${podcast}-lastRuleFollowed`, cacheRule.toString());
+  }
+  let headers = {
+    headers: {
+      "Cache-Control": cacheControl
     }
-    endedFetchRSS = true;
-  });
+  };
+  if (podcast == "CA") {
+    headers = {};
+  }
+  const rssResponse = await fetch(feed(podcast), headers);
+  console.log("Fetched");
+  console.log(rssResponse);
+  const rssStr = await rssResponse.text();
+  console.log("Text");
+  const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
+  console.log("XML");
+  items = data.querySelectorAll("item");
+  // regEx for the part in the show notes footer saying “, and my website is […]”
+  let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
+  for (let i = 0; i < items.length; i++) {
+    let item = items[i];
+    let episodeInfo = {
+      title: item.querySelector("title").innerHTML,
+      shortPodcast: podcast,
+      longPodcast: data.querySelector("title:first-of-type").innerHTML,
+      miniseries: null,
+      webpage: item.querySelector("link").innerHTML,
+      epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
+      seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
+      type: item.querySelector("episodeType").innerHTML,
+      showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").gReplaceAll("</ul><b>", "</ul><br><b>"),
+      date: {
+        short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }),
+        long: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        })
+      },
+      audioSrc: item.querySelector("enclosure").getAttribute("url"),
+      length: item.querySelector("duration").innerHTML,
+      art: item.querySelector("image") ? item.querySelector("image").getAttribute("href") : data.querySelector("image url").innerHTML,
+      guid: item.querySelector("guid").innerHTML,
+      transcript: {
+        HTML: item.querySelector("transcript[type='text/html']") ? item.querySelector("transcript[type='text/html']").getAttribute("url") : null,
+        SRT: item.querySelector("transcript[type='application/x-subrip']") ? item.querySelector("transcript[type='application/x-subrip']").getAttribute("url") : null
+      },
+      hasChapters: item.querySelector("chapters") ? true : false,
+      chapterArray: [],
+      getChapters: async function() {
+        if (this.hasChapters) {
+          if (this.chapterArray.length) {
+            return this.chapterArray;
+          } else {
+            const jsonResponse = await fetch(item.querySelector("chapters").getAttribute("url"), {
+              headers: {
+                AccessControlAllowHeaders: "Accept"
+              }
+            });
+            const jsonStr = await jsonResponse.text();
+            const json = JSON.parse(jsonStr);
+            for (let j = 0; j < json.chapters.length; j++) {
+              this.chapterArray.push({
+                startTime: json.chapters[j].startTime,
+                title: json.chapters[j].title,
+                url: json.chapters[j].url ? json.chapters[j].url : null,
+                art: json.chapters[j].img ? json.chapters[j].img : null
+              });
+            }
+            return this.chapterArray;
+          }
+        } else {
+          return null;
+        }
+      }
+    };
+    if (item.querySelector("keywords").innerHTML.includes("Animalia Fake!")) {
+      episodeInfo.miniseries = "AF";
+    } else if (item.querySelector("keywords").innerHTML.includes("Ask the Chickadee Brothers")) {
+      episodeInfo.miniseries = "ACB";
+    }
+    epInfo(podcast).push(episodeInfo);
+  }
+  console.log("Parsed");
+  endedFetchRSS = true;
 }

@@ -47,7 +47,7 @@ function setInfo(currentElement) {
   setInterval(() => update(currentElement), 1);
 }
 
-function update(currentElement) {
+function update(currentElement, episode) {
   get(1, currentElement, "#seekBar").value = currentElement.currentTime;
   const currentTime = Math.trunc(currentElement.currentTime);
   const currentTimeElement = get(1, currentElement, ".current-time");
@@ -55,6 +55,65 @@ function update(currentElement) {
   const remainingTimeElement = get(1, currentElement, ".remaining-time");
   currentTimeElement.innerHTML = minsAndSecs(currentTime).htmlFullTime;
   remainingTimeElement.innerHTML = "-" + minsAndSecs(remainingTime).htmlFullTime;
+  if (!singlePageEp) {
+    toActiveChapter(currentElement, currentElement, episode);
+  }
+}
+
+function toActiveChapter(audio, player, episode) {
+  if (episode.hasChapters && episode.chapterArray.length) {
+    for (let i = 0; i < episode.chapterArray.length; i++) {
+      let chapter = episode.chapterArray[i];
+      let epArt = episode.art;
+      let end;
+      if (i != episode.chapterArray.length - 1) {
+        end = episode.chapterArray[i + 1].startTime;
+      } else {
+        end = player.duration;
+      }
+      let chapterRow = get(3, audio, ".ep-chapters").querySelectorAll("tr")[i];
+      if (player.currentTime >= chapter.startTime && player.currentTime < end) {
+        chapterRow.classList.add("playing");
+        let cover = get(3, audio, ".chapter-cover");
+        let art = chapter.art;
+        if (art) {
+          cover.src = art;
+          cover.classList.remove("inactive");
+        } else if (cover.src != epArt && cover.src != art) {
+          //cover.src = "";
+          cover.classList.add("inactive");
+        }
+      } else {
+        chapterRow.classList.remove("playing");
+      }
+    }
+  }
+}
+
+function jumpToChapter(chapterRow, chapter, epArt) {
+  const target = event.target;
+  if (target.tagName !== 'A' || (target.tagName === 'A' && !target.href)) {
+    let chapterRows = get(2, chapterRow, "tbody").querySelectorAll("tr");
+    for (let chapRow of chapterRows) {
+      chapRow.classList.remove("playing");
+    }
+    chapterRow.classList.add("playing");
+    let time = chapter.startTime;
+    let art = chapter.art;
+    let cover = get(9, chapterRow, ".chapter-cover");
+    let seekBar = get(8, chapterRow, "#seekBar");
+    get(8, chapterRow, "#audio").currentTime = time;
+    seekBar.value = time;
+    get(8, chapterRow, ".current-time").innerHTML = minsAndSecs(Math.trunc(time)).htmlFullTime;
+    get(8, chapterRow, ".remaining-time").innerHTML = "-" + minsAndSecs(Math.trunc(seekBar.max - time)).htmlFullTime;
+    if (art) {
+      cover.src = art;
+      cover.classList.remove("inactive");
+    } else {
+      //cover.src = "";
+      cover.classList.add("inactive");
+    }
+  }
 }
 
 function seek(currentElement) {
