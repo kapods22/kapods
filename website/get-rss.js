@@ -843,8 +843,8 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying “, and my website is […]”
-  let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
+  // regEx for the part in the show notes footer saying where it says my website
+  let showNotesWebsite = /<p class=\"block\"><b>Visit My Website: <\/b>(.*?)<\/p>/g;
   // regEx for unordered list labels (e.g., "Other Links:"). NOTE: THIS ALSO INCLUDES ‘<ul class="’
   let ulLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ul class=\"/g;
   // regEx for ordered list labels. NOTE: THIS ALSO INCLUDES ‘<ol class="’
