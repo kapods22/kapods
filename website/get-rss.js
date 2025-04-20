@@ -860,7 +860,7 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying “, and my website is […]”
+  // regEx for the part in the show notes footer saying “, and my website is […]” ↓
   let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
@@ -874,7 +874,7 @@ async function fetchRSS(podcast) {
       seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
       type: item.querySelector("episodeType").innerHTML,
       //showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").gReplaceAll("</ul><b>", "</ul><br><b>"),
-      showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", "</p><hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, ""),
+      showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", '</p><hr class="block">').gReplaceAll("<p>", '<p class="block">').gReplaceAll("<ul>", '<ul class="block">').gReplaceAll("<ol>", '<ol class="block">').gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, ""),
       date: {
         short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
           weekday: "short",
