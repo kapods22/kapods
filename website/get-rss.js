@@ -851,7 +851,7 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying “, and my website is […]” ↓
+  // regEx for the part in the show notes footer saying “, and my website is […]”
   let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
   // regEx for unordered list labels (e.g., "Other Links:"). NOTE: THIS ALSO INCLUDES ‘<ul class="’
   let ulLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ul class=\"/g;
@@ -868,7 +868,6 @@ async function fetchRSS(podcast) {
       epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
       seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
       type: item.querySelector("episodeType").innerHTML,
-      //showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").gReplaceAll("</ul><b>", "</ul><br><b>"),
       showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", '</p><hr class="block">').gReplaceAll("<p>", '<p class="block">').gReplaceAll("<ul>", '<ul class="block">').gReplaceAll("<ol>", '<ol class="block">').replace(ulLabel, "<p class=\"list-label block\"><b>$1</b></p><ul class=\"labeled-list ").replace(olLabel, "<p class=\"list-label block\"><b>$1</b></p><ol class=\"labeled-list ").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href="https://kingdomanimaliapod.com', '<a target="_self" href="https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href="https://www.kingdomanimaliapod.com', '<a target="_self" href="https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").replace('<p class="block"><a target="_blank" rel="payment" href="https://kingdomanimaliapod.com/support">Support the show</a></p>', "").replace("<p class=\"block\">This podcast is made by <a target=\"_self\" href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>.</p>", ""),
       date: {
         short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
