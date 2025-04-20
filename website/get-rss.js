@@ -800,13 +800,12 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
     }
   }
 
-  if (showNotes.querySelector("a[rel='payment']")) {
-    let supportA = showNotes.querySelector("a[rel='payment']");
-    //supportA.previousElementSibling.remove();
-    supportA.remove();
+  // Remove the support link
+  if (showNotes.querySelector("p:has(a[rel='payment'])")) {
+    showNotes.querySelector("p:has(a[rel='payment'])").remove();
   }
   
-  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>").replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "").removeEndStr("<br>");
+  showNotes.innerHTML = showNotes.innerHTML.replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "");
   console.log(showNotes.innerHTML);
   
   createAudioPlayer(podcast, guid);
