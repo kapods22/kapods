@@ -854,9 +854,9 @@ async function fetchRSS(podcast) {
   // regEx for the part in the show notes footer saying “, and my website is […]” ↓
   let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
   // regEx for unordered list labels (e.g., "Other Links:"). NOTE: THIS ALSO INCLUDES ‘<ul class="’
-  let ulLabel = /<p class="block"><b>(.*?)<\/b><\/p><ul class="/g;
+  let ulLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ul class=\"/g;
   // regEx for ordered list labels. NOTE: THIS ALSO INCLUDES ‘<ol class="’
-  let olLabel = /<p class="block"><b>(.*?)<\/b><\/p><ol class="/g;
+  let olLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ol class=\"/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
     let episodeInfo = {
