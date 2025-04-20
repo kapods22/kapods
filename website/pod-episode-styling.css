@@ -557,11 +557,15 @@ a:has(.unlinked-button) {
 
 #show-notes-container hr,
 #show-notes hr {
-  margin: 20px 0px;
   color: black;
   background-color: black;
   height: 1.5px;
   border-width: 0;
+}
+
+:is(#show-notes-container, #show-notes) .block:not(:first-child) {
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
