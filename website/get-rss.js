@@ -799,14 +799,6 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
       ul.remove();
     }
   }
-
-  // Remove the support link
-  if (showNotes.querySelector("p:has(a[rel='payment'])")) {
-    showNotes.querySelector("p:has(a[rel='payment'])").remove();
-  }
-  
-  showNotes.innerHTML = showNotes.innerHTML.replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "");
-  console.log(showNotes.innerHTML);
   
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
@@ -873,7 +865,7 @@ async function fetchRSS(podcast) {
       seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
       type: item.querySelector("episodeType").innerHTML,
       //showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").gReplaceAll("</ul><b>", "</ul><br><b>"),
-      showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", '</p><hr class="block">').gReplaceAll("<p>", '<p class="block">').gReplaceAll("<ul>", '<ul class="block">').gReplaceAll("<ol>", '<ol class="block">').gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, ""),
+      showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", '</p><hr class="block">').gReplaceAll("<p>", '<p class="block">').gReplaceAll("<ul>", '<ul class="block">').gReplaceAll("<ol>", '<ol class="block">').gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").replace('<p><a rel="payment" href="https://kingdomanimaliapod.com/support">Support the show</a></p>', "").replace("<p>This podcast is made by <a target=\"_self\" href='https://www.kingdomanimaliapod.com/'>Kingdom: Animalia Podcasts</a>.</p>", ""),
       date: {
         short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
           weekday: "short",
