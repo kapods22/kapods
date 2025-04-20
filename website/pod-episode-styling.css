@@ -563,7 +563,7 @@ a:has(.unlinked-button) {
   border-width: 0;
 }
 
-:is(#show-notes-container, #show-notes) .block:not(:first-child) {
+:is(#show-notes-container, #show-notes) .block:not(:first-child, .labeled-list) {
   margin-top: 20px;
   margin-bottom: 0;
 }
