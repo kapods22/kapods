@@ -527,10 +527,7 @@ a:has(.unlinked-button) {
 }
 
 /* * * - Bold text before a list */
-#show-notes-container :is(
-  b:has(+ br + ul),
-  b:has(+ ul)
-) {
+#show-notes-container .list-label {
   display: inline-block;
   font-size: 2.13rem;
   line-height: inherit;
@@ -538,22 +535,18 @@ a:has(.unlinked-button) {
 }
 
 @media (max-width: 1130px) {
-  #show-notes-container :is(
-    b:has(+ br + ul),
-    b:has(+ ul)
-  ) {
+  #show-notes-container .list-label {
     font-size: 1.98rem;
   }
 }
 
 @media (max-width: 768px) {
-  #show-notes-container :is(
-    b:has(+ br + ul),
-    b:has(+ ul)
-  ) {
+  #show-notes-container .list-label {
     font-size: 1.91rem;
   }
 }
+
+/* * * - Other */
 
 #show-notes-container hr,
 #show-notes hr {
