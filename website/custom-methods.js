@@ -61,3 +61,16 @@ String.prototype.removeEndStr = function(endStr) {
   }
   return str;
 }
+
+Number.prototype.signStr = function() {
+  let num = this;
+  if (num > 0) {
+    return "positive";
+  } else if (num < 0) {
+    return "negative";
+  } else if (num == 0) {
+    return "zero";
+  } else {
+    return undefined;
+  }
+}
