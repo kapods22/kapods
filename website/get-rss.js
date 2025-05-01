@@ -129,7 +129,7 @@ async function displayChapters(episode, accordian, seekBar = null) {
         `<tr onclick="jumpToChapter(this, { art: ${chapter.art ? `'${chapter.art}'` : null}, startTime: ${chapter.startTime} }, '${episode.art}')">
           <td class="chapterArt">${chapter.art ? `<img src="${chapter.art}" width="100%">` : ""}</td>
           <td class="chapterStart">${minsAndSecs(Math.floor(chapter.startTime)).fullTime}</td>
-          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") ? "_self" : "_blank"}">${chapter.title.replace(/[^a-zA-z\d\s]/g, (char) => char + "&NoBreak;")}</td>
+          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") ? "_self" : "_blank"}">${chapter.title.replace(/[^a-zA-z\d\s]/g, (char) => char + "&#x200B;")}</td>
         </tr>\n`.gReplaceAll(' href=""', '');
       chapterDisplay.innerHTML = chapterDisplay.innerHTML.replace(/\u2060/g, "") + chaptersCode;
       chapterDisplay.querySelectorAll("tr")[0].classList.add("playing");
