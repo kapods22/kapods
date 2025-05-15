@@ -733,7 +733,7 @@ function displayOneEpisode(episodes) {
     <br>`;
     if (feedParams) {
       htmlCode += `
-    <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">See All Episodes</button>`;
+    <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">Clear Episode Filters</button>`;
     }
     episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
     console.log(episodeContainer.innerHTML);
