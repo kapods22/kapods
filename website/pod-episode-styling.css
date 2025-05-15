@@ -489,6 +489,19 @@ a:has(.unlinked-button) {
     width: 100%;
   }
 }
+/* Show All Episodes Button (If There Are URL Parameters) */
+.show-all-eps-btn {
+  width: 100%;
+  padding: 5px;
+  background-color: #733500;
+  border: none;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.show-all-eps-btn:hover {
+  background-color: #914300;
+}
 
 /* Episode pages */
 /* - Episode info */
