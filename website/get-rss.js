@@ -461,11 +461,11 @@ function displayAllEpisodes(episodes) {
           </div>
       </div>
       <br>`;
-      if (feedParams) {
-        htmlCode += `
-      <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">See All Episodes</button>`;
-      }
       episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
+    }
+    if (feedParams) {
+      episodeContainer.innerHTML += `
+    <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">See All Episodes</button>`;
     }
   }
 }
