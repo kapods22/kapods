@@ -7,6 +7,17 @@ let startedFetchRSS = false;
 let endedFetchRSS = false;
 let interval;
 let singlePageEp = null;
+let params = new URLSearchParams(document.location.search);
+let tags = params.get("tags");
+let artist = params.get("artist");
+let feedParams;
+if (tags && artist) {
+  feedParams = `tags=${encodeURI(tags)}&artist=${encodeURI(artist)}`;
+} else if (tags) {
+  feedParams = `tags=${encodeURI(tags)}`;
+} else if (artist) {
+  feedParams = `artist=${encodeURI(artist)}`;
+}
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
  * - shortPodcast: Podcast acronym | String | Local Variable: podcast
@@ -78,7 +89,11 @@ function feed(podcast) {
     return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
     //return "https://corsproxy.io/?url=https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
-    return "https://feeds.buzzsprout.com/2038404.rss";
+    let url = "https://feeds.buzzsprout.com/2038404.rss";
+    if (feedParams) {
+      url += "?" + feedParams;
+    }
+    return url;
   } else if (podcast == "AF") {
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
   } else if (podcast == "ACB") { 
