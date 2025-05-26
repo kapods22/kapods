@@ -16,8 +16,8 @@ Date.prototype.getMonthName = function() {
 Date.prototype.getMonthAbbr = function() {
   if (this.getMonth() == 0) {return "Jan"};
   if (this.getMonth() == 1) {return "Feb"};
-  if (this.getMonth() == 2) {return "Mar"};
-  if (this.getMonth() == 3) {return "Apr"};
+  if (this.getMonth() == 2) {return "March"};
+  if (this.getMonth() == 3) {return "April"};
   if (this.getMonth() == 4) {return "May"};
   if (this.getMonth() == 5) {return "June"};
   if (this.getMonth() == 6) {return "July"};
@@ -41,9 +41,9 @@ Date.prototype.getDayName = function() {
 Date.prototype.getDayAbbr = function() {
   if (this.getDay() == 0) {return "Sun"};
   if (this.getDay() == 1) {return "Mon"};
-  if (this.getDay() == 2) {return "Tues"};
+  if (this.getDay() == 2) {return "Tue"};
   if (this.getDay() == 3) {return "Wed"};
-  if (this.getDay() == 4) {return "Thurs"};
+  if (this.getDay() == 4) {return "Thur"};
   if (this.getDay() == 5) {return "Fri"};
   if (this.getDay() == 6) {return "Sat"};
 };
@@ -60,4 +60,17 @@ String.prototype.removeEndStr = function(endStr) {
     str = str.slice(0, -endStr.length);
   }
   return str;
+}
+
+Number.prototype.signStr = function() {
+  let num = this;
+  if (num > 0) {
+    return "positive";
+  } else if (num < 0) {
+    return "negative";
+  } else if (num == 0) {
+    return "zero";
+  } else {
+    return undefined;
+  }
 }

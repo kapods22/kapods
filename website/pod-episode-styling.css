@@ -489,6 +489,19 @@ a:has(.unlinked-button) {
     width: 100%;
   }
 }
+/* Show All Episodes Button (If There Are URL Parameters) */
+.show-all-eps-btn {
+  width: 100%;
+  padding: 5px;
+  background-color: #733500;
+  border: none;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.show-all-eps-btn:hover {
+  background-color: #914300;
+}
 
 /* Episode pages */
 /* - Episode info */
@@ -527,10 +540,7 @@ a:has(.unlinked-button) {
 }
 
 /* * * - Bold text before a list */
-#show-notes-container :is(
-  b:has(+ br + ul),
-  b:has(+ ul)
-) {
+#show-notes-container .list-label {
   display: inline-block;
   font-size: 2.13rem;
   line-height: inherit;
@@ -538,30 +548,30 @@ a:has(.unlinked-button) {
 }
 
 @media (max-width: 1130px) {
-  #show-notes-container :is(
-    b:has(+ br + ul),
-    b:has(+ ul)
-  ) {
+  #show-notes-container .list-label {
     font-size: 1.98rem;
   }
 }
 
 @media (max-width: 768px) {
-  #show-notes-container :is(
-    b:has(+ br + ul),
-    b:has(+ ul)
-  ) {
+  #show-notes-container .list-label {
     font-size: 1.91rem;
   }
 }
 
+/* * * - Other */
+
 #show-notes-container hr,
 #show-notes hr {
-  margin: 20px 0px;
   color: black;
   background-color: black;
   height: 1.5px;
   border-width: 0;
+}
+
+:is(#show-notes-container, #show-notes) .block:not(:first-child, .labeled-list) {
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {

@@ -7,6 +7,17 @@ let startedFetchRSS = false;
 let endedFetchRSS = false;
 let interval;
 let singlePageEp = null;
+let params = new URLSearchParams(document.location.search);
+let tags = params.get("tags");
+let artist = params.get("artist");
+let feedParams;
+if (tags && artist) {
+  feedParams = `tags=${encodeURI(tags)}&artist=${encodeURI(artist)}`;
+} else if (tags) {
+  feedParams = `tags=${encodeURI(tags)}`;
+} else if (artist) {
+  feedParams = `artist=${encodeURI(artist)}`;
+}
 /* Episode info properties:
  * - title: Title of the episode | String | Tag: <title>
  * - shortPodcast: Podcast acronym | String | Local Variable: podcast
@@ -78,7 +89,11 @@ function feed(podcast) {
     return "https://api.allorigins.win/raw?url=https://www.spreaker.com/show/5934340/episodes/feed";
     //return "https://corsproxy.io/?url=https%3A%2F%2Fwww.spreaker.com%2Fshow%2F5934340%2Fepisodes%2Ffeed";
   } else if (podcast == "KA") {
-    return "https://feeds.buzzsprout.com/2038404.rss";
+    let url = "https://feeds.buzzsprout.com/2038404.rss";
+    if (feedParams) {
+      url += "?" + feedParams;
+    }
+    return url;
   } else if (podcast == "AF") {
     return "https://feeds.buzzsprout.com/2038404.rss?tags=Animalia+Fake%21";
   } else if (podcast == "ACB") { 
@@ -129,7 +144,7 @@ async function displayChapters(episode, accordian, seekBar = null) {
         `<tr onclick="jumpToChapter(this, { art: ${chapter.art ? `'${chapter.art}'` : null}, startTime: ${chapter.startTime} }, '${episode.art}')">
           <td class="chapterArt">${chapter.art ? `<img src="${chapter.art}" width="100%">` : ""}</td>
           <td class="chapterStart">${minsAndSecs(Math.floor(chapter.startTime)).fullTime}</td>
-          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") ? "_self" : "_blank"}">${chapter.title}</td>
+          <td class="chapterName"><a href="${url}" target="${url.includes("kingdomanimaliapod.com") || url.includes("kapods.org") ? "_self" : "_blank"}">${chapter.title.replace(/[^a-zA-z\d\s]/g, (char) => char + "&#x200B;")}</td>
         </tr>\n`.gReplaceAll(' href=""', '');
       chapterDisplay.innerHTML = chapterDisplay.innerHTML.replace(/\u2060/g, "") + chaptersCode;
       chapterDisplay.querySelectorAll("tr")[0].classList.add("playing");
@@ -448,6 +463,10 @@ function displayAllEpisodes(episodes) {
       <br>`;
       episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
     }
+    if (feedParams) {
+      episodeContainer.innerHTML += `
+    <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">See All Episodes</button>`;
+    }
   }
 }
 
@@ -712,6 +731,10 @@ function displayOneEpisode(episodes) {
         </div>
     </div>
     <br>`;
+    if (feedParams) {
+      htmlCode += `
+    <button class="show-all-eps-btn" onclick="window.open(window.location.href.replace(window.location.search,''), '_self')">Clear Episode Filters</button>`;
+    }
     episodeContainer.innerHTML += htmlCode.gReplaceAll(' href=""', '');
     console.log(episodeContainer.innerHTML);
   }
@@ -787,27 +810,10 @@ function displayPageInfo(podcast, guid, customOmittedLinks = null) {
   }
   for (let ul of uls) {
     if (ul.querySelectorAll("li").length == 0) {
-      console.log(ul.previousElementSibling);
-      console.log(ul.previousElementSibling.previousElementSibling);
-      ul.previousElementSibling.previousElementSibling.remove();
       ul.previousElementSibling.remove();
-      if (ul.previousElementSibling.tagName == "BR" && ul.nextElementSibling.tagName == "BR") {
-        ul.nextElementSibling.remove();
-      } else {
-        console.log(ul.previousElementSibling.tagName + " and " + ul.nextElementSibling.tagName);
-      }
       ul.remove();
     }
   }
-
-  if (showNotes.querySelector("a[rel='payment']")) {
-    let supportA = showNotes.querySelector("a[rel='payment']");
-    //supportA.previousElementSibling.remove();
-    supportA.remove();
-  }
-  
-  showNotes.innerHTML = showNotes.innerHTML.gReplaceAll("<br><br><br>", "<br><br>").replace('This podcast is made by <a target="_self" href="https://www.kingdomanimaliapod.com/">Kingdom: Animalia Podcasts</a>.', "").removeEndStr("<br>");
-  console.log(showNotes.innerHTML);
   
   createAudioPlayer(podcast, guid);
   downloadBtn.href = episode.audioSrc;
@@ -860,8 +866,12 @@ async function fetchRSS(podcast) {
   const data = new window.DOMParser().parseFromString(rssStr.replace(/\u2060/g, "").replace(/\u00A0/g, "\u0020"), "text/xml");
   console.log("XML");
   items = data.querySelectorAll("item");
-  // regEx for the part in the show notes footer saying “, and my website is […]”
-  let showNotesWebsite = /, and my website is(.*?)<\/a>/g;
+  // regEx for the part in the show notes footer saying where it says my website
+  let showNotesWebsite = /<p class=\"block\"><b>Visit My Website: <\/b>(.*?)<\/p>/g;
+  // regEx for unordered list labels (e.g., "Other Links:"). NOTE: THIS ALSO INCLUDES ‘<ul class="’
+  let ulLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ul class=\"/g;
+  // regEx for ordered list labels. NOTE: THIS ALSO INCLUDES ‘<ol class="’
+  let olLabel = /<p class=\"block\"><b>((?:(?!<\/b>).)*?)<\/b><\/p><ol class=\"/g;
   for (let i = 0; i < items.length; i++) {
     let item = items[i];
     let episodeInfo = {
@@ -873,7 +883,7 @@ async function fetchRSS(podcast) {
       epNum: item.querySelector("episode") ? item.querySelector("episode").innerHTML : null,
       seNum: item.querySelector("season") ? item.querySelector("season").innerHTML : null,
       type: item.querySelector("episodeType").innerHTML,
-      showNotes: item.querySelector("description").innerHTML.gReplaceAll("<p>", "").gReplaceAll("</p><p>", "<br><br>").gReplaceAll("</p>", "<br>").gReplaceAll("<br><br><ul>", "<br><ul>").replace("<![CDATA[", "").replace("]]>", "").replace("______________________<br/><br/>", "<hr>").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').replace(showNotesWebsite, "").gReplaceAll("</ul><b>", "</ul><br><b>"),
+      showNotes: item.querySelector("description").innerHTML.replace("<![CDATA[", "").replace("]]>", "").replace("______________________</p>", '</p><hr class="block">').gReplaceAll("<p>", '<p class="block">').gReplaceAll("<ul>", '<ul class="block">').gReplaceAll("<ol>", '<ol class="block">').replace(ulLabel, "<p class=\"list-label block\"><b>$1</b></p><ul class=\"labeled-list ").replace(olLabel, "<p class=\"list-label block\"><b>$1</b></p><ol class=\"labeled-list ").gReplaceAll("<a ", '<a target="_blank" ').gReplaceAll('<a target="_blank" href=\'https://kingdomanimaliapod.com', '<a target="_self" href=\'https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href="https://kingdomanimaliapod.com', '<a target="_self" href="https://kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://www.kingdomanimaliapod.com', '<a target="_self" href=\'https://www.kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href="https://www.kingdomanimaliapod.com', '<a target="_self" href="https://www.kingdomanimaliapod.com').gReplaceAll('<a target="_blank" href=\'https://kapods.org', '<a target="_self" href=\'https://kapods.org').gReplaceAll('<a target="_blank" href="https://kapods.org', '<a target="_self" href="https://kapods.org').gReplaceAll('<a target="_blank" href=\'https://www.kapods.org', '<a target="_self" href=\'https://www.kapods.org').gReplaceAll('<a target="_blank" href="https://www.kapods.org', '<a target="_self" href="https://www.kapods.org').replace(showNotesWebsite, "").replace('<p class="block"><a target="_blank" rel="payment" href="https://www.kapods.org/support">Support the show</a></p>', "").replace("<p class=\"block\">This podcast is made by <a target=\"_self\" href='https://www.kapods.org'>Kingdom: Animalia Podcasts</a>.</p>", ""),
       date: {
         short: new Date(item.querySelector("pubDate").innerHTML).toLocaleString("en-US", {
           weekday: "short",

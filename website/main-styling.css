@@ -205,13 +205,10 @@ footer .jw-form-container input[type='email']::placeholder {
 .accordian-arrow-button {
   filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(15%) hue-rotate(184deg) brightness(99%) contrast(97%);
   min-width: 8pt;
-  max-width: 8pt !important;!i;!;!i;!;
+  max-width: 8pt !important;
   min-height: 4.8512pt;
   max-height: 4.8512pt;
-  
-  !i;!;
   margin: 0 0.8rem;
-  !i;!;
   transition: transform 0.25s ease;
   pointer-events: none;
   vertical-align: middle;
@@ -332,7 +329,7 @@ details[open] .accordian-arrow-button {
   }
 }
 
-/* Show listings */
+/* Show listings ("Home," "Podcasts," and "Pods-in-Pods" pages) */
 
 .show {
   position: relative;
@@ -409,7 +406,7 @@ a:has(.show:hover *:hover) {
   text-decoration-color: transparent !important;
 }
 
-/* Descriptions */
+/* Descriptions (home and podcast pages) */
 .description-container {
   background-color: #e3731f;
   padding: 15px;
@@ -431,21 +428,12 @@ a:has(.show:hover *:hover) {
   margin: 0 !important;
 }
 
-.js-link {
-  cursor: pointer;
+.description-container a:not(:hover) {
+  color: #00438c !important;
 }
 
-.pswp__caption__center {
-    font-size: 1.7rem !important;
-    font-weight: bold;
-    margin: 0 0 0 10px !important;
-    max-width: 100% !important;
-}
-
-@media (max-width: 768px) {
-  .pswp__caption__center {
-    font-size: 1.43rem !important;
-  }
+.description-container a:hover {
+  color: #005bbf !important;
 }
 
 /* Header */
@@ -487,4 +475,23 @@ body:is(.jw-is-menu-multiline) .jw-mobile-toggle {
 /* Puts the the Speakpipe side button below the menu */
 #-speakpipe-widget-side-button {
   z-index: 998 !important;
+}
+
+/* Fullscreen image captions */
+.pswp__caption__center {
+  font-size: 1.7rem !important;
+  font-weight: bold;
+  margin: 0 0 0 10px !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .pswp__caption__center {
+    font-size: 1.43rem !important;
+  }
+}
+
+/* Miscellaneous */
+.js-link {
+  cursor: pointer;
 }
