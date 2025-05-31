@@ -28,8 +28,9 @@ const placeholder = document.createAttribute("placeholder");
 placeholder.value = "Your email address…";
 newsletterEmail.setAttributeNode(placeholder);
 
+// Link the header message bar to the KAP Plus site
 document.getElementsByClassName("message-bar--accent")[0].addEventListener("click", function() {
-  window.open("/support", "_self");
+  window.open("https://plus.kapods.org", "_blank");
 });
 
 let aSpans = document.querySelectorAll("span:has(:is(span a))");
