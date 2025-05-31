@@ -249,7 +249,7 @@ function displayPlayerLinks(podcast) {
   
   for (let player of players[podcast]) {
     playerLinks.innerHTML += 
-     `<div class="player" onclick="${player.function ? player.function : `window.open('player.url', '_blank');`}">
+     `<div class="player" onclick="${player.function ? player.function : `window.open('${player.url}', '_blank');`}">
         <img src="${player.logo}">
         <span>${player.name}</span>
       </div>`;
